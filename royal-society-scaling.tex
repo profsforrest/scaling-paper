@@ -356,18 +356,23 @@ computation and biology:
 % better.  Has something to do with multiplicity of components.
 
 \item {\bf Steady state}: Resource supply matches processing
-  demand~\cite{banavar10}.  This avoids network delays and the need to
+  demand~\cite{banavar10}.  That is, the network supplies
+  resources continually to the terminal nodes and is
+  always filled to capacity.  This avoids network delays and the need to
   store resources in the system. Specifically,
 \begin{enumerate}
 \item System designs balance network delivery rates with node
   processing speeds, so that resources are delivered at exactly the
   same rate that they are processed.
 
-\item Pipelining: [NEED TO SAY 'the network is full at all times'] Hierarchical networks are pipelined in the sense
-  that resources leave the source (highest branch of the network) at
-  the same rate that they are delivered to the terminal nodes.  This
-  principle holds within every level of the hierarchy.  Alternatively,
-  resources flow continually and do not accumulate at source, sink, or
+\item Pipelining: A concept from computer architecture in which
+  resources, e.g., computer instructions, leave the source at
+  the same rate that they are delivered to the terminal nodes, and the
+  network is always full.  In the hierarchical networks considered
+  here, the source is the highest branch (root), and the
+  principle holds within every level of the hierarchy.  Consequently,
+  resources flow through the network continually at maximum speed, and
+  they do not accumulate at source, sink, or
   intermediate locations.
 \end{enumerate}
 
