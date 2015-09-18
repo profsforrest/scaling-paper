@@ -69,9 +69,7 @@
 
 % Include your paper's title here
 
-\title{Biological and Computer Designs Minimize the Energy-Time 
-Product} 
-
+\title{Biological and Computer Designs Minimize Energy and Time} 
 
 % Place the author information here.  Please hand-code the contact
 % information and notecalls; do *not* use \footnote commands.  Let the
@@ -273,7 +271,7 @@ vessels (pipes) become thicker and longer as hierarchy increases from
 the capillaries to the aorta. Similarly, microprocessor chips are 
 organized hierarchically into a nested structure of modules and 
 submodules, where wires become longer and thicker as the hierarchical 
-level of a module increases.  These wires are organized into metal 
+level of a module increases.  See Figure \ref{fig:model-schematic}.  These wires are organized into metal 
 layers, where short, thin wires are routed on the lowest layers, and 
 long, thick wires are placed on the top layers. We model the scaling 
 of length ($l$) and thickness ($r$) of both pipes and wires as
@@ -293,6 +291,14 @@ networks, $r$ represents the radius of cylindrical pipes, and in
 computer interconnects, $r$ represents the width of wires with aspect 
 ratio 1.  The smallest edges occur at $i = 0$, and have constant 
 length and thickness, $l_0$ and $r_0$. 
+
+\begin{figure}
+\caption{Schematic: Panel c illustrates the communication dimension, $D_w$,
+  which measures how the ratio of internal (intra-module) communication per node to
+  external (inter-module) communication per node scales with the level of the module in
+  the hierarchy. Note, that if we had a biological version, we would
+  have MORE edges.}
+\end{figure}
 
 The length parameter $D_l$ determines the spatial dimension occupied 
 by the nodes of the network \cite{mandelbrot83}.
@@ -321,7 +327,15 @@ w_i = w_0 \lambda^{i/D_w},
 where $D_w$ is the communication dimension and $w_0$ is the average 
 number of wires per node.  This hierarchical scaling of communication 
 is a well-known pattern in circuit design called Rent's rule 
-\cite{christie00}, where $p = 1/D_w$ is the Rent's exponent. This 
+\cite{christie00}, where $p = 1/D_w$ is the Rent's
+exponent.\footnote{Rent's rule is typically expressed as $C(n) = kn^p$, where $C_n$
+  is the external communication of a module, $n$ is the size of the
+  module (number of nodes), $k$ is the average external communication
+  of a module with size 1, and $p$ is the Rent’s exponent. For a
+  hierarchy with branching factor of $\lambda$, the size of a module is
+  given as $n = \lambda^i$, where $i$ is the hierarchical
+  level. Therefore, we can rewrite Rent’s rule as $c_i = c_0
+  \times \lambda^{ip}$, where $c_0 = w_0$ and $p = 1 / D_w$.} This 
 pattern is not unique to circuits and has been shown to occur in many 
 biological networks \cite{reda09,bassett10}.   Vascular systems 
 correspond to a special case where 
