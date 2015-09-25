@@ -507,14 +507,12 @@ for the network and nodes, in organisms in order to minimize Eq. \ref{eq:TheWhol
 From basic principles of hydraulics, the energy dissipated to
 transport a constant volume of blood through the network ($E_{net}$)
 is given by the loss in pressure from the aorta to the capillaries
-multiplied by the volume being transported.  Pressure is given by the
-well-known Hagen-Poiseuille's equation as the product between
-hydraulic resistance and flow, $\Delta P = R·Q$.  Thus $E_{net}
-\propto RQ$.
-
+multiplied by the volume being transported.  Pressure is the product between
+hydraulic resistance ($R$) and flow ($Q$), so $\Delta P = R·Q$.  Thus $E_{net}
+\propto \Delta P \propto RQ$.
 We assume that the quantity of energy dissipated to metabolize a fixed 
 amount of nutrients is independent of metabolic rate and, therefore, 
-$E_{node}$ is constant.   
+$E_{node}$ is constant~\cite{west97}.   
 %We now determine the energy dissipated and the time taken to process a 
 %unit volume of blood at the nodes ($E_{node}$ and $T_{node}$), 
 %where a 
@@ -537,38 +535,60 @@ $E_{node}$ is constant.
 %pressure.  
 
 % MEL AND STEPH SUBSTITUTED Q FOR $\overline{Q}$ in the following equations.
-Considering the time component, the time to deliver a constant volume of blood ($T_{net}$) to a node 
+Considering the time component, the time to deliver a constant volume
+of blood ($T_{net}$) to a node 
 is given by the volume of blood being transported divided by the 
 flow ($Q$).  Since this volume is constant, $T_{net}\propto 
-1/Q $ %\propto N^{\frac{-2}{D_r}}$.
+1/Q$.  One might ask why there is no distance term in the previous
+equation.  Because of the steady-state assumption, $T_{net}$ is the time it
+takes to get the 'next' oxygen molecule from a capillary and not the time it
+takes a single molecule to traverse the network.
+% THAT IS, it is exactly 'clock speed'
+ %\propto N^{\frac{-2}{D_r}}$.
 % $T_{net}\propto 1/\overline{Q} \propto N^{1-2/D_r}$.
-Following \cite{banavar10}, we assume that 'supply equals demand,' which implies that $T_{node} = T_{net}$.
+This implies that $T_{node} = T_{net}$.
+%Following \cite{banavar10}, we assume that 'supply equals demand,' which 
 
 To minimize the energy-time product, Eq.~\ref{eq:TheWholeEnchilada}
-becomes:\footnote{Because $l_0$ is not constant, we need to
-   point out that the $u$ terms cancel out.  NOT SURE HOW TO DO THAT
-   NOW.}
+becomes:
+%\footnote{Because $l_0$ is not constant, we need to
+%   point out that the $u$ terms cancel out.  NOT SURE HOW TO DO THAT
+%   NOW.}
 \begin{equation}
- (RQ + N^0) \times (\frac{1}{Q} + \frac{1}{Q}) \propto R +
+ Minimize (RQ + N^0) \times (\frac{1}{Q} + \frac{1}{Q}) \propto R +
  \frac{N^0}{Q}.
 \label{eq:bio-min}
 \end{equation}
+\noindent where $N$ is the number of terminal units.
 
-The resistance of a pipe 
+The resistance of a pipe is given by given by the
+well-known Hagen-Poiseuille's equation, where $R$
 at hierarchical level $i$ is $R_i = 8\mu l_i/\pi r_i^4$, where $\mu$ is 
 the viscosity constant.  The total network resistance $R$ is given by 
 \cite{west97}:
 \begin{equation}
+\label{eq:resistance}
 R = \sum_{i=0}^H \frac{8\mu l_i}{\pi r_i^4}\frac{1}{n_i}
 = \frac{8\mu l_0}{\pi r_0^4} \lambda^{-H}\sum_{i=0}^H \lambda^{i 
 \left(\frac{1}{D_l} - \frac{4}{D_r} + 1 \right)},
 \end{equation}
-where $H+1$ is the number of hierarchical levels, and $n_i = \lambda^{H-i}$ is the total number of pipes at hierarchical level $i$.  
+where $H+1$ is the number of hierarchical levels, and $n_i =
+\lambda^{H-i}$ is the total number of pipes at hierarchical level $i$.  
+To understand how pulsitile flow affects resistance in the
+  upper part of the network, see \cite{west97}, which shows that $D_r
+  = 2$, i.e., is area preserving, in this region.
 
-Recalling that $\lambda^{-H} = N^{-1}$ and that $D_l = 3$ for organisms, 
-in the case where $D_r <  3$, the summation converges to 1, and $R
+West et al. predict that $R$ and therefore $E_{net}$ are
+minimized by $D_r = 3$ in the lower part of the
+network,  where Eq. \ref{eq:resistance} dominates.  However, this
+prediction does not account for delivery time, which slows
+dramatically when $D_r = 3$.
+
+Next, we derive upper and lower bounds for $D_r$ given that the goal
+is to minimize the energy-time product.  Recalling that $\lambda^{-H} = N^{-1}$ and that $D_l = 3$ for organisms, 
+in the case where $D_r <  3$, the summation in Eq.~\ref{eq:resistance} converges to 1, and $R
 \propto N^{-1}$.   As $D_r$ increases from 3 to 12, $R$ increases from
-$\propto N^{-1}$ to a constant, and we do not consider $D_r > 12$, where the series diverges.
+$\propto N^{-1}$ to a constant (we do not consider $D_r > 12$, where the series diverges).
 
 %In the case where $ D_r = 12$, $R \propto N^0$.   When $ 3 < D_r <12$, $R$ decreases as $N$ increases.
 
@@ -628,21 +648,30 @@ $ Q \propto  N^{2/D_r}$.
 
 Considering the two relevant cases, $D_r < 3$ and $ 3 \leq D_r \leq 12$:
 \begin{enumerate}
-\item Case I,  $D_r < 3$: Eq. \ref{eq:bio-min} = $N^{\frac{2}{D_r}-1} +
+\item Case I,  $D_r < 3$: Eq. \ref{`w}  $\propto N^{\frac{2}{D_r}-1} +
   N^{\frac{-2}{D_r}}$
-\item Case II, $ 3 \leq D_r \leq 12$: Eq. \ref{eq:bio-min} = $N^{\frac{2}{D_r}}
+\item Case II, $ 3 \leq D_r \leq 12$: Eq. \ref{eq:bio-min} $\propto N^{\frac{2}{D_r}}
   + N^{\frac{-2}{D_r}}$
 \end{enumerate}
 
 Considering Case I, when $2 < D_r \leq 3$, both terms of
 Eq. \ref{eq:min-bio} have negative exponents and is minimized as $D_r$
 approaches 3.  Case II can never have negative exponents for both
-terms, and therefore, the minimium of Eq. \ref{eq:min-bio} is upper
-bounded by $D_r 3$.  [NOTE: consider including the explicit case when
-$D_r = 3$ (on the board).
+terms, so Case I always has a lower energy-time product, and therefre,
+Eq. \ref{eq:bio-min} is minimized as $D_r$ approaches 3.   
+%therefore, the minimium of Eq. \ref{eq:min-bio} is upper
+%bounded by $D_r  = 3$.  [NOTE: consider including the explicit case when
+%$D_r = 3$ (on the board).
+This derivation provides a straightforward theoretical explanation for why $D_r =
+3$ in the lower region of the network by balancing the advantage of
+distributing resources quickly against the energy cost of delivering
+them.  This provides an alterative explanation for why blood slows
+as it passes through the network, independently of any delivery
+mechanism at the nodes.  [ADD A SENTENCE ABOUT THE LAST MILE AND PUT
+IT IN THE DISCUSSION.]
 
-This result is interesting because it provides an alternative
-explanation for area increasing branching in the circulatory system.
+%This result is interesting because it provides an alternative
+%explanation for area increasing branching in the circulatory system.
 
 % Combining terms,
 % eachARE  minimized by minimizing $D_r$.  However, $N^{-1}$  is a lower bound on $R$ because when the summation is minimized, $\lambda^{-H} \propto N^{-1}$ dominates, and there is no additional benefit 
