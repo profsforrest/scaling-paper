@@ -510,6 +510,8 @@ is given by the loss in pressure from the aorta to the capillaries
 multiplied by the volume being transported.  Pressure is the product between
 hydraulic resistance ($R$) and flow ($Q$), so $\Delta P = R·Q$.  Thus $E_{net}
 \propto \Delta P \propto RQ$.
+{\bf RQ is pressure not loss in pressure, so something is fishy with
+  this argument.}
 We assume that the quantity of energy dissipated to metabolize a fixed 
 amount of nutrients is independent of metabolic rate and, therefore, 
 $E_{node}$ is constant~\cite{west97}.   
@@ -559,7 +561,9 @@ becomes:
  \frac{N^0}{Q}.
 \label{eq:bio-min}
 \end{equation}
-\noindent where $N$ is the number of terminal units.
+\noindent where $N$ is the number of terminal units.  {\bf Because of
+  pipelining, we think we only need one 1/Q term here.  $T_{net} = T_{node}
+  = T_{sys}$}
 
 The resistance of a pipe is given by given by the
 well-known Hagen-Poiseuille's equation, where $R$
