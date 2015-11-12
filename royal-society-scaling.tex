@@ -69,7 +69,7 @@
 
 % Include your paper's title here
 
-\title{Biological and Computer Designs Minimize Energy and Time} 
+\title{Biological and Computer Designs Minimize Energy and Time. NOTE change title and abstract for Roy Soc} 
 
 % Place the author information here.  Please hand-code the contact
 % information and notecalls; do *not* use \footnote commands.  Let the
@@ -431,7 +431,7 @@ Similarly, we define $E_{node}$ and $T_{node}$ as the
 energy dissipated and the time taken by a node to process that resource.
 Under the
 pipelining and steady-state assumptions, $T_{net} = T_{node}$, i.e.,
-supply matches demand for both systems.
+supply matches demand for both systems. (NOTE: later we don't insist that Tnet = Tnode for chips. Fix that.)
 For organisms, the node is the service volume 
 corresponding to a region of tissue supplied by a single capillary.  
 %Note, the service volume is not necessarily of fixed size~\cite{banavar10}.
@@ -442,8 +442,7 @@ For computers, the nodes are transistors, and
 $E_{node}$ and $T_{node}$ represent the energy dissipated and 
 the time taken to process a bit at the node (i.e., transistor 
 switching energy and delay).  In the following, we derive general 
-scaling relations for these quantities as a function of the model 
-parameters.  That is, system designs seek to deliver the maximum amount of resource per unit time for 
+scaling relationships between these quantities and the number of nodes $N$, assuming that the energy time product is minimized.  That is, system designs seek to deliver the maximum amount of resource per unit time for 
 the minimum amount of energy overhead.   This is equivalent to minimizing the energy dissipated to deliver and process a unit of resource, while simultaneously minimizing the time to deliver and process that resource.  Assuming that time and energy are
 equally important, this quantity becomes the energy-time product, 
 a well-known concept in computer architecture referred to as the
@@ -468,9 +467,9 @@ Minimize(E_{sys} \times T_{sys})
 \label{eq:TheWholeEnchilada}
 \end{equation}
 where the system's energy is given as $E_{sys} = E_{net} + E_{node}$, 
-and the system's time as $T_{sys} = T_{net} + T_{node}$.{\bf SF
-  worries that this is not correct for computers or biology because of
-  pipelining.}   We derive expressions for $E_{sys}$ and $T_{sys}$
+and the system's time as $T_{sys} = max(T_{net} + T_{node})$ due to pipelining.
+
+We derive expressions for $E_{sys}$ and $T_{sys}$
 for organisms (Sec. \ref{sec:organisms}) and computers
 (Sec. \ref{sec:computers}) in terms of the dimensions $D_l$, $D_r$,
 and $D_w$.  
@@ -508,10 +507,9 @@ From basic principles of hydraulics, the energy dissipated to
 transport a constant volume of blood through the network ($E_{net}$)
 is given by the loss in pressure from the aorta to the capillaries
 multiplied by the volume being transported.  Pressure is the product between
-hydraulic resistance ($R$) and flow ($Q$), so $\Delta P = R·Q$.  Thus $E_{net}
+hydraulic resistance ($R$) and flow ($Q$), so the loss in pressure $\Delta P = RQ$.  Thus $E_{net}
 \propto \Delta P \propto RQ$.
-{\bf RQ is pressure not loss in pressure, so something is fishy with
-  this argument.}
+%{\bf RQ is pressure not loss in pressure, so something is fishy with this argument.}
 We assume that the quantity of energy dissipated to metabolize a fixed 
 amount of nutrients is independent of metabolic rate and, therefore, 
 $E_{node}$ is constant~\cite{west97}.   
@@ -543,12 +541,12 @@ is given by the volume of blood being transported divided by the
 flow ($Q$).  Since this volume is constant, $T_{net}\propto 
 1/Q$.  One might ask why there is no distance term in the previous
 equation.  Because of the steady-state assumption, $T_{net}$ is the time it
-takes to get the 'next' oxygen molecule from a capillary and not the time it
+takes to get the `next' oxygen molecule from a capillary and not the time it
 takes a single molecule to traverse the network.
 % THAT IS, it is exactly 'clock speed'
  %\propto N^{\frac{-2}{D_r}}$.
 % $T_{net}\propto 1/\overline{Q} \propto N^{1-2/D_r}$.
-This implies that $T_{node} = T_{net}$.
+Pipelining also implies that $T_{node} = T_{net}$.
 %Following \cite{banavar10}, we assume that 'supply equals demand,' which 
 
 To minimize the energy-time product, Eq.~\ref{eq:TheWholeEnchilada}
@@ -557,13 +555,13 @@ becomes:
 %   point out that the $u$ terms cancel out.  NOT SURE HOW TO DO THAT
 %   NOW.}
 \begin{equation}
- Minimize (RQ + N^0) \times (\frac{1}{Q} + \frac{1}{Q}) \propto R +
+ Minimize (RQ + N^0) \times (\frac{1}{Q}) \propto R +
  \frac{N^0}{Q}.
 \label{eq:bio-min}
 \end{equation}
-\noindent where $N$ is the number of terminal units.  {\bf Because of
-  pipelining, we think we only need one 1/Q term here.  $T_{net} = T_{node}
-  = T_{sys}$}
+\noindent where $N$ is the number of terminal units.  
+
+%{\bf Because of pipelining, we think we only need one 1/Q term here.  $T_{net} = T_{node} = T_{sys}$}
 
 The resistance of a pipe is given by given by the
 well-known Hagen-Poiseuille's equation, where $R$
@@ -574,13 +572,10 @@ the viscosity constant.  The total network resistance $R$ is given by
 \label{eq:resistance}
 R = \sum_{i=0}^H \frac{8\mu l_i}{\pi r_i^4}\frac{1}{n_i}
 = \frac{8\mu l_0}{\pi r_0^4} \lambda^{-H}\sum_{i=0}^H \lambda^{i 
-\left(\frac{1}{D_l} - \frac{4}{D_r} + 1 \right)},
+\left(\frac{1}{D_l} - \frac{4}{D_r} + 1 \right)}
 \end{equation}
 where $H+1$ is the number of hierarchical levels, and $n_i =
 \lambda^{H-i}$ is the total number of pipes at hierarchical level $i$.  
-To understand how pulsitile flow affects resistance in the
-  upper part of the network, see \cite{west97}, which shows that $D_r
-  = 2$, i.e., is area preserving, in this region.
 
 West et al. predict that $R$ and therefore $E_{net}$ are
 minimized by $D_r = 3$ in the lower part of the
@@ -588,7 +583,12 @@ network,  where Eq. \ref{eq:resistance} dominates.  However, this
 prediction does not account for delivery time, which slows
 dramatically when $D_r = 3$.
 
-Next, we derive upper and lower bounds for $D_r$ given that the goal
+NOTE:  To understand how pulsitile flow affects resistance in the
+  upper part of the network, see \cite{west97}, which shows that $D_r
+  = 2$, i.e., the network is area preserving, in this region.
+
+
+We derive upper and lower bounds for $D_r$ in the lower part of the network given that the goal
 is to minimize the energy-time product.  Recalling that $\lambda^{-H} = N^{-1}$ and that $D_l = 3$ for organisms, 
 in the case where $D_r <  3$, the summation in Eq.~\ref{eq:resistance} converges to 1, and $R
 \propto N^{-1}$.   As $D_r$ increases from 3 to 12, $R$ increases from
@@ -618,7 +618,7 @@ Therefore, flow through the aorta equals
 $Q = u_H \pi r_{H}^2$, and substituting from Eq. 1, $Q = u_0 \pi r_0^2
 \lambda^{2H/D_r} = u_0 \pi r_0^2N^{2/D_r} $. 
 
-Assuming that $U_H$ is constant and $Q$ is equal at all levels of the
+Assuming that $U_H$ is independent of $N$ and $Q$ is equal at all levels of the
 network (steady state assumption) gives:
 $ Q \propto  N^{2/D_r}$.  
 
@@ -684,7 +684,19 @@ IT IN THE DISCUSSION.]
 % %Because $D_l$ is 3, the series converges to a minimum constant value when $D_r <  3$  giving
 % %$R \propto \lambda^{-H} \propto N^{-1}$.  
 The final energy and time scaling relations for 
-organisms are shown SOMEPLACE.
+organisms are  (NOTE:  putting these here to keep track for now, and noting that they don't make any sense!):
+
+$E_{net} \propto RQ$ where R is Eq. 6,  $Q \propto N^{2/D_r}$ under the minimization condition that $D_r = 3$.
+Substituting into Eq 6 gives: $R \propto N^{(-1/2)} N^{-1} N^{(1/2 - 4/3 + 1)} \propto N^{-4/3}$ and
+
+$E_{net} \propto N^{-4/3} N^{2/3} \propto N^{-2/3} $
+
+$E_{node} \propto N^0$ (by reference to WBE)
+
+$T_{net} \propto 1/Q \propto N^{1-2/D_r}$ where $D_r = 2$ in the upper pulsatile area preserving part of the network so $T_{net} \propto N^{0} $ and $D_r = 3$ in the lower Poiseuillle area increasing part of the network so $T_{net} \propto N^{1/3}$.
+
+$T_{node} \propto N^{1-2/D_r}$ matching $T_{net}$. 
+
 %in Table \ref{tab:equations}. 
 
 
@@ -699,52 +711,83 @@ In computers, unlike biology, the nodes (transistors)
 %transistor count is driven by reduction in feature sizes, 
 are not of constant size and have shrunk by many orders of magnitude over
 40 years of micro architecture evolution.  During this time,
-chip area has grown much more slowly; we assume it to be constant for our calculations.
+chip area has grown much more slowly; we assume chip area to be constant for our calculations.
 Putting these two constraints together, the linear 
 dimensions of transistors and wires decrease with transistor count as 
 $N^{-1/2}$ (or, more generally, $N^{-1/D_l}$) \cite{moses08}.  This 
 miniaturization process is well understood and is accurately modeled 
-by Dennard's scaling theory \cite{dennard74}.  [TODO: Review Dennard scaling]  
+by Dennard's scaling theory \cite{dennard74}.  
+%[TODO: Review Dennard scaling]  
 %The final energy and 
 %time formulas with the correction for technology scaling are shown in 
 %Table \ref{tab:equations}.
-Thus, $r_0 \propto l_0 \propto N^{-1/D_l}$.
+Thus, $r_0 \propto l_0 \propto N^{-1/D_l}$. Intuitively, this means that the number of nodes increases by placing smaller transistors closer together and connecting them with smaller and shorter wires.
 
 In the following, 
 we assume that all wires carry the same flow and that information is 
-transferred synchronously. From basic principles of electronics, the 
+transferred synchronously. We first calculate how $E_{net}$ scales with $N$. From basic principles of electronics, the 
 energy dissipated to transmit a bit over a wire is given by the 
 formula $CV^2/2$, where $C$ is capacitance and $V$ is voltage.  
 Although energy depends on $V^2$, voltage has remained approximately 
 constant over the last four decades (decreasing only by a factor of 
 five while transistor count increased by six orders of magnitude 
-\cite{ning07}), so we estimate that energy scales as $C$ 
+\cite{ning07}), so we estimate that the total energy to transmit all bits over the network scales as $C$ 
 \cite{bingham08}.  Ignoring fringe effects and for an aspect ratio of 
 1, wire capacitance is $C_i = \epsilon l_i$ \cite{wilhelm95}, where 
 $\epsilon$ is the dielectric constant.  The network capacitance is the 
 sum of the capacitances of all wires, which is proportional to the 
 total wire length of the network \cite{donath79}:
 \begin{equation}
-C = \epsilon\cdot Length = \epsilon \sum_{i=0}^H l_i w_i n_i = 
-\epsilon l_0 w_0 \lambda^H \sum_{i=0}^H \lambda^{i \left( 
-\frac{1}{D_l} + \frac{1}{D_w} -1 \right)}.
+C \propto Length \propto  \sum_{i=0}^H l_i w_i n_i \propto
+ l_0 w_0 \lambda^H \sum_{i=0}^H \lambda^{i \left( 
+\frac{1}{D_l} + \frac{1}{D_w} -1 \right)}
 \end{equation}
-Because $E_{net}$ is defined as the energy required to transmit a bit to a single node, we need only sum over a single wire for each hierarchical level in the network, so the $n_i$ term drops
-out:
+
+%\begin{equation}
+%C = \epsilon\cdot Length = \epsilon \sum_{i=0}^H l_i w_i n_i = 
+%\epsilon l_0 w_0 \lambda^H \sum_{i=0}^H \lambda^{i \left( 
+%\frac{1}{D_l} + \frac{1}{D_w} -1 \right)}
+%\end{equation}
+
+where $l_i$ is the length of wire, $w_i$ is the number of wires per module, and $n_i$ is the number of modules, all at level $i$.
+
+Recall that $l_0 \propto N^{-1/D_l}$ and $\lambda^H \propto N$ giving 
+
+\begin{equation}
+C \propto  N^{(1- 1/D_l)} \sum_{i=0}^H \lambda^{i \left( 
+\frac{1}{D_l} + \frac{1}{D_w} -1 \right)}
+\end{equation}
+
+%XXXXXXX fix the leading scaling term to N to the one half, fix explanation below--it decreases with N because more local, more modular and shorter local wires.
+
+We note that $C$, and consequently $E_{net}$, are minimized when the series converges which occurs when
+$D_w >= D_l / (D_l -1)$. In this case  $C \propto \lambda^H \propto N$. The average energy to transmit a bit over the network is then given by 
+
+\begin{equation}
+E_{net} \propto C/N \propto N^{-1/D_l} 
+\end{equation}
+
+indicating that $E_{net}$ decreases with the number of terminal units in the network. This makes sense intuitively because we assume chip area is constant, so that as $N$ increases the distance between nodes is reduced. Additionally, Rent's rule, reflected in $D_w$, means that most bits move locally so that the distance distance between nearest nodes affects the average distance that bits are transmitted. 
+
+(Not sure if this is necessary): Note that if $D_w$ were smaller than $D_l / (D_l -1)$ then energy per bit would increase with $N$, and if $D_w$ were larger than $D_l / (D_l -1)$ there would be no further reduction in the scaling of $E_{net}$. Because $D_w$ is not a factor in any other term of the energy time product, we set $D_w = D_l / (D_l -1)$, and given a 2 dimensional chip, $D_w = D_l = 2$.
+
+
+%Because $E_{net}$ is defined as the energy required to transmit a bit to a single node, we need only sum over a single wire for each hierarchical level in the network, so the $n_i$ term drops
+%out:
 %Because energy is proportional to $C$, we focus on the region where 
 %capacitance is minimized and the series converges, such that $D_w 
 %> D_l/(D_l-1)$, resulting in $C \propto \lambda^H=N$. The average 
 %energy to transmit a bit over the network is then given by $E_{net} 
 %=CV^2/2N \propto N^0$.
-\begin{equation}
-C = \epsilon l_0 w_0 \sum_{i=0}^H \lambda^{i \left( 
-\frac{1}{D_l} + \frac{1}{D_w} \right)} \propto l_0 w_0 \frac{\lambda^{(\frac{1}{D_l} + \frac{1}{D_w}) (H + 1)} - 1}{\lambda^{(\frac{1}{D_l} + \frac{1}{D_w})} - 1} \propto N^{-1/D_l}N^{(\frac{1}{D_l} + \frac{1}{D_w})}\propto N^{1/D_w}
-\end{equation}
-\noindent where $N = \lambda^H$.
+%\begin{equation}
+%C = \epsilon l_0 w_0 \sum_{i=0}^H \lambda^{i \left( 
+%\frac{1}{D_l} + \frac{1}{D_w} \right)} \propto l_0 w_0 \frac{\lambda^{(\frac{1}{D_l} + \frac{1}{D_w}) (H + 1)} - 1}{\lambda^{(\frac{1}{D_l} + \frac{1}{D_w})} - 1} \propto N^{-1/D_l}N^{(\frac{1}{D_l} + \frac{1}{D_w})}\propto N^{1/D_w}
+%\end{equation}
+%\noindent where $N = \lambda^H$.
 % Drop -1 from exponent and lambda^H because it was there to count up the n's which we have dropped.
 
 
-The time to transmit a bit over a wire is given by the wire latency as 
+We now calculate how $T_{net}$, the time to transmit a bit over a wire scales with $N$.  $T_{net}$ is equivalent to the wire latency which is 
 $L \propto RC$, where $R$ is the wire resistance.  For wires with 
 aspect ratio 1, $R_i = \rho l_i /r_i^2$, where $\rho$ is the 
 resistivity of the material.  Thus,
@@ -759,72 +802,103 @@ L_i \propto R_i C_i = \rho \epsilon \frac{l_i^2}{r_i^2} = \rho
 Because flow is synchronous (meaning each wire transfers one bit in parallel on each clock tick), the network 
 must wait until all wires have finished their transmission before 
 initiating the next cycle. Therefore, the time to transfer a bit 
-equals the latency of the slowest wires, which in the case where $D_r > D_l$ is
-at the highest hierarchical level, thus
+equals the latency of the slowest wires. We consider 3 cases.
+
+i)  $D_r > D_l$ and latency is greatest at the highest hierarchical level, thus
+
 \begin{equation}
+\label{eq:TnetEqComp}
 T_{net} = L_H \propto \frac{l_0^2}{r_0^2} \lambda^{H\left( \frac{2}{D_l} - 
 \frac{2}{D_r}\right)} = N^{\left( \frac{2}{D_l} - 
 \frac{2}{D_r}\right)}.
 \end{equation}
-In the case where $D_r < D_l$, the thickness of the wire would increase faster than the length at increasing
+In this case, because $D_r > D_l$ the exponent in Eqn. \ref{eq:TnetEqComp} is positive, and $T_{net}$ increases with $N$.
+
+ii) In the case where $D_r < D_l$, the thickness of the wire increases faster than the length at increasing
 hierarchical levels of the network.  Thus, the fastest wires would be at the highest level
-of the network, and latency would be dominated by wires at the lowest level: $\frac{l_0^2}{r_0^2} \propto N^0$.  
+of the network, and latency would be dominated by wires at the lowest level: $T_{net} = L_0 \propto \frac{l_0^2}{r_0^2} \propto N^0$.  
 %In the case where
 %$D_r > D_l$, the slowest wires are at the highest level of the network and the equation
 %reduces to $ N^{\left( \frac{2}{D_l} - \frac{2}{D_r}\right)}$.  
-In the case where $D_r = D_l$, the latency
-is the same at every level of the network: $L \propto \frac{l_0^2}{r_0^2} \propto N^0$.
-Of these cases, $T_{net}$ is minimized when $D_l >= D_r$,  and since $D_r$ does not affect any of the other terms in the energy-time product (Table \ref{tab:equations}),  we assume this case giving $T_{sys} \propto N_0$.  Although counterintuitive, 
 
-For a single node, computation energy is given by the transistor's 
+iii) In the case where $D_r = D_l$, the network has perfect pipelining and the latency
+is the same at every level of the network: $T_{net} =L \propto \frac{l_0^2}{r_0^2} \propto N^0$.
+
+Of these cases, $T_{net}$ is minimized when $D_l >= D_r$,  and since $D_r$ does not affect any of the other terms in the energy-time product (Table \ref{tab:equations}),  we assume this case giving $T_{sys} \propto N_0$.  Thus, network latency, or $E_{net}$ the time for each subsequent bit to be processed by the network is independent of the number of transistors in the network.
+
+
+%NOTE: change Eq 10 to the perfect pipelining case where supply = demand at each level of the network. Make the other 2 cases parentheticals in the text.
+
+We now calculate the scaling of $E_{node}$ and $T_{node}$. For a single node, computation energy is given by the transistor's 
 (dynamic) energy dissipation as $CV^2/2$.  Given that transistor size scales as $N^{-1/D_l}$,
-$E_{node} \propto  N^{-1/D_l}$.  [GEORGE, PLEASE GIVE A REFERENCE AND ONE SENTENCE OF RATIONALE.]
+$E_{node} \propto  N^{-1/D_l}$. % [GEORGE, PLEASE GIVE A REFERENCE AND ONE SENTENCE OF RATIONALE.]
 Computation time is given by the 
-transistor delay as $CV/I$ \cite{bakoglu90}, which also scales as $N^{-1/D_l}$.  [GEORGE: ALSO NEED REFERENCE AND RATIONALE FOR THIS STMT.]
+transistor delay as $CV/I$ \cite{bakoglu90}, which also scales as $N^{-1/D_l}$.  %[GEORGE: ALSO NEED REFERENCE AND RATIONALE FOR THIS STMT.]
 Thus, $T_{node} \propto  N^{-1/D_l}$.  
+
+Summarizing the scaling relationships: 
+
+$E_{net} \propto N^{-1/D_l}$
+
+$E_{node} \propto N^{-1/D_l}$
+
+$T_{net} \propto N^0$
+
+$T_{node} \propto N^{-1/D_l}$
+
+
+
+Thus, for 2 dimensional chips in which $D_l = 2$, three components of the energy time product ($E_{net}$, $E_{node}$, and $T_{node}$) scale sub linearly as $N^{-1/2}$ but $T_{net}$ is constant with respect to $N$.
+
 
 Putting it all together, 
 
+$E_{sys} = E_{net} + E_{node} \propto N^{-1/D_l} \propto N^{-1/2}$ 
 
-\subsection{Fitness Functions of Design}
+$T_{sys}  = max(T_{net}, T_{node}) \propto N^0$.
 
 
-Recall that we express the system's energy is given as $E_{sys} = E_{net} + E_{node}$, 
-and the system's time as $T_{sys} = T_{net} + T_{node}$.  For 
-organisms, we write:
-
-\begin{equation}
-\begin{cases}
-\text{{\bf Minimize:}}\\
-\text{\;\;\;} E_{sys}\times T_{sys} (D_l, D_r) \propto \left( 
-N^{\frac{2}{D_r}-1} + N^0 \right) \times \left( N^{1 
-- \frac{2}{D_r}}+ N^{1 
-- \frac{2}{D_r}}\right)\\
-\,\\
-\text{{\bf Subject to:}}\\
-\text{\;\;\;} D_l = 3\text{ and } 2\leq D_r < \frac{4D_l}{1 + D_l}
-\end{cases}
-\label{eq:organism}
-\end{equation}\\
-
-and for computers:
-\begin{equation}
-\begin{cases}
-\text{{\bf Minimize:}}\\
-\text{\;\;\;} E_{sys}\times T_{sys} (D_l, D_r, D_w) \propto \left( N^{
-- \frac{1}{D_l}} + N^{- \frac{1}{D_l}}\right) \times \left( 
-  N^{\frac{2}{D_l} -\frac{2}{D_r}}  + N^{ - \frac{1}{D_l}}\right)\\
-\,\\
-\text{{\bf Subject to:}}\\
-\text{\;\;\;} D_l=2 \text{, } D_r \geq D_l \text{, and } D_w > 
-\frac{D_l}{D_l-1}.
-\end{cases}
-\label{eq:computer}
-\end{equation}\\
+%\subsection{Fitness Functions of Design}
+%
+%
+%Recall that we express the system's energy is given as $E_{sys} = E_{net} + E_{node}$, 
+%and the system's time as $T_{sys} = T_{net} + T_{node}$.  For 
+%organisms, we write:
+%
+%\begin{equation}
+%\begin{cases}
+%\text{{\bf Minimize:}}\\
+%\text{\;\;\;} E_{sys}\times T_{sys} (D_l, D_r) \propto \left( 
+%N^{\frac{2}{D_r}-1} + N^0 \right) \times \left( N^{1 
+%- \frac{2}{D_r}}+ N^{1 
+%- \frac{2}{D_r}}\right)\\
+%\,\\
+%\text{{\bf Subject to:}}\\
+%\text{\;\;\;} D_l = 3\text{ and } 2\leq D_r < \frac{4D_l}{1 + D_l}
+%\end{cases}
+%\label{eq:organism}
+%\end{equation}\\
+%
+%and for computers:
+%\begin{equation}
+%\begin{cases}
+%\text{{\bf Minimize:}}\\
+%\text{\;\;\;} E_{sys}\times T_{sys} (D_l, D_r, D_w) \propto \left( N^{
+%- \frac{1}{D_l}} + N^{- \frac{1}{D_l}}\right) \times \left( 
+%  N^{\frac{2}{D_l} -\frac{2}{D_r}}  + N^{ - \frac{1}{D_l}}\right)\\
+%\,\\
+%\text{{\bf Subject to:}}\\
+%\text{\;\;\;} D_l=2 \text{, } D_r \geq D_l \text{, and } D_w > 
+%\frac{D_l}{D_l-1}.
+%\end{cases}
+%\label{eq:computer}
+%\end{equation}\\
 
 \section{Results and Discussion}
 \label{sec:discussion}
 
+The following 2 biology paragraphs need a total rewrite!!
+ 
 Analysis of Equation \ref{eq:organism} determines the optimal value of 
 $D_r$ for organisms. Although energy dissipated by the network 
 decreases as $D_r$ increases, we observe that for $D_r\geq 2$ the 
@@ -858,20 +932,20 @@ of magnitude variation in body mass.  The energy-time product reflects
 powerful geometric, physical and biological constraints on the 
 evolution of organism designs.
 
-For computers, the solution to equation \ref{eq:computer} is trivial, 
-also leading to $D_r=2$.  This result corresponds to ideal scaling, as 
+For computers, minimizing the energy time product is trivial: 
+also leading to $D_l=D_r=D_w = 2$,.  This result corresponds to ideal scaling, as 
 suggested by Dennard \cite{dennard74}, where the linear dimensions of 
 transistors and wires scale at the same rate, and wire delay is 
-constant.  From this result, we make two important predictions. For 
-$D_l=D_r=2$, power consumption in chips (total energy dissipated per 
+constant and the Rent's exponent is 1/2, consistent with observations (NEED citations.)
+
+From this result, we make two important predictions.  First, power consumption in chips (total energy dissipated per 
 unit of time) scales as $Power = (N\cdot E_{sys})/T_{sys} \propto 
 N^{1/2}$.  Performance is given by the  number of computations 
-executed per unit of time, or throughput.  Assuming that a constant 
+executed per unit of time, or throughput.  Second, assuming that a constant 
 fraction of the transistors is active at each cycle, throughput is 
 predicted to scale linearly with $N$,  i.e.  $Throughput\propto 
 N/T_{sys} \propto N$.
 
-[Somewhere: Our results provide an explanation for Koomey's Law, which states roughly: "The number of computations per joule of energy dissipated has been doubling approximately every 1.57 years."]
 
 We compared the predictions for power consumption with data obtained 
 for 523 different microprocessors over a range of approximately 6 
@@ -884,13 +958,14 @@ vendors is not uniform.  We were able to obtain normalized performance
 data for 16 Intel processors from different generations over a range 
 of 6 orders of magnitude in transistor count.  The exponent obtained 
 for these data was $1.0$, as shown in Figure \ref{fig:throughput}, 
-which agrees exactly with the predictions from our analysis, 
-suggesting that engineered designs approach the theoretical optimal 
+which agrees exactly with the predictions from our analysis. This 
+suggests that engineered designs approach the theoretical optimal 
 defined by the model.  The final energy-time product predicted by the 
 model scales as $N^{-1/2}$, showing that, unlike organisms, as size 
 increases, the energy-delay product decreases systematically. This is 
 a consequence of process technology improvement, since newer, larger 
-processors use hardware that is faster and more energy efficient.
+processors use hardware that is smaller, faster and more energy efficient.
+
 
 \begin{figure}[!h]
 \centering
@@ -913,6 +988,8 @@ theoretical optimal and experimental data suggests that through
 successive generations of trial-and-error, innovation and 
 optimization, engineered designs are highly successful, approaching 
 the theoretical limit predicted by the model.
+
+These results also provide an explanation for Koomey's Law, which states roughly: ``The number of computations per joule of energy dissipated has been doubling approximately every 1.57 years." This follows directly from minimizing the energy time product and Moore's Law, the empirical observation that the number of transistors ($N$) doubles every 2 years. NEED a figure that combines data from Fig 2 and Fig 3 to show this?
 
 \section{Discussion}
 
