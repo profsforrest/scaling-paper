@@ -114,6 +114,10 @@ computer chip}\\
 
 \begin{document} 
 
+\newcounter{casenum}
+\newenvironment{caseof}{\setcounter{casenum}{1}}{\vskip.5\baselineskip}
+\newcommand{\case}[2]{\vskip.5\baselineskip\par\noindent {\bfseries Case \arabic{casenum}:} #1\\#2\addtocounter{casenum}{1}}
+
 % Double-space the manuscript.
 
 \baselineskip24pt
@@ -164,6 +168,7 @@ Both network designs
 \newpage
 
 \section{Introduction}
+\label{sec:intro}
 
 Both organisms and computers have evolved from relatively simple 
 beginnings into complex systems that vary by orders of magnitude in 
@@ -238,27 +243,23 @@ design as a tradeoff between energy cost and processing speed.
 % to each system. Using these relations, we express the optimal network 
 % design as an energy-time product minimization problem.
 
-Earlier models in biology have assumed either energy minimization, e.g., \cite{west97} or optimal resource
-delivery rate \cite{banavar10}, but they have not formalized the
-tradeoffs between them, as we do here.  This formalization helps
-explain how  nature and engineering are able to produce designs that
-approach pareto-optimal along the 
-energy-time tradeoff.
-Thus, in
-biology evolution has produced mammals ranging in size from mice to
-elephants, rather than convergin on a single optimal size, and in computer architecture engineers have designed
-processors ranging from X to Y, each of which fills a specific
-computational niche.
+Earlier models in biology have assumed either energy minimization, e.g.,
+\cite{west97} or optimal resource delivery rate \cite{banavar10}, but they have
+not formalized the tradeoffs between them, as we do here.  This formalization
+helps explain how  nature and engineering are able to produce designs that
+approach pareto-optimal along the energy-time tradeoff.  Thus, in biology
+evolution has produced mammals ranging in size from mice to elephants, rather
+than converging on a single optimal size, and in computer architecture
+engineers have designed processors ranging from a few thousand transistors to
+several billion, each of which fills a specific computational niche.
 
-In the rest of the paper, we first present the unified model of network
-scaling (Section \ref{sec:unified-model} and the basic assumptions underlying
-the model (Section \ref{sec:assumptions}.  We discuss
-predictions of the model, first for 
-organisms (Section \ref{sec:organisms}) and then for computers (Section
-\ref{sec:computers}). [SAY HERE WHAT WE PREDICT].  Finally, in Section
-  \ref{sec:discussion}  we discuss
-  the implications of these results for evolutionary transitions in
-  nature and engineering.
+In the rest of the paper, we first present the unified model of network scaling
+(Sec.~\ref{sec:unified-model} and the basic assumptions underlying the model
+(Sec.~\ref{sec:assumptions}.  We discuss predictions of the model, first for
+organisms (Sec.~\ref{sec:organisms}) and then for computers
+(Sec.~\ref{sec:computers}). [SAY HERE WHAT WE PREDICT].  Finally, in
+Sec.~\ref{sec:discussion}  we discuss the implications of these results for
+evolutionary transitions in nature and engineering.
 
 [MAKE A FIGURE HERE.LIKE GEORGE'S DISSERTATION]
 
@@ -266,31 +267,38 @@ organisms (Section \ref{sec:organisms}) and then for computers (Section
 \label{sec:unified-model}
 
 
-Vascular systems are hierarchical branching networks where blood 
-vessels (pipes) become thicker and longer as hierarchy increases from 
-the capillaries to the aorta. Similarly, microprocessor chips are 
-organized hierarchically into a nested structure of modules and 
-submodules, where wires become longer and thicker as the hierarchical 
-level of a module increases.  See Figure \ref{fig:model-schematic}.  These wires are organized into metal 
-layers, where short, thin wires are routed on the lowest layers, and 
-long, thick wires are placed on the top layers. We model the scaling 
-of length ($l$) and thickness ($r$) of both pipes and wires as
+Vascular systems are hierarchical branching networks where blood vessels
+(pipes) become thicker and longer as hierarchy increases from the capillaries
+to the aorta. Similarly, microprocessor chips are organized hierarchically into
+a nested structure of modules and submodules, where wires become longer and
+thicker as the hierarchical level of a module increases
+(Figure~\ref{fig:model-schematic}).  These wires are organized into metal
+layers, where short, thin wires are routed on the lowest layers, and long,
+thick wires are placed on the top layers. We model the scaling of length ($l$)
+and thickness ($r$) of both pipes and wires as
+
 \begin{equation}
 l_i = l_0 \lambda^{i/D_l}
 \end{equation}
-and
+
+\noindent and
+
 \begin{equation}
 r_i = r_0 \lambda^{i/D_r},
+\label{eq:rscaling}
 \end{equation}
-where $i$ is the hierarchical level of a branch or module, $\lambda$ 
-is the branching factor, and $D_l$ and $D_r$ are the length and 
-thickness dimensions.  This model is akin to the hierarchical pipe 
-model of vascular systems proposed in \cite{west97}, where $l_i$ 
-ROUGHLY corresponds to $\gamma$ and $r_i$ ROUGHLY corresponds to $\beta$.  In vascular 
-networks, $r$ represents the radius of cylindrical pipes, and in 
-computer interconnects, $r$ represents the width of wires with aspect 
-ratio 1.  The smallest edges occur at $i = 0$, and have constant 
-length and thickness, $l_0$ and $r_0$. 
+
+\noindent where $i$ is the hierarchical level of a branch or module, $\lambda$
+is the branching factor, and $D_l$ and $D_r$ are the length and thickness
+dimensions. This model is akin to the hierarchical pipe model of vascular
+systems proposed in \cite{west97}, $\lambda^{1/Dr}$ and$\lambda^{1/Dl}$
+correspond to West et al.'s $\beta$ and $\gamma$ respectively.
+% where $l_i$ ROUGHLY corresponds to $\gamma$
+%and $r_i$ ROUGHLY corresponds to $\beta$.  
+In vascular networks, $r$ represents the radius of cylindrical pipes, and in
+computer interconnects, $r$ represents the width of wires with aspect ratio 1.
+The smallest edges occur at $i = 0$, and have constant length and thickness,
+$l_0$ and $r_0$. 
 
 \begin{figure}
 \caption{Schematic: Panel c illustrates the communication dimension, $D_w$,
@@ -298,14 +306,13 @@ length and thickness, $l_0$ and $r_0$.
   external (inter-module) communication per node scales with the level of the module in
   the hierarchy. Note, that if we had a biological version, we would
   have MORE edges.}
+  \label{fig:model-schematic}
 \end{figure}
 
 The length parameter $D_l$ determines the spatial dimension occupied 
 by the nodes of the network \cite{mandelbrot83}.
 %and is an independent 
 %variable in the above formulation.  
-For organisms, $D_l = 3$ 
-\cite{west97}, since capillaries distribute blood to cells in three 
 dimensions.  For chips, $D_l = 2$, since transistors are placed on a 
 single two-dimensional layer \cite{donath81}.
 
@@ -320,30 +327,30 @@ centralized, with blood flowing from a single heart. To account for
 this difference, we introduce a new equation, in which the 
 communication (or number of wires) per module increases with the 
 hierarchical level as
+
 \begin{equation}
 w_i = w_0 \lambda^{i/D_w},
 \label{eq:communication}
 \end{equation}
-where $D_w$ is the communication dimension and $w_0$ is the average 
-number of wires per node.  This hierarchical scaling of communication 
-is a well-known pattern in circuit design called Rent's rule 
-\cite{christie00}, where $p = 1/D_w$ is the Rent's
-exponent.\footnote{Rent's rule is typically expressed as $C(n) = kn^p$, where $C_n$
-  is the external communication of a module, $n$ is the size of the
-  module (number of nodes), $k$ is the average external communication
-  of a module with size 1, and $p$ is the Rent’s exponent. For a
-  hierarchy with branching factor of $\lambda$, the size of a module is
-  given as $n = \lambda^i$, where $i$ is the hierarchical
-  level. Therefore, we can rewrite Rent’s rule as $c_i = c_0
-  \times \lambda^{ip}$, where $c_0 = w_0$ and $p = 1 / D_w$.} This 
-pattern is not unique to circuits and has been shown to occur in many 
-biological networks \cite{reda09,bassett10}.   Vascular systems 
-correspond to a special case where 
+
+\noindent where $D_w$ is the communication dimension and $w_0$ is the average
+number of wires per node.  This hierarchical scaling of communication is a
+well-known pattern in circuit design called Rent's rule \cite{christie00},
+where $p = 1/D_w$ is the Rent's exponent.\footnote{Rent's rule is typically
+  expressed as $C(n) = kn^p$, where $C_n$ is the external communication of a
+  module, $n$ is the size of the module (number of nodes), $k$ is the average
+  external communication of a module with size 1, and $p$ is the Rent’s
+  exponent. For a hierarchy with branching factor of $\lambda$, the size of a
+  module is given as $n = \lambda^i$, where $i$ is the hierarchical level.
+  Therefore, we can rewrite Rent’s rule as $c_i = c_0 \times \lambda^{ip}$,
+where $c_0 = w_0$ and $p = 1 / D_w$.} This pattern is not unique to circuits
+and has been shown to occur in many biological networks
+\cite{reda09,bassett10}.   Vascular systems correspond to a special case where 
 %$w_0 = 1$ and $1/D_w = 0$, such that 
 $w_i = 1$ for all $i$. 
 
 \subsection{Assumptions of the Unified Model}
-\label{assumptions}
+\label{sec:assumptions}
 
 Before deriving scaling predictions from the model, we make explicit
 its  assumptions and how they relate to earlier models, both in
@@ -423,30 +430,45 @@ refinements to accommodate salient differences between biology and computer arch
 \section{Predictions of the Model for Organisms and Computers}
 %\label{sec:}
 
-We define $E_{net}$ and $T_{net}$ respectively to be the energy dissipated and the 
-time taken by the network to deliver a unit of resource to a node.  
-For organisms the resource is oxygen (in mammals, carried by a unit volume of blood), and for computers
-the fundamental resource is a bit of information.  
-Similarly, we define $E_{node}$ and $T_{node}$ as the 
-energy dissipated and the time taken by a node to process that resource.
-Under the
-pipelining and steady-state assumptions, $T_{net} = T_{node}$, i.e.,
-supply matches demand for both systems. (NOTE: later we don't insist that Tnet = Tnode for chips. Fix that.)
-For organisms, the node is the service volume 
-corresponding to a region of tissue supplied by a single capillary.  
-%Note, the service volume is not necessarily of fixed size~\cite{banavar10}.
+We define $E_{net}$ and $T_{net}$ respectively to be the energy dissipated and
+the time taken by the network to deliver a unit of resource to a node.  For
+organisms the resource is oxygen (in mammals, carried by a unit volume of
+blood), and for computers the fundamental resource is a bit of information.
+Similarly, we define $E_{node}$ and $T_{node}$ as the energy dissipated and the
+time taken by a node to process that resource.  For organisms, the node is the
+service volume corresponding to a region of tissue supplied by a single
+capillary, $E_{net}$ is the energy required to deliver oxygen to the cells (as
+studied by \cite{west97}), and $E_{node}$ is the energy dissipated by cells
+processing incoming oxygen.[BE: Is this oxygen or all nutriets?]. $T_{net}$ and
+$T_{node}$ are the time delay between delivering new resources to the cell and
+the time taken for the cell to process those resources respectively. The
+pipelining and steady-state assumptions indicate that $T_{net} = T_{node}$,
+i.e., supply matches demand in organisms.
+
 For computers, the nodes are transistors, and 
-%$E_{net}$ and $T_{net}$ correspond to the energy dissipated and the 
-%time taken to transport a bit of information to a node over the 
-%network, and 
-$E_{node}$ and $T_{node}$ represent the energy dissipated and 
-the time taken to process a bit at the node (i.e., transistor 
-switching energy and delay).  In the following, we derive general 
-scaling relationships between these quantities and the number of nodes $N$, assuming that the energy time product is minimized.  That is, system designs seek to deliver the maximum amount of resource per unit time for 
-the minimum amount of energy overhead.   This is equivalent to minimizing the energy dissipated to deliver and process a unit of resource, while simultaneously minimizing the time to deliver and process that resource.  Assuming that time and energy are
-equally important, this quantity becomes the energy-time product, 
-a well-known concept in computer architecture referred to as the
-the energy-delay product.  
+%$E_{net}$ and $T_{net}$ correspond to the energy dissipated and the time taken
+%to transport a bit of information to a node over the network, and 
+$E_{net}$ and $E_{node}$ represent the energy dissipated delivering bits to
+transistors and the energy required to process the bits at the node, and
+$T_{net}$ and $T_{node}$ are the times required to deliver and process a bit at
+the node (i.e., network and transistor switching delay).  In computers time
+taken to deliver and process bits is bounded by the maximum of the
+communication time $\max(T_{net},T_{node})$, i.e.\ a node cannot process
+another bit until it is delivered, and a node cannot process a new bit until it
+is done processing the previous bit. For both organisms and computers we define
+the total energy as $E_{sys} = E_{net} + E_{node}$ and the total delay as
+$T_{sys} = \max(T_{net},T_{node})$.
+
+%Note, the service volume is not necessarily of fixed size~\cite{banavar10}.
+In the following, we derive general scaling relationships between these
+quantities and the number of nodes $N$, assuming that the energy time product
+is minimized.  That is, system designs seek to deliver the maximum amount of
+resource per unit time for the minimum amount of energy overhead.   This is
+equivalent to minimizing the energy dissipated to deliver and process a unit of
+resource, while simultaneously minimizing the time to deliver and process that
+resource.  Assuming that time and energy are equally important, this quantity
+becomes the energy-time product, a well-known concept in computer architecture
+referred to as the energy-delay product.  
 
 %For computers, the nodes are isochronic regions (the service area supplied by a
 %single clock signal),
@@ -462,17 +484,18 @@ the energy-delay product.
 %use the general scaling relations from Table \ref{tab:equations} and 
 We express the optimal network design as a constraint optimization 
 problem in which the whole system's energy-time product is minimized:
+
 \begin{equation}
-Minimize(E_{sys} \times T_{sys})
+  \min_{D_r,D_l,D_w}(E_{sys} \times T_{sys})
 \label{eq:TheWholeEnchilada}
 \end{equation}
-where the system's energy is given as $E_{sys} = E_{net} + E_{node}$, 
-and the system's time as $T_{sys} = max(T_{net} + T_{node})$ due to pipelining.
 
-We derive expressions for $E_{sys}$ and $T_{sys}$
-for organisms (Sec. \ref{sec:organisms}) and computers
-(Sec. \ref{sec:computers}) in terms of the dimensions $D_l$, $D_r$,
-and $D_w$.  
+%\noindent where the system's energy is given as $E_{sys} = E_{net} + E_{node}$,
+%and the system's time as $T_{sys} = \max(T_{net}, T_{node})$.
+
+We derive expressions for $E_{sys}$ and $T_{sys}$ for organisms
+(Sec.~\ref{sec:organisms}) and computers (Sec.~\ref{sec:computers}) in
+terms of the dimensions $D_l$, $D_r$, and $D_w$.  
 
 %The resulting scaling equations are summarized in Table \ref{tab:equations}.
 
@@ -503,24 +526,23 @@ and $D_w$.
 In this section, we derive general energy and time scaling relations 
 for the network and nodes, in organisms in order to minimize Eq. \ref{eq:TheWholeEnchilada}.  
 
-From basic principles of hydraulics, the energy dissipated to
-transport a constant volume of blood through the network ($E_{net}$)
-is given by the loss in pressure from the aorta to the capillaries
-multiplied by the volume being transported.  Pressure is the product between
-hydraulic resistance ($R$) and flow ($Q$), so the loss in pressure $\Delta P = RQ$.  Thus $E_{net}
-\propto \Delta P \propto RQ$.
-%{\bf RQ is pressure not loss in pressure, so something is fishy with this argument.}
-We assume that the quantity of energy dissipated to metabolize a fixed 
-amount of nutrients is independent of metabolic rate and, therefore, 
-$E_{node}$ is constant~\cite{west97}.   
-%We now determine the energy dissipated and the time taken to process a 
-%unit volume of blood at the nodes ($E_{node}$ and $T_{node}$), 
-%where a 
-%node is defined as region of tissue serviced by a single capillary.  
-%Since the concentration of nutrients in the 
-%blood is invariant, metabolic rate of a node is proportional to the 
-%rate at which blood is delivered, $T_{node} \propto T_{net} \propto 
-%N^{1-2/D_r}$.
+From basic principles of hydraulics, the energy dissipated to transport a
+constant volume of blood through the network ($E_{net}$) is given by the loss
+in pressure from the aorta to the capillaries multiplied by the volume being
+transported.  Pressure is the product between hydraulic resistance ($R$) and
+flow ($Q$), so the loss in pressure $\Delta P = RQ$.  Thus $E_{net} \propto
+\Delta P \propto RQ$.
+%{\bf RQ is pressure not loss in pressure, so something is fishy with this
+%argument.}
+We assume that the quantity of energy dissipated to metabolize a fixed amount
+of nutrients is independent of metabolic rate and, therefore, $E_{node}$ is
+proportional to the number of nodes in the system.   
+%We now determine the energy dissipated and the time taken to process a unit
+%volume of blood at the nodes ($E_{node}$ and $T_{node}$), where a node is
+%defined as region of tissue serviced by a single capillary.  Since the
+%concentration of nutrients in the blood is invariant, metabolic rate of a node
+%is proportional to the rate at which blood is delivered, $T_{node} \propto
+%T_{net} \propto N^{1-2/D_r}$.
 
 %Flow through a pipe is defined as $Q = u\pi r^2$, where $u$ the fluid 
 %velocity. Assuming that blood has constant initial velocity, flow is 
@@ -535,66 +557,68 @@ $E_{node}$ is constant~\cite{west97}.
 %pressure.  
 
 % MEL AND STEPH SUBSTITUTED Q FOR $\overline{Q}$ in the following equations.
-Considering the time component, the time to deliver a constant volume
-of blood ($T_{net}$) to a node 
-is given by the volume of blood being transported divided by the 
-flow ($Q$).  Since this volume is constant, $T_{net}\propto 
-1/Q$.  One might ask why there is no distance term in the previous
-equation.  Because of the steady-state assumption, $T_{net}$ is the time it
-takes to get the `next' oxygen molecule from a capillary and not the time it
-takes a single molecule to traverse the network.
+Considering the time component, the time to deliver a constant volume of blood
+($T_{net}$) to a node is given by the volume of blood being transported divided
+by the flow ($Q$).  Since this volume is constant, $T_{net}\propto 1/Q$.  One
+might ask why there is no distance term in the previous equation.  Because of
+the steady-state assumption, $T_{net}$ is the time it takes to get the `next'
+oxygen molecule from a capillary and not the time it takes a single molecule to
+traverse the network.
 % THAT IS, it is exactly 'clock speed'
- %\propto N^{\frac{-2}{D_r}}$.
-% $T_{net}\propto 1/\overline{Q} \propto N^{1-2/D_r}$.
-Pipelining also implies that $T_{node} = T_{net}$.
+ %\propto N^{\frac{-2}{D_r}}$.  $T_{net}\propto 1/\overline{Q} \propto
+%N^{1-2/D_r}$.
+%Pipelining also implies that $T_{node} = T_{net}$. We already said this
 %Following \cite{banavar10}, we assume that 'supply equals demand,' which 
 
-To minimize the energy-time product, Eq.~\ref{eq:TheWholeEnchilada}
+The energy-time product for organisms, Eq.~\ref{eq:TheWholeEnchilada}
 becomes:
 %\footnote{Because $l_0$ is not constant, we need to
 %   point out that the $u$ terms cancel out.  NOT SURE HOW TO DO THAT
 %   NOW.}
+
 \begin{equation}
- Minimize (RQ + N^0) \times (\frac{1}{Q}) \propto R +
- \frac{N^0}{Q}.
+  \min_{D_r,D_l} (RQ + N) \times (\frac{1}{Q}) \propto R +
+ \frac{N}{Q}.
 \label{eq:bio-min}
 \end{equation}
+
 \noindent where $N$ is the number of terminal units.  
 
 %{\bf Because of pipelining, we think we only need one 1/Q term here.  $T_{net} = T_{node} = T_{sys}$}
 
-The resistance of a pipe is given by given by the
-well-known Hagen-Poiseuille's equation, where $R$
-at hierarchical level $i$ is $R_i = 8\mu l_i/\pi r_i^4$, where $\mu$ is 
-the viscosity constant.  The total network resistance $R$ is given by 
-\cite{west97}:
+The resistance of a pipe is given by given by the well-known Hagen-Poiseuille's
+equation, where $R$ at hierarchical level $i$ is $R_i = 8\mu l_i/\pi r_i^4$,
+where $\mu$ is the viscosity constant.  The total network resistance $R$ is
+given by \cite{west97}:
+
 \begin{equation}
 \label{eq:resistance}
 R = \sum_{i=0}^H \frac{8\mu l_i}{\pi r_i^4}\frac{1}{n_i}
 = \frac{8\mu l_0}{\pi r_0^4} \lambda^{-H}\sum_{i=0}^H \lambda^{i 
 \left(\frac{1}{D_l} - \frac{4}{D_r} + 1 \right)}
 \end{equation}
-where $H+1$ is the number of hierarchical levels, and $n_i =
-\lambda^{H-i}$ is the total number of pipes at hierarchical level $i$.  
 
-West et al. predict that $R$ and therefore $E_{net}$ are
-minimized by $D_r = 3$ in the lower part of the
-network,  where Eq. \ref{eq:resistance} dominates.  However, this
-prediction does not account for delivery time, which slows
-dramatically when $D_r = 3$.
+\noindent where there are $H+1$ hierarchical levels, and $n_i = \lambda^{H-i}$
+is the total number of pipes at hierarchical level $i$.  
 
-NOTE:  To understand how pulsitile flow affects resistance in the
-  upper part of the network, see \cite{west97}, which shows that $D_r
-  = 2$, i.e., the network is area preserving, in this region.
+West et al.\ predict that $R$ and therefore $E_{net}$ are minimized by $D_r =
+3$ in the lower part of the network,  where Eq.~\ref{eq:resistance} dominates.
+However, this prediction does not account for delivery time, which slows
+dramatically when $D_r = 3$.  NOTE: To understand how pulsitile flow affects
+resistance in the upper part of the network, see \cite{west97}, which shows
+that $D_r = 2$, i.e., the network is area preserving, in this region.
 
-
-We derive upper and lower bounds for $D_r$ in the lower part of the network given that the goal
-is to minimize the energy-time product.  Recalling that $\lambda^{-H} = N^{-1}$ and that $D_l = 3$ for organisms, 
-in the case where $D_r <  3$, the summation in Eq.~\ref{eq:resistance} converges to 1, and $R
-\propto N^{-1}$.   As $D_r$ increases from 3 to 12, $R$ increases from
-$\propto N^{-1}$ to a constant (we do not consider $D_r > 12$, where the series diverges).
-
-%In the case where $ D_r = 12$, $R \propto N^0$.   When $ 3 < D_r <12$, $R$ decreases as $N$ increases.
+We derive upper and lower bounds for $D_r$ in the network given that the goal
+is to minimize the energy-time product.  Recalling that $\lambda^{-H} = N^{-1}$
+and that $D_l = 3$ for organisms, in the case where $D_r \leq 3$, the summation
+in Eq.~\ref{eq:resistance} converges to a constant (or $\log(N)$ in the case of
+$D_r=3$), and $R \propto N^{-1}$. As $D_r$ increases from 3 to 12, $R$
+increases from $\propto N^{-1}$ to a $R \propto N^{\frac{1}{3} -
+\frac{4}{D_r}}$.\footnote{We do not consider $D_r > 12$, in which case $R
+\propto N^a$ for a positive constant $a$}. See Sec.~\ref{sec:AppendixOrg} for
+details of the calculation.
+%In the case where $ D_r = 12$, $R \propto N^0$.   When $ 3 < D_r <12$, $R$
+%decreases as $N$ increases.
 
 % ASSUMPTION THAT WE NEED LATER
 %For large $H$, the above series diverges when $D_r \geq 4D_l/(1+D_l)$ 
@@ -615,7 +639,7 @@ velocity.
 %Consequently, flow in the aorta is equal to the sum of flows
 %across all the capillaries: 
 Therefore, flow through the aorta equals
-$Q = u_H \pi r_{H}^2$, and substituting from Eq. 1, $Q = u_0 \pi r_0^2
+$Q = u_H \pi r_{H}^2$, and substituting from Eq.~\ref{eq:rscaling}, $Q = u_0 \pi r_0^2
 \lambda^{2H/D_r} = u_0 \pi r_0^2N^{2/D_r} $. 
 
 Assuming that $U_H$ is independent of $N$ and $Q$ is equal at all levels of the
@@ -650,22 +674,38 @@ $ Q \propto  N^{2/D_r}$.
 % TO LARGE SERVICE VOLUMES AND SLOW DIFFUSION, WHICH BANAVAR HAS
 % ADDRESSED IN 2010.
 
-Considering the two relevant cases, $D_r < 3$ and $ 3 \leq D_r \leq 12$:
-\begin{enumerate}
-\item Case I,  $D_r < 3$: Eq. \ref{`w}  $\propto N^{\frac{2}{D_r}-1} +
-  N^{\frac{-2}{D_r}}$
-\item Case II, $ 3 \leq D_r \leq 12$: Eq. \ref{eq:bio-min} $\propto N^{\frac{2}{D_r}}
-  + N^{\frac{-2}{D_r}}$
-\end{enumerate}
+Having derived scaling values for $R$ and $Q$ we can determine how the energy
+delay product~\ref{eq:TheWholeEnchilada} scales for two relevant cases of $D_r$.
 
-Considering Case I, when $2 < D_r \leq 3$, both terms of
-Eq. \ref{eq:min-bio} have negative exponents and is minimized as $D_r$
-approaches 3.  Case II can never have negative exponents for both
-terms, so Case I always has a lower energy-time product, and therefre,
-Eq. \ref{eq:bio-min} is minimized as $D_r$ approaches 3.   
+\begin{caseof}
+
+  \case{$2 \leq D_r \leq 3$}{In this case $E_{sys} \times T_{sys} \propto N^{-1} +
+  N^{1-\frac{2}{D_r}} \propto N^{1-\frac{2}{D_r}}$. Here B}
+
+  \case{$3 \leq D_r \leq 12$}{In this case $E_{sys} \times T_{sys} \propto
+  N^{\frac{1}{3} - \frac{4}{D_r}} + N^{1-\frac{2}{D_r}} \propto
+N^{1-\frac{2}{D_r}}$.}
+\end{caseof}
+
+%Considering the two relevant cases, $D_r < 3$ and $ 3 \leq D_r \leq 12$:
+%\begin{enumerate}
+%\item Case I,  $D_r < 3$: Eq. \ref{`w}  $\propto N^{\frac{2}{D_r}-1} +
+%  N^{\frac{-2}{D_r}}$
+%\item Case II, $ 3 \leq D_r \leq 12$: Eq. \ref{eq:bio-min} $\propto N^{\frac{2}{D_r}}
+%  + N^{\frac{-2}{D_r}}$
+%\end{enumerate}
+
+%Considering Case I, when $2 \leq D_r \leq 3$, both terms of
+%Eq. \ref{eq:bio-min} have negative exponents and is minimized as $D_r$
+%approaches 3.  Case II can never have negative exponents for both
+%terms, so Case I always has a lower energy-time product, and therefre,
+%Eq. \ref{eq:bio-min} is minimized as $D_r$ approaches 3.   
 %therefore, the minimium of Eq. \ref{eq:min-bio} is upper
 %bounded by $D_r  = 3$.  [NOTE: consider including the explicit case when
 %$D_r = 3$ (on the board).
+In both cases the energy time product is dominated by the second term, namely
+$E_{node} \times T_{sys}$, and is minimized by $D_r =2$. [BE: Someone is going
+to have to check the rest of this]
 This derivation provides a straightforward theoretical explanation for why $D_r =
 3$ in the lower region of the network by balancing the advantage of
 distributing resources quickly against the energy cost of delivering
@@ -691,9 +731,9 @@ Substituting into Eq 6 gives: $R \propto N^{(-1/2)} N^{-1} N^{(1/2 - 4/3 + 1)} \
 
 $E_{net} \propto N^{-4/3} N^{2/3} \propto N^{-2/3} $
 
-$E_{node} \propto N^0$ (by reference to WBE)
+$E_{node} \propto N$ %(by reference to WBE)
 
-$T_{net} \propto 1/Q \propto N^{1-2/D_r}$ where $D_r = 2$ in the upper pulsatile area preserving part of the network so $T_{net} \propto N^{0} $ and $D_r = 3$ in the lower Poiseuillle area increasing part of the network so $T_{net} \propto N^{1/3}$.
+$T_{net} \propto 1/Q \propto N^{-\frac{2}{D_r}}$ where $D_r = 2$ in the upper pulsatile area preserving part of the network so $T_{net} \propto N^{0} $ and $D_r = 3$ in the lower Poiseuillle area increasing part of the network so $T_{net} \propto N^{1/3}$.
 
 $T_{node} \propto N^{1-2/D_r}$ matching $T_{net}$. 
 
@@ -1046,6 +1086,75 @@ explanation is still lacking.  Because cost and performance, i.e.,
 energy and time, impose universal constraints, we suggest that a 
 common design principle governs the scaling of complex systems that 
 process energy, materials and information.
+
+
+\section{Appendix A: Resistance Scaling in Organisms}
+\label{sec:AppendixOrg}
+
+In this section we give a detailed analysis of the derivation of the scaling of
+the total network resistance discussed in Sec.~\ref{sec:organisms}. Recall
+that $D_l = 3$ for $3$ dimensional organisms and that $\lambda^{-H}=N^{-1}$.
+Using these values and simplifying, equation~\ref{eq:resistance} is
+transformed. 
+
+\begin{equation}
+ R = \frac{8 \mu l_0}{\pi r_0^4} N^{-1} \sum_{i=0}^H \lambda^{i(\frac{4}{3} -\frac{4}{D_r})}
+\end{equation}
+
+Let the summand $S = \sum_{i=0}^H \lambda^{i(\frac{4}{3} -\frac{4}{D_r})}$. $R \propto
+N^{-1} S$. How $S$ scales with $N$ is dependent on the exponent $\frac{4}{3} -
+\frac{4}{D_r}$, and reduces to four different cases:
+
+\begin{caseof}
+
+    \case{$D_r=3$}{In this case the exponent is equal to 0, and the $S = H+1
+    \propto \log (N)$, and $R\propto \frac{\log(N)}{N}$, because $\log(N)$ in
+  this case grows much more slowly than $N$, it is reasonable to conclude that
+$R\propto N^{-1}$}
+
+    \case{$D_r < 3$}{Here (and in subsequent cases) we can use the geometric series to
+      calculate the exact value of $S$. In particular 
+
+      \begin{align*}
+        S &= \frac{(1-\lambda^{(\frac{4}{3}
+    -\frac{4}{D_r})(H+1)})}{1-\lambda^{\frac{4}{3} -\frac{4}{D_r}}} \\ 
+        &= \frac{1-\left(\lambda^{H}\right)^{(\frac{4}{3}-\frac{4}{D_r})}
+      \lambda^{(\frac{4}{3} - \frac{4}{D_r}))}}{1-\lambda^{\frac{4}{3}
+      -\frac{4}{D_r}}} \\
+        &= \frac{1-N^{(\frac{4}{3}-\frac{4}{D_r})}
+      \lambda^{(\frac{4}{3} - \frac{4}{D_r}))}}{1-\lambda^{\frac{4}{3}
+           -\frac{4}{D_r}}}
+      \end{align*}
+
+      If we let $c = \lambda^{(\frac{4}{3} -\frac{4}{D_r})}$ we see that
+
+      \begin{equation}
+        S = \frac{1-c N^{(\frac{4}{3}-\frac{4}{D_r})}}{1-c}
+      \end{equation}
+
+      Because $\frac{4}{3} - \frac{4}{D_r} < 0$ is negative in this case
+      and $N$ is large in practice, $c N^{(\frac{4}{3} -\frac{4}{D_r})}$ is
+      small, and $S$ is proportional to a constant ($S \approx
+    \frac{1}{1-c}$). This implies that $R \propto N^{-1}$.}
+
+    \case{$3 < D_r < 12 $}{In this case the exponent in $S$ is positive,
+      meaning that $S$ scales directly with $N$. Note that $c>1$ in this case
+      and we can write 
+      \begin{equation}
+        S = \frac{c N^{(\frac{4}{3}-\frac{4}{D_r})}-1}{c-1}
+      \end{equation}
+
+      \noindent This means that $S \propto N^{(\frac{4}{3} - \frac{4}{D_r})}$.
+      This implies that $R \propto N^{-1} S \propto N^{(\frac{1}{3}
+      -\frac{4}{D_r})}$. This means that resistance still scales inversely with
+      size, but at a faster rate than if $D_r \leq 3$.}
+
+   \case{$D_r \geq 12$}{This final case is analogous to the one above, except
+   that now resistance scales positively with $N$, implying that the energy in
+ the network would scale positively with $N$. This is likely a non-physical
+ possibility, but we include it here for completeness.}
+
+\end{caseof}
 
 \bibliography{references}
 \bibliographystyle{abbrv}
