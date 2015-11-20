@@ -69,7 +69,8 @@
 
 % Include your paper's title here
 
-\title{Biological and Computer Designs Minimize Energy and Time. NOTE change title and abstract for Roy Soc} 
+\title{Energy and Time Determine Scaling in \\Biological and Computer Designs} 
+%Biological and Computer Designs Minimize Energy and Time.  
 
 % Place the author information here.  Please hand-code the contact
 % information and notecalls; do *not* use \footnote commands.  Let the
@@ -78,23 +79,20 @@
 % settings shown here.
 
 \author
-{George Bezerra,$^{1,2\ast}$  James Brown,$^{3}$ Melanie 
-Moses,$^{2,3}$ Stephanie Forrest$^{2}$\\
+{Melanie Moses,$^{1,2,3\ast}$ Stephanie Forrest$^{1,2,3}$ George Bezerra,$^{1}$ \\Benjamin Edwards$^{1}$, James Brown,$^{2,3}$ \\
 \\
-\normalsize{$^{1}$Computer Science and Artificial Intelligence 
-Laboratory}\\
-\normalsize{Massachusetts Institute of Technology, Cambridge, MA, 
-USA.}\\
-\normalsize{$^{2}$Department of Computer Science}\\
+\normalsize{$^{1}$Department of Computer Science}\\
 \normalsize{University of New Mexico, Albuquerque, NM, USA.}\\
-\normalsize{$^{3}$Department of Biology}\\
+\normalsize{$^{2}$Department of Biology}\\
 \normalsize{The University of New Mexico, Albuquerque, NM, USA.}\\
 \\
+\normalsize{$^{3}$The Santa Fe Institute, Santa Fe, NM, USA.}\\
+\\
 \normalsize{$^\ast$To whom correspondence should be addressed}\\
-\normalsize{E-mail: gbezerra@csail.mit.edu}\\
-\normalsize{Address: The Sata Center Building 32-G778}\\
-\normalsize{32 Vassar Street, Cambridge, Massachusetts 02139 USA}\\
-\normalsize{Phone: 617-324-8434}\\
+\normalsize{E-mail: melaniem@cs.unm.edu}\\
+\normalsize{Address: Department of Computer Science}\\
+\normalsize{1 University of New Mexico, Albuquerque, NM USA}\\
+\normalsize{Phone: 505-277-3112}\\
 }
 
 
@@ -163,7 +161,9 @@ Both network designs
   consumption in chips across several orders of magnitude in size.
   This result suggests that a single principle governs the designs of
   complex systems that process energy, materials, and
-  information.
+  information. Just as fundamental shifts in metabolic energy have accompanied the evolutionary transitions in biology, our models suggest that energy efficiency will change as computer technology becomes more distributed and decentralized in the shift to multi-core and dispersed cyber-physical systems. 
+  
+  
 \end{sciabstract}
 
 \newpage
@@ -251,7 +251,7 @@ In the rest of the paper, we first present the unified model of network scaling
 (Sec.~\ref{sec:unified-model} and the basic assumptions underlying the model
 (Sec.~\ref{sec:assumptions}.  We discuss predictions of the model, first for
 organisms (Sec.~\ref{sec:organisms}) and then for computers
-(Sec.~\ref{sec:computers}). [SAY HERE WHAT WE PREDICT].  Finally, in
+(Sec.~\ref{sec:computers}). The model illustrates two important points:  integrating energy and time minimization into a single scaling framework;  and, adding the contribution of the nodes to that of the network to the scaling analysis.  Finally, in
 Sec.~\ref{sec:discussion}  we discuss the implications of these results for
 evolutionary transitions in nature and engineering.
 
@@ -285,15 +285,15 @@ l_i = l_0 \lambda^{\frac{i}{D_l}}
 \noindent where $i$ is the hierarchical level of a branch or module, $\lambda$
 is the branching factor, and $D_l$ and $D_r$ are the length and thickness
 dimensions. This model is akin to the hierarchical pipe model of vascular
-systems proposed in \cite{west97}, $\lambda^{\frac{i}{Dr}}$ and
-$\lambda^{\frac{i}{Dl}}$ correspond to West et al.'s $\beta$ and $\gamma$
+systems proposed in \cite{west97}, $\lambda^{\frac{1}{Dr}}$ and
+$\lambda^{\frac{1}{Dl}}$ correspond to West et al.'s $\beta$ and $\gamma$
 respectively.
 % where $l_i$ ROUGHLY corresponds to $\gamma$
 %and $r_i$ ROUGHLY corresponds to $\beta$.  
 In vascular networks, $r$ represents the radius of cylindrical pipes, and in
 computer interconnects, $r$ represents the width of wires with aspect ratio 1.
-The smallest edges occur at $i = 0$, and have constant length and thickness,
-$l_0$ and $r_0$. 
+The smallest edges occur at $i = 0$, and have constant radius,
+$r_0$, and length, $l_0$, that scales with system size~\cite{banavar10}. 
 
 \begin{figure}
 \caption{Schematic: Panel c illustrates the communication dimension, $D_w$,
@@ -306,9 +306,8 @@ $l_0$ and $r_0$.
 
 The length parameter $D_l$ determines the spatial dimension occupied by the
 nodes of the network \cite{mandelbrot83}.
-%and is an independent variable in the above formulation.  
-dimensions.  For chips, $D_l = 2$, since transistors are placed on a single
-two-dimensional layer \cite{donath81}.
+For chips, $D_l = 2$, since transistors are placed on a single
+two-dimensional layer \cite{donath81}. For three-dimensional organisms,  $D_l = 3$.
 
 Digital circuits scale in a third way in addition to length and radius, which
 has no direct analog in organisms. Although vascular networks have a single
@@ -405,8 +404,7 @@ In addition to these general assumptions, we make the following
 refinements to accommodate salient differences between biology and computer architecture.
 \begin{enumerate}
 \item In biology, the energy processed by a service volume,
-  $E_{node}$, is invariant with system size.\footnote{IS $E_{NODE}$ THE METABOLIC OUTPUT (MAXIMIZE) OR COST OF METABOLISM
-  (MINIMIZE)?}  That is, as the service volume
+  $E_{node}$, is invariant with system size. That is, as the service volume
   increases with body size, the total amount of energy processed
   remains constant.   We do not make this assumption for chips.
 
@@ -415,6 +413,10 @@ refinements to accommodate salient differences between biology and computer arch
   the length of one side of a transistor. 
 
 \end{enumerate}
+
+\noindent 
+
+In biology it is known that blood flow slows by several orders of magnitude as it travels from the aorta to the capillaries (CITE somebody). Scaling models have generally ignored this slowing~\cite{west97, banavar10}, but we leave this variable in our equations to highlight where velocity affects time and energy scaling.
 
 \section{Predictions of the Model for Organisms and Computers}
 %\label{sec:}
@@ -428,11 +430,11 @@ time taken by a node to process that resource.  For organisms, the node is the
 service volume corresponding to a region of tissue supplied by a single
 capillary, $E_{net}$ is the energy required to deliver oxygen to the cells (as
 studied by \cite{west97}), and $E_{node}$ is the energy dissipated by cells
-processing incoming oxygen.[BE: Is this oxygen or all nutriets?]. $T_{net}$ and
+processing incoming oxygen. $T_{net}$ and
 $T_{node}$ are the time delay between delivering new resources to the cell and
 the time taken for the cell to process those resources respectively. The
 pipelining and steady-state assumptions indicate that $T_{net} = T_{node}$,
-i.e., supply matches demand in organisms.
+i.e., supply matches demand.
 
 For computers, the nodes are transistors, and 
 %$E_{net}$ and $T_{net}$ correspond to the energy dissipated and the time taken
@@ -440,13 +442,13 @@ For computers, the nodes are transistors, and
 $E_{net}$ and $E_{node}$ represent the energy dissipated delivering bits to
 transistors and the energy required to process the bits at the node, and
 $T_{net}$ and $T_{node}$ are the times required to deliver and process a bit at
-the node (i.e., network and transistor switching delay).  In computers time
-taken to deliver and process bits is bounded by the maximum of the
+the node (i.e., network and transistor switching delay).  In computers the time
+taken to deliver and process bits is in principle bounded by the maximum of the
 communication time $\max(T_{net},T_{node})$, i.e.\ a node cannot process
 another bit until it is delivered, and a node cannot process a new bit until it
-is done processing the previous bit. For both organisms and computers we define
+is done processing the previous bit. Because of the steady state assumption $T_{net}$ and $T_{node}$ are equal. Thus, for both organisms and computers we define
 the total energy as $E_{sys} = E_{net} + E_{node}$ and the total delay as
-$T_{sys} = \max(T_{net},T_{node})$.
+$T_{sys}=T_{net} = T_{node}$.
 
 %Note, the service volume is not necessarily of fixed size~\cite{banavar10}.
 In the following, we derive general scaling relationships between these
@@ -475,7 +477,7 @@ We express the optimal network design as a constraint optimization
 problem in which the whole system's energy-time product is minimized:
 
 \begin{equation}
-  \min_{D_r,D_l,D_w}(E_{sys} \times T_{sys})
+  \min_{D_r,D_w,D_l}(E_{sys} \times T_{sys})
 \label{eq:TheWholeEnchilada}
 \end{equation}
 
@@ -484,7 +486,7 @@ problem in which the whole system's energy-time product is minimized:
 
 We derive expressions for $E_{sys}$ and $T_{sys}$ for organisms
 (Sec.~\ref{sec:organisms}) and computers (Sec.~\ref{sec:computers}) in
-terms of the dimensions $D_l$, $D_r$, and $D_w$.  
+terms of the dimensions $D_r$, $D_w$, and $D_l$ where $D_l$ is fixed by the external dimensions of the system.
 
 %The resulting scaling equations are summarized in Table \ref{tab:equations}.
 
@@ -515,9 +517,10 @@ terms of the dimensions $D_l$, $D_r$, and $D_w$.
 In this section, we derive general energy and time scaling relations for the
 network and nodes, in organisms in order to minimize Eq.~\ref{eq:TheWholeEnchilada}.  
 
-We first derive the energy required to both distribute and absorb resources in
-biological networks. From basic principles of hydraulics, the energy dissipated
-to transport a constant volume of blood through the network ($E_{net}$) is
+We first derive the energy required to both distribute and process oxygen in
+biological networks. From basic principles of hydraulics, 
+%the energy dissipated to transport a constant volume of blood through the network (
+$E_{net}$ is
 given by the loss in pressure from the aorta to the capillaries multiplied by
 the volume being transported.  Pressure is the product between hydraulic
 resistance ($R$) and flow ($Q$), so the loss in pressure $\Delta P = RQ$.  Thus
@@ -548,11 +551,13 @@ that $D_r = 2$, i.e., the network is area preserving, in this region.}.
 We derive upper and lower bounds for $D_r$ in the network given that the goal
 is to minimize the energy-time product.  Recalling that $\lambda^{-H} = N^{-1}$
 and that $D_l = 3$ for organisms, in the case where $D_r \leq 3$, the summation
-in Eq.~\ref{eq:resistance} converges to a constant (or $\log(N)$ in the case of
-$D_r=3$), and $R \propto l_0 N^{-1}$. As $D_r$ increases from 3 to 12, $R$
-increases from $\propto l_0 N^{-1}$ to a $R \propto l_0 N^{\frac{1}{3} -
-\frac{4}{D_r}}$.\footnote{We do not consider $D_r > 12$, in which case $R
-\propto N^a$ for a positive constant $a$}. See Sec.~\ref{sec:AppendixOrg} for
+in Eq.~\ref{eq:resistance} converges to a constant ($\log(N)$ in the case of
+$D_r=3$), and $R \propto l_0 N^{-1}$. As $D_r$ increases above 3, $R$
+increases from $\propto l_0 N^{-1}$ to $R \propto l_0 N^{\frac{1}{3} -
+\frac{4}{D_r}}$. 
+%\footnote{We do not consider $D_r > 12$, in which case $R
+%\propto N^a$ for a positive constant $a$}. 
+See Sec.~\ref{sec:AppendixOrg} for
 details of the calculation.
 
 Flow through a pipe is defined as $Q = u\pi r^2$, where $u$ is the fluid
@@ -562,13 +567,11 @@ velocity.
 Therefore, flow through the aorta equals $Q = u_H \pi r_{H}^2$, and
 substituting from Eq.~\ref{eq:rscaling}, $Q = u_0 \pi r_0^2
 \lambda^{\frac{2H}{D_r}} = u_0 \pi r_0^2N^{\frac{2}{D_r}} $. 
+We do not assume that $u_H$ is independent of $N$, and therefore we include
+$u_0$ in our scaling equations. We assume $Q$ is equal at all levels of the
+network (steady state assumption) giving: $ Q \propto u_0 N^{\frac{2}{D_r}}$. 
 
-We do not assume that $u_H$ is independent of $N$, and therefore must include
-$u_0$ in our final scaling. We do assume $Q$ is equal at all levels of the
-network (steady state assumption) gives: $ Q \propto u_0 N^{\frac{2}{D_r}}$. 
-
-Having derived $R$ and $Q$ we can see that $E_{net}$ scales differently
-depending on the value of $D_r$.
+Having derived $R$ and $Q$ it is evident that $E_{net}$ scales differently depending on the value of $D_r$:
 
 \begin{caseof}
   \case{$2 \leq D_r \leq 3$}{$E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1}$}
@@ -593,10 +596,7 @@ depending on the value of $D_r$.
 We assume that the quantity of energy dissipated to metabolize a fixed amount
 of nutrients is independent of metabolic rate and, therefore, $E_{node}$ is
 proportional to the number of nodes in the system, $E_{node} \propto N$.
-[PROBABLY NEED MORE HERE ABOUT WHY THIS IS THE CASE]. 
-[BE: Quick question. Would it be reasonable to say that $E_{node} \propto N
-  u_0$ as the resources has to slow down to 0 before it can be absorbed. That
-would be nice for later on]
+
 %We now determine the energy dissipated and the time taken to process a unit
 %volume of blood at the nodes ($E_{node}$ and $T_{node}$), where a node is
 %defined as region of tissue serviced by a single capillary.  Since the
@@ -618,15 +618,17 @@ would be nice for later on]
 
 % MEL AND STEPH SUBSTITUTED Q FOR $\overline{Q}$ in the following equations.
 %Considering the time component, the time to deliver a constant volume of blood
-We next derive the time delay to deliver a fixed amount of resources to the
-node. 
-
-$T_{net}$ to a node is given by the volume of blood being transported divided
+We next derive the time delay, $T_{net}$, to deliver a fixed number of oxygen molecules to the
+node.  $T_{net}$ is given by the volume of blood being transported divided
 by the flow ($Q$). Since flow is conserved (the pipelining assumption), the
-flow rate is constant and $Q = Q_H$ as before, and we assume that the service
-volume is constant for all nodes, and therefore the volume served by the nodes
-is proportional to $N$. This gives us $T_{net}\propto \frac{N}{ u_0 Q} \propto
-\frac{N^{1-\frac{2}{D_r}}}{u_0}$.  One might ask why there is no distance term
+flow rate is constant and $Q$ is defined in Eq XX. 
+
+%$Q = Q_H$ as before. 
+
+We assume that each service volume processes a constant number of oxygen molecules per unit time.
+
+The total number of oxygen molecules processed in the nodes is therefore proportional to the number of nodes, $N$. This gives us $T_{net}\propto \frac{N}{Q} \propto
+u_0^{-1}N^{1-\frac{2}{D_r}}$.  One might ask why there is no distance term
 in the previous equation.  Because of the steady-state assumption, $T_{net}$ is
 the time it takes to get the `next' oxygen molecule from a capillary and not
 the time it takes a single molecule to traverse the network.
@@ -641,16 +643,16 @@ $T_{net}=T_{node}$.
 %said this Following \cite{banavar10}, we assume that 'supply equals demand,'
 %which 
 
-The energy-time product for organisms, Eq.~\ref{eq:TheWholeEnchilada}
-becomes:
+In Section \ref{sec:AppendixOrg}, we show how the energy time product scales for all values of $D_r$. Here we show the case ($D_r \leq 3$) that minimizes the scaling of the energy time product (Eq.~\ref{eq:TheWholeEnchilada}):
+
 %\footnote{Because $l_0$ is not constant, we need to
 %   point out that the $u$ terms cancel out.  NOT SURE HOW TO DO THAT
 %   NOW.}
 
 \begin{equation}
-  \min_{l_0,r_0,D_r,D_l} (l_0 u_0 RQ + N) \times (\frac{N}{Q u_0}) \propto l_0
-  RN + \frac{N^2}{Q u_0}
-  \propto l_0 + \frac{N^{2-\frac{2}{D_r}}}{u_0}
+  \min_{D_r} (RQ + N) \times \left(\frac{N}{Q}\right) \propto
+  RN + \frac{N^2}{Q}
+  \propto l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}
 \label{eq:bio-min}
 \end{equation}
 
@@ -722,16 +724,13 @@ THIS LEADS TO THE J CURVE IN SCALING]
 %therefore, the minimium of Eq. \ref{eq:min-bio} is upper
 %bounded by $D_r  = 3$.  [NOTE: consider including the explicit case when
 %$D_r = 3$ (on the board).
-In both cases the energy time product is dominated by the second term, namely
-$E_{node} \times T_{sys}$, and is minimized by $D_r =2$. [BE: Someone is going
-to have to check the rest of this]
-This derivation provides a straightforward theoretical explanation for why $D_r =
-3$ in the lower region of the network by balancing the advantage of
-distributing resources quickly against the energy cost of delivering
-them.  This provides an alternative explanation for why blood slows
-as it passes through the network, independently of any delivery
-mechanism at the nodes.  [ADD A SENTENCE ABOUT THE LAST MILE AND PUT
-IT IN THE DISCUSSION.]
+In both cases the energy time product is dominated by the second term in Eq. \ref{eq:bio-min} which is minimized by minimizing $D_r$. We note that $D_r < 2$ is physiologically unrealistic because the network would then be area decreasing, causing blood velocity to increase through the network rather than slowing down to allow oxygen absorption at the nodes. To accommodate the necessary slowing of blood in the capillaries $D_r$ must be greater than 2 ~\cite{west97}.
+
+
+
+This derivation in Section \ref{sec:AppendixOrg} provides a straightforward theoretical explanation for why $D_r \leq 3$ in the lower region of the network by identifying a discontinuity in the scaling exponent at $D_r = 3$.
+
+
 
 %This result is interesting because it provides an alternative
 %explanation for area increasing branching in the circulatory system.
@@ -815,18 +814,18 @@ module, and $n_i$ is the number of modules, all at level $i$.
 Recall that $l_0 \propto N^{-1/D_l}$ and $\lambda^H \propto N$ giving 
 
 \begin{equation}
-  C \propto  N^{(1- \frac{1}{D_l}} \sum_{i=0}^H \lambda^{i \left( 
+  C \propto  N^{(1- \frac{1}{D_l})} \sum_{i=0}^H \lambda^{i \left( 
 \frac{1}{D_l} + \frac{1}{D_w} -1 \right)}
 \end{equation}
 
 %XXXXXXX fix the leading scaling term to N to the one half, fix explanation below--it decreases with N because more local, more modular and shorter local wires.
 
-Similarly to energy scaling in organisms, how $C$ scales depends on whether
+\noindent Similarly to energy scaling in organisms, how $C$ scales depends on whether the
 exponent $\frac{1}{D_l} + \frac{1}{D_w}-1$ is positive or negative. If $D_w
 \geq \frac{D_l}{D_l -1}$ the exponent is negative and the summand converges to
-a constant (or $\log(N)$ in the exact equality case), leaving $E_{net} \propto
+a constant ($\log(N)$ in the exact equality case), leaving $E_{net} \propto
 N^{1-\frac{1}{D_l}}$. When $D_w < \frac{D_l}{D_l -1}$, $C \propto
-N^{\frac{1}{D_w}}$. See section~\ref{Appendix:computers} for details.
+N^{\frac{1}{D_w}}$. See section~\ref{sec:AppendixChips} for details.
 
 %We note that $C$, and consequently $E_{net}$, are minimized when the series converges which occurs when
 %$D_w >= D_l / (D_l -1)$. In this case  $C \propto \lambda^H \propto N$. The average energy to transmit a bit over the network is then given by 
@@ -839,20 +838,18 @@ This indicates that $E_{net}$ grows sub-linearly with the number of terminal
 units in the network. This makes sense intuitively because we assume chip area
 is constant, so that as $N$ increases the distance between nodes is reduced.
 Additionally, Rent's rule, reflected in $D_w$, means that most bits move
-locally so that the distance distance between nearest nodes affects the average
-distance that bits are transmitted.  Because $D_w$ is not a factor in any other
-term of the energy time product, we set $D_w = \frac{D_l}{D_l -1}$, and given a
-two dimensional chip, $D_w = D_l = 2$.
+locally so that the distance between nearest nodes affects the average
+distance that bits are transmitted.   
+
 
 We now calculate the scaling of $E_{node}$. For a single node, computation
 energy is given by the transistor's (dynamic) energy dissipation as
-$\frac{CV^2}{2}$, and for all nodes is $\frac{NCV^2}{2}$. Because we are only
-concerned with the switching at the nodes we only need to calculate the energy
-at each node, rather than calculate over the whole network as we did in
-$E_{net}$. 
+$\frac{CV^2}{2}$, and summing across all nodes,
+% is $\frac{NCV^2}{2}$. 
+
 
 \begin{equation}
-  E_{node} = N\frac{CV^2}{2} \propto NC_0 = N \epsilon l_0 \propto
+  E_{node} = N\frac{CV^2}{2} \propto NC_0 \propto N l_0 \propto
   N^{1-\frac{1}{D_l}}
 \end{equation}
 
@@ -902,18 +899,16 @@ the wire resistance.  For wires with aspect ratio 1, $R_i = \rho l_i /r_i^2$,
 where $\rho$ is the resistivity of the material. We can then calculate:
 
 \begin{equation}
-  L_i \propto RC = \frac{\rho \epsilon li^2}{r_i^2} = \frac{\rho \epsilon
+  L_i =RC = \frac{\rho \epsilon l_i^2}{r_i^2} = \frac{\rho \epsilon
   l_0^2}{r_0^2} \lambda^{i\left(\frac{2}{D_l} - \frac{2}{D_r}\right)}
 \end{equation}
 
 Here if $D_r>D_l$ the largest latency will be at the top of the network $L_H$
-and $T_{net} \propto N^{\frac{2}{D_l} - \frac{2}{D_r}}$. However, we note this is
-non-physical, since the length of a wire cannot grow more slowly than its
+and $T_{net} \propto N^{\frac{2}{D_l} - \frac{2}{D_r}}$. However, it is unrealistic for the length of a wire to grow more slowly than its
 thickness. If $D_r\leq D_l$ the highest latency will be at the bottom of the
-network, and $T_{net} \propto \frac{l_0^2}{r_0^2} \propto N^0$. Physically it
-is intuitive to have $D_r=D_l$, such that all levels of the network have the
+network, and $T_{net} \propto \frac{l_0^2}{r_0^2} \propto N^0$. Under our steady state assumption, $D_r=D_l$, so that all levels of the network have the
 same latency, and no time is wasted at any level. For more details
-see~\ref{Appendix:Chips}.
+see~\ref{sec:AppendixChips}.
 
 %i)  $D_r > D_l$ and latency is greatest at the highest hierarchical level,
 %thus
@@ -947,18 +942,27 @@ see~\ref{Appendix:Chips}.
 
 %NOTE: change Eq 10 to the perfect pipelining case where supply = demand at each level of the network. Make the other 2 cases parentheticals in the text.
 
-Computation time for a single node $T_{node}$ is calculated as the transistor
-delay as $C\frac{V}{I}$ \cite{bakoglu90} at the nodes. By Ohm's law we can
-transform this to 
+Computation time for a single node, $T_{node}$, is calculated as the transistor
+delay, $\frac{CV}{I}$, at the nodes~\cite{bakoglu90}. 
 
 \begin{equation}
-  T_{node} \propto C_0 \frac{V}{I} = C_0 R_0 = \rho \epsilon
-  \frac{l_0^2}{r_0^2} \propto N^0
+  T_{node} \propto C_0 \frac{V}{I}  \propto N^{-1/D_l}
 \end{equation}
 
-\noindent which also scales as $N^{0}$. While a constant delay may at first
-seem counter intuitive, we see that changes in clock speed have only spanned
-roughly 4.5 orders (from 100KHz to 3.6GHz)~\cite{intelData}. 
+
+
+XX
+
+Because $D_w$ is not a factor in any other
+term of the energy time product, we set 
+
+Noting that $D_l = 2$, case XXX minimizes E
+
+$D_w = \frac{D_l}{D_l -1}$. Given a two dimensional chip, $D_l = 2$ and so $D_w = 2$ 
+
+
+XX
+
 
 Summarizing the scaling relationships: 
 
@@ -1119,6 +1123,8 @@ data from Fig 2 and Fig 3 to show this?
 
 \begin{itemize} 
   
+  \item Technological evolution is undergoing a major evolutionary transition as distributed computing changes the metabolic landscape of technology and its interaction with the environment. 
+  
 \item By unifying time and energy into a single model, the model accounts for
   the wide variation in size of organisms and computers, e.g., mouse to
   elephant and arm to multe-core.
@@ -1237,8 +1243,8 @@ $R\propto N^{-1}$}
 
 \end{caseof}
 
-\section{Appendix A: Details of Scaling in Electronics}
-\label{sec:AppendixOrg}
+\section{Appendix B: Details of Scaling in Electronics}
+\label{sec:AppendixChips}
 
 In this section we give a detailed analysis of the derivation of the scaling of
 the network capacitance and network latency discussed in
