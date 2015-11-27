@@ -161,7 +161,7 @@ Both network designs
   consumption in chips across several orders of magnitude in size.
   This result suggests that a single principle governs the designs of
   complex systems that process energy, materials, and
-  information. Just as fundamental shifts in metabolic energy have accompanied the evolutionary transitions in biology, our models suggest that energy efficiency will change as computer technology becomes more distributed and decentralized in the shift to multi-core and dispersed cyber-physical systems. 
+  information. Just as fundamental shifts in metabolic energy have accompanied the evolutionary transitions in biology, our models suggest that energy efficiency will change as computer technology becomes more distributed and decentralized in the shift to multi-core and dispersed cyber-physical systems. Scaling 
   
   
 \end{sciabstract}
@@ -432,14 +432,15 @@ In biology it is known that blood flow slows by several orders of magnitude as i
 %\label{sec:}
 
 We define $E_{net}$ and $T_{net}$ respectively to be the energy dissipated and
-the time taken by the network to deliver a unit of resource to a node.  For
+the time taken by the network to deliver a unit of resource to each node.  For
 organisms the resource is oxygen (in mammals, carried by a unit volume of
 blood), and for computers the fundamental resource is a bit of information.
 Similarly, we define $E_{node}$ and $T_{node}$ as the energy dissipated and the
-time taken by a node to process that resource.  For organisms, the node is the
+time taken by the nodes to process that resource.  For organisms, the node is the
 service volume corresponding to a region of tissue supplied by a single
 capillary, which corresponds to a volume of tissue containing a constant number of mitochondria, the organelles that process
-oxygen molecules to generate biologically useful energy in the form of ATP. (Citations needed: banavar? Jordan's paper, maybe Woodruff paper?) The node is defined as having a constant rate of delivery of oxygen and a constant ability to process oxygen, but the volume of the nodes vary across organism size. 
+oxygen molecules to generate biologically useful energy in the form of ATP. %(Citations needed: banavar? Jordan's paper, maybe Woodruff paper?)
+The node is defined as having a constant rate of delivery of oxygen and a constant ability to process oxygen, but the volume of the nodes vary across organism size. 
 
 $E_{net}$ is the energy required to deliver oxygen to the cells (as
 analyzed in \cite{west97}), and $E_{node}$ is the energy dissipated by cells
@@ -461,8 +462,8 @@ another bit until it is delivered, and a node cannot process a new bit until it
 is done processing the previous bit. %Because of the steady state assumption $T_{net}$ and $T_{node}$ are equal. 
 In contrast to Biology, as we show below, the network delivery rate does not match the uptake rate at the nodes.  Thus,  for biology the total delay is defined as
 $T_{sys}=T_{net} = T_{node}$ while for computers the total delay is defined as
-$T_{sys}=\max(T_{net},T_{node})$ For both organisms and computers we define
-the total energy as the sum of energy dissipated in the network plus the energy dissipated in the nodes: $E_{sys} = E_{net} + E_{node}$
+$T_{sys}=\max(T_{net},T_{node})$. For both organisms and computers we define
+the total energy as the sum of energy dissipated in the network plus the energy dissipated in the nodes: $E_{sys} = E_{net} + E_{node}$.
 
 %Note, the service volume is not necessarily of fixed size~\cite{banavar10}.
  In the following, we derive general 
@@ -549,7 +550,7 @@ $T_{net}$: The time to deliver a fixed number of oxygen molecules to the nodes i
 
 We note that there is no distance term in the $T_{net}$ equation because of the steady-state assumption. $T_{net}$ is the time it
 takes to deliver the `next' oxygen molecule from a capillary. Thus $T_{net}$ is not the time it
-takes a single molecule to traverse the network (i.e. it is not $\tau$ in ~\cite{banavar10}, but rather the inverse of the rate of of delivery of oxygen molecules, analogous to the inverse of clock speed in computer chips.
+takes a single molecule to traverse the network (i.e. it is not $\tau$ in~\cite{banavar10}, but rather the inverse of the rate of of delivery of oxygen molecules, analogous to the inverse of clock speed in computer chips.
 
 
 
@@ -633,22 +634,59 @@ In Section \ref{sec:AppendixOrg}, we show how the energy time product scales for
 
 The energy time product is dominated by the second term in Eq. \ref{eq:bio-min2} which is minimized by setting $D_r$ to its minimum possible value. Thus, minimizing the energy time product  requires $D_r = 2$.
 
+The equation for $E_{net}$ then becomes $E_{net} \propto RQ$ where R is Eq. 6,  $Q \propto N^{\frac{2}{D_r}}$ under the minimization condition that $D_r <= 3$. Substituting into Eq 6 gives: $R \propto N^{-1}$ and $E_{net} \propto N^{-1} N^{\frac{2}{D_r}} \propto N^{\frac{2}{D_r} -1} $.
+
+Summarizing all of the scaling relationships gives: 
+NOTE 1:  these should go in a table
+
+NOTE 2: the $l_0$ and $u_0$ terms need to be added.
+
+
+$E_{net} \propto N^{\frac{2}{D_r} -1} $
+
+$E_{node} \propto N$ %(by reference to WBE)
+
+$T_{net} \propto N/Q \propto N^{1-\frac{2}{D_r}}$ 
+
+$T_{node} \propto N^{1-2/D_r}$ matching $T_{net}$
+
+Note: 
+
+$D_r = 2$ in the upper pulsatile area preserving part of the network gives 
+
+$E_{net} \propto T_{net} \propto T_{node} \propto N^{0}$ and $E_{node} \propto N$.
+
+$E_{sys} \propto N$, $T_{sys} \propto N^{0}$
+
+The energy time product is $E_{sys} \times T_{sys} \propto N$. NOTE: the energy time product is invariant in N.
+
+$D_r = 3$ in the lower Poiseuillle area increasing part of the network giving 
+
+$E_{net} \propto N^{\frac{-1}{3}}$ $ T_{net} \propto T_{node} \propto N^{\frac{1}{3}}$ and $E_{node} \propto N$.
+
+$E_{sys} \propto  N^{\frac{-1}{3}} + N$
+
+$T_{sys} \propto N^{\frac{1}{3}}$
+
+The energy time product is $E_{sys} \times T_{sys} \propto N^{4/3}$ NOTE: The energy time product is invariant with M which is $\propto N^{4/3}$.
 
 
 \subsection{Biological Predictions}
 \label{sec:bio-predictions}
 
-The analysis above shows that the area-preserving case in which $D_r$ = 2 results from minimizing the energy time product. This case is assumed by~\cite{banavar10} and shown by ~\cite{west97} to lead to the canonical $3/4$ power scaling of metabolic rate with body size. The optimal system that minimizes the energy time product is the area preserving case. This contrasts with the West et al.\ prediction that $R$ and therefore $E_{net}$ are minimized by $D_r =
-3$ in the lower part of the network,  where Eq.~\ref{eq:resistance} dominates. 
-This prediction, while true, does not account for delivery time, which slows
-dramatically as $D_r$ increases from 2 to 3.\footnote{To understand how pulsitile flow affects
+
+The analysis above shows that the optimal network design that minimizes the energy time product is area preserving, i.e. when $D_r = 2$ and the aggregate cross-sectional area of pipes is the same at all hierarchical levels. Various derivations show that area-preserving branching leads to the 3/4 power scaling of
+metabolic rate with body size known as Kleiber's law (e.g., \cite{west97, banavar10}). Area-preserving is shown by~\cite{west97} to lead to the canonical 3/4 power metabolic scaling; area preserving branching is assumed in~\cite{banavar10} in that derivation of 3/4 power metabolic scaling. Here we demonstrate that that area preserving is optimal in that it minimizes the energy time product, even in the region of the network dominated by Poiseuillle flow, where West et al.\ demonstrated that $R$ and $E_{net}$ are minimized by $D_r =3$\footnote{To understand how pulsitile flow affects
 resistance in the upper part of the network, see \cite{west97}, which shows
-that $D_r = 2$, i.e., the network is area preserving, in the upper pulsatile region.} 
+that $D_r = 2$, i.e., the network is area preserving, in the upper pulsatile region.}  (also evident in the equation for $E_{net}$ in Table XX). While $E_{net}$ is minimized for larger values of $D_r$ (up to the discontinuity at $D_r =3$), there is a tradeoff with $T_{net}$, which is minimized when $D_r =2$. As $D_r$ increases from 2 to 3, delivery rates are slowed more than energy dissipation is minimized, so the $D_r =2$ area preserving case is optimal for minimizing the energy time product.
+
+However, area-preserving branching it is not feasible in animal circulatory networks in which blood must slow before reaching capillaries in order to reduce pressure on the walls of small vessels and to allow oxygen to be dissociated from hemoglobin in the capillaries.  Energy time product minimization does provide a prediction for the optimal way for blood to slow. The derivation in Section \ref{sec:AppendixOrg} provides a straightforward theoretical prediction for a maximum value of $D_r \leq 3$ in the lower region of the network by identifying a discontinuity in the scaling exponent at $D_r = 3$. For $D_r > 3$ the energy time product increases much more rapidly than for $D_r \leq 3$.
+
+Our analysis also provides an explanation for the curvature observed in metabolic scaling in mammals. Kolokotrones et al (and previous authors?) demonstrated that metabolic rate is elevated in small mammals causing a deviation from a simple linear relationship between metabolism and mass.  While previous scaling work concentrated on analyzing only the energy dissipated in the network $E_{net}$, here we analyze energy dissipated in the network and the nodes ($E_{net}$ and $E_{node}$). Figure XXX shows the fit of our Equations YYY to the data from Kolokotrones. By accounting for these two terms, each with different scaling exponents, we can account for the curvature. Intuitively, in smaller animals a greater fraction of energy is consumed by $E_{node}$, a term which is linear in the number of service volumes. In addition, the best fit to the data is achieved with $D_r = 2.xx$, which is consistent with the observation of area preserving branching in the upper region of the network and $D_r = 3$ in the lower region of the network. 
+ 
+ 
 
 
-However, the energy time product minimization does provide a prediction for how blood should slow in the lower region of the network. While slowing is suboptimal in terms of minimizing the energy time product, it is necessary for blood to slow by several orders of magnitude in order for oxygen to be dissociated from hemoglobin in the capillaries.  This derivation in Section \ref{sec:AppendixOrg} provides a straightforward theoretical explanation for why $D_r \leq 3$ in the lower region of the network by identifying a discontinuity in the scaling exponent at $D_r = 3$. For $D_r > 3$ the energy time product increases much more rapidly than for $D_r lte 3$.
-
- [NEED TO TALK ABOUT WHY our Enet prediction  LEADS TO THE J CURVE IN SCALING. The point is that by considering both Enet and Enode, simultaneously, we hopefully can predict why the initial curve is steeper in the kolokotrones data. If it works, it deserves a figure here.]
 
 %This result is interesting because it provides an alternative
 %explanation for area increasing branching in the circulatory system.
@@ -659,32 +697,6 @@ However, the energy time product minimization does provide a prediction for how 
 % %(for the time-energy product) for $D_r < 2$.  %Because $D_l$ is 3, the
 % series converges to a minimum constant value when $D_r <  3$  giving %$R
 % \propto \lambda^{-H} \propto N^{-1}$.  
-The final energy and time scaling relations for organisms are  (NOTE:  these will go in a table):
-
-$E_{net} \propto RQ$ where R is Eq. 6,  $Q \propto N^{\frac{2}{D_r}}$ under the minimization condition that $D_r <= 3$.
-Substituting into Eq 6 gives: $R \propto N^{-1}$ and
-
-$E_{net} \propto N^{-1} N^{\frac{2}{D_r}} \propto N^{\frac{2}{D_r} -1} $
-
-$E_{node} \propto N$ %(by reference to WBE)
-
-$T_{net} \propto N/Q \propto N^{1-\frac{2}{D_r}}$ 
-
-$T_{node} \propto N^{1-2/D_r}$ matching $T_{net}$
-
-Note: 
-
-$D_r = 2$ in the upper pulsatile area preserving part of the network giving 
-
-$E_{net} \propto T_{net} \propto T_{node} \propto N^{0}$ and $E_{node} \propto N$.
-
-So $E_{sys} \propto N$, $T_{sys} \propto N^{0}$, and $E_{sys} \times T_{sys} \propto N$ 
-
-$D_r = 3$ in the lower Poiseuillle area increasing part of the network giving 
-
-$E_{net} \propto N^{\frac{-1}{3}}$ $ T_{net} \propto T_{node} \propto N^{\frac{1}{3}}$ and $E_{node} \propto N$.
-
-So $E_{sys} \propto  N^{\frac{-1}{3}} + N$, $T_{sys} \propto N^{\frac{1}{3}}$, and $E_{sys} \times T_{sys} \propto N^{4/3}$ 
 
 
 %in Table \ref{tab:equations}. 
@@ -709,210 +721,92 @@ and is accurately modeled by Dennard's scaling theory \cite{dennard74}.
 %correction for technology scaling are shown in Table \ref{tab:equations}.
 Thus, $r_0 \propto l_0 \propto N^{\frac{-1}{D_l}}$. Intuitively, this means
 that the number of nodes increases by placing smaller transistors closer
-together and connecting them with smaller and shorter wires.
+together and connecting them with smaller and shorter wires. In the following, we assume that all wires carry the same flow and that
+information is transferred synchronously. We now calculate how $E_{net}$, $T_{net}$, $E_{node}$ and $T_{node}$ scale with the number of transistors, $N$, and the 3 dimensions, $D_l$, $D_r$ and $D_w$.
 
-In the following, we assume that all wires carry the same flow and that
-information is transferred synchronously. We first calculate how $E_{net}$
-scales with $N$. From basic principles of electronics, the energy dissipated to
-transmit a bit over a wire is given by the formula $\frac{CV^2}{2}$, where $C$ is
-capacitance and $V$ is voltage.  Although energy depends on $V^2$, voltage has
+$E_{net}$ can be calculated from basic principles of electronics as the energy dissipated to
+transmit a bit over a wire: $\frac{CV^2}{2}$, where $C$ is
+capacitance and $V$ is voltage.  Because $V$ has
 remained approximately constant over the last four decades (decreasing only by
 a factor of five while transistor count increased by six orders of magnitude
-\cite{ning07}), so we estimate that the total energy to transmit all bits over
+\cite{ning07}), we estimate that the total energy to transmit all bits over
 the network scales as $C$ \cite{bingham08}.  Ignoring fringe effects and for an
-aspect ratio of 1, wire capacitance is $C_i = \epsilon l_i$ \cite{wilhelm95},
-where $\epsilon$ is the dielectric constant.  The network capacitance is the
-sum of the capacitances of all wires, which is proportional to the total wire
-length of the network \cite{donath79}:
+aspect ratio of 1, wire capacitance is proportional to wire length, $C = \epsilon l$ \cite{wilhelm95},
+where $\epsilon$ is the dielectric constant. Thus, the network capacitance is the sum of the capacitances of all wires, which is proportional to the total wire
+length of the network~\cite{donath79}: %$E_{net} \propto C \propto L_{net}$.
+$E_{net} \propto C
+ \propto  \sum_{i=0}^H l_i w_i n_i \propto l_0 w_0 \lambda^H \sum_{i=0}^H \lambda^{i \left( \frac{1}{D_l} + \frac{1}{D_w} -1 \right)}$ \noindent where $l_i$ is the length of wire, $w_i$ is the number of wires per
+module, and $n_i$ is the number of modules, all at level $i$. Recalling that $l_0 \propto N^{-1/D_l}$ and $\lambda^H \propto N$ gives 
+
+
+
+%\begin{equation}
+%E_{net} \propto C \propto L_{net}
+% \propto  \sum_{i=0}^H l_i w_i n_i \propto l_0 w_0 \lambda^H \sum_{i=0}^H \lambda^{i \left( \frac{1}{D_l} + \frac{1}{D_w} -1 \right)}
+%\end{equation}
+
 
 \begin{equation}
-C \propto Length \propto  \sum_{i=0}^H l_i w_i n_i \propto
- l_0 w_0 \lambda^H \sum_{i=0}^H \lambda^{i \left( 
+\label{eq:comp-Enet}
+  E_{net}  \propto  N^{(1- \frac{1}{D_l})} \sum_{i=0}^H \lambda^{i \left( 
 \frac{1}{D_l} + \frac{1}{D_w} -1 \right)}
 \end{equation}
 
-%\begin{equation}
-%C = \epsilon\cdot Length = \epsilon \sum_{i=0}^H l_i w_i n_i = 
-%\epsilon l_0 w_0 \lambda^H \sum_{i=0}^H \lambda^{i \left( 
-%\frac{1}{D_l} + \frac{1}{D_w} -1 \right)}
-%\end{equation}
+\noindent Note that the scaling of $E_{net} $ with $N$ depends on $D_l$ and $D_w$, but not on $D_r$.
 
-\noindent where $l_i$ is the length of wire, $w_i$ is the number of wires per
-module, and $n_i$ is the number of modules, all at level $i$.
-
-Recall that $l_0 \propto N^{-1/D_l}$ and $\lambda^H \propto N$ giving 
-
-\begin{equation}
-  C \propto  N^{(1- \frac{1}{D_l})} \sum_{i=0}^H \lambda^{i \left( 
-\frac{1}{D_l} + \frac{1}{D_w} -1 \right)}
-\end{equation}
-
-%XXXXXXX fix the leading scaling term to N to the one half, fix explanation below--it decreases with N because more local, more modular and shorter local wires.
-
-\noindent Similarly to energy scaling in organisms, how $C$ scales depends on whether the
-exponent $\frac{1}{D_l} + \frac{1}{D_w}-1$ is positive or negative. If $D_w
-\geq \frac{D_l}{D_l -1}$ the exponent is negative and the summand converges to
-a constant ($\log(N)$ in the exact equality case), leaving $E_{net} \propto
-N^{1-\frac{1}{D_l}}$. When $D_w < \frac{D_l}{D_l -1}$, $C \propto
-N^{\frac{1}{D_w}}$. See section~\ref{sec:AppendixChips} for details.
-
-%We note that $C$, and consequently $E_{net}$, are minimized when the series converges which occurs when
-%$D_w >= D_l / (D_l -1)$. In this case  $C \propto \lambda^H \propto N$. The average energy to transmit a bit over the network is then given by 
-
-%\begin{equation}
-%E_{net} \propto C/N \propto N^{-1/D_l} 
-%\end{equation}
-
-This indicates that $E_{net}$ grows sub-linearly with the number of terminal
-units in the network. This makes sense intuitively because we assume chip area
-is constant, so that as $N$ increases the distance between nodes is reduced.
-Additionally, Rent's rule, reflected in $D_w$, means that most bits move
-locally so that the distance between nearest nodes affects the average
-distance that bits are transmitted.   
 
 
 We now calculate the scaling of $E_{node}$. For a single node, computation
 energy is given by the transistor's (dynamic) energy dissipation as
-$\frac{CV^2}{2}$, and summing across all nodes,
-% is $\frac{NCV^2}{2}$. 
+$\frac{CV^2}{2}$. Again assuming constant $V$ and the capacitance of a transistor proportional to it's length ($l_0$), we obtain $E_{node}$ by summing the capacitance across all $N$ nodes giving $E_{node} \propto N l_0  \propto
+  N^{1-\frac{1}{D_l}}$. 
 
 
-\begin{equation}
-  E_{node} = N\frac{CV^2}{2} \propto NC_0 \propto N l_0 \propto
-  N^{1-\frac{1}{D_l}}
-\end{equation}
-
-%Given that transistor size scales as $N^{-1/D_l}$, $E_{node} \propto
-%N^{-1/D_l}$. % [GEORGE, PLEASE GIVE A REFERENCE AND ONE SENTENCE OF RATIONALE.]
-
-%[GEORGE: ALSO NEED REFERENCE AND RATIONALE FOR THIS STMT.]
+We calculate $T_{net}$ as the time to transmit a bit over the last logic wire in the network that connects to each transistor. This assumes perfect pipelining so there is no delay in bits arriving at the last wire (Appendix XX shows that perfect pipelining requires $D_r = 2$). Thus $T_{net}$ is equivalent to the wire latency which equals resistance multiplied by the capacitance of the wire ($RC$). For wires with aspect ratio 1, $R_i = \rho l_i /r_i^2$,
+where $\rho$ is the resistivity of the material, and $C_i \propto l_i$ as above. Thus, $T_{net} \propto R_0C_0 \propto \frac{{l_0}^2}{{r_0}^2} \propto N^0$.  $ \frac{{l_0}^2}{{r_0}^2}$ is constant because in chips  $l_0 \propto r_0$ since both are set by process size.
 
 
-%(Not sure if this is necessary): Note that if $D_w$ were smaller than $D_l /
-%(D_l -1)$ then energy per bit would increase with $N$, and if $D_w$ were larger
-%than $D_l / (D_l -1)$ there would be no further reduction in the scaling of
-%$E_{net}$. 
-
-%Because $E_{net}$ is defined as the energy required to transmit a bit to a single node, we need only sum over a single wire for each hierarchical level in the network, so the $n_i$ term drops
-%out:
-%Because energy is proportional to $C$, we focus on the region where 
-%capacitance is minimized and the series converges, such that $D_w 
-%> D_l/(D_l-1)$, resulting in $C \propto \lambda^H=N$. The average 
-%energy to transmit a bit over the network is then given by $E_{net} 
-%=CV^2/2N \propto N^0$.
-%\begin{equation}
-%C = \epsilon l_0 w_0 \sum_{i=0}^H \lambda^{i \left( 
-%\frac{1}{D_l} + \frac{1}{D_w} \right)} \propto l_0 w_0 \frac{\lambda^{(\frac{1}{D_l} + \frac{1}{D_w}) (H + 1)} - 1}{\lambda^{(\frac{1}{D_l} + \frac{1}{D_w})} - 1} \propto N^{-1/D_l}N^{(\frac{1}{D_l} + \frac{1}{D_w})}\propto N^{1/D_w}
-%\end{equation}}
-%\noindent where $N = \lambda^H$.
-% Drop -1 from exponent and lambda^H because it was there to count up the n's which we have dropped.
+Computation time for each node, $T_{node}$, is calculated as the transistor
+delay, $\frac{CV}{I}$ ~\cite{bakoglu90}, where again $V$ is constant and $C$ is proportional to transistor length: 
+  $T_{node} \propto C_0 \frac{V}{I}  \propto l_0  \propto N^{1-\frac{1}{D_l}}$.
+  
+  [YIKES, what happened to $I$?]
+  
+.
 
 
-We now calculate how $T_{net}$, the time to transmit a bit over a wire scales
-with $N$. $T_{net}$ is equivalent to the wire latency, $L_i$, in each wire at each
-level of the network. The delay in delivering new bits in the network is
-bounded by the slowest level, implying:
+Before calculating the energy time product, we observe that $T_{net}$ is the only term dependent on $D_r$, and so we set  $D_r = 2$ in order to minimize $T_{net}$. Similarly $E_{net}$ is the only term dependent on  $D_w$, and so we set $D_w$ in order to minimize $E_{net}$. 
+Similarly to energy scaling in organisms, how $E_{net}$ scales depends on whether the
+exponent $\frac{1}{D_l} + \frac{1}{D_w}-1$ in Eq. \ref {eq:comp-Enet} is positive or negative.  If $D_w
+\geq \frac{D_l}{D_l -1}$ the exponent is negative and the summand converges to
+a constant (or $\log(N)$ in the exact equality case), leaving $E_{net} \propto
+N^{1-\frac{1}{D_l}}$. When $D_w < \frac{D_l}{D_l -1}$, $C \propto
+N^{\frac{1}{D_w}}$. Given $D_l$ for 2-dimensional chips, $E_{net}$ is minimized when $D_w
+\geq 2$. See section~\ref{sec:AppendixChips} for details.
 
-%Because flow is synchronous (meaning each wire transfers one bit in parallel on each clock tick), the network 
-%must wait until all wires have finished their transmission before 
-%initiating the next cycle. Therefore, the time to transfer a bit 
-%equals the latency of the slowest wires. We consider 3 cases.
+ 
+In summary, given $D_l = 2$, the terms of the energy time product are minimized when $D_r = 2$ and $D_w > 2$, resulting in:
 
-\begin{equation}
-  T_{net} \propto \max_{i} L_i
-\end{equation}
+[PUT these in a table]
 
-This latency is proportional to the product of resistance and capacitance,
-usually referred to as the $RC$ time constant~\cite{bakoglu90}, where $R$ is
-the wire resistance.  For wires with aspect ratio 1, $R_i = \rho l_i /r_i^2$,
-where $\rho$ is the resistivity of the material. We can then calculate:
+$E_{net} \propto N^{1-1/D_l} \propto N^{1/2}$
 
-\begin{equation}
-  L_i =RC = \frac{\rho \epsilon l_i^2}{r_i^2} = \frac{\rho \epsilon
-  l_0^2}{r_0^2} \lambda^{i\left(\frac{2}{D_l} - \frac{2}{D_r}\right)}
-\end{equation}
-
-Here if $D_r>D_l$ the largest latency will be at the top of the network $L_H$
-and $T_{net} \propto N^{\frac{2}{D_l} - \frac{2}{D_r}}$. However, it is unrealistic for the length of a wire to grow more slowly than its
-thickness. If $D_r\leq D_l$ the highest latency will be at the bottom of the
-network, and $T_{net} \propto \frac{l_0^2}{r_0^2} \propto N^0$. Under our steady state assumption, $D_r=D_l$, so that all levels of the network have the
-same latency, and no time is wasted at any level. For more details
-see~\ref{sec:AppendixChips}.
-
-%i)  $D_r > D_l$ and latency is greatest at the highest hierarchical level,
-%thus
-%
-%\begin{equation} \label{eq:TnetEqComp} T_{net} = L_H \propto
-%\frac{l_0^2}{r_0^2} \lambda^{H\left( \frac{2}{D_l} - \frac{2}{D_r}\right)} =
-%N^{\left( \frac{2}{D_l} - \frac{2}{D_r}\right)}.  \end{equation} In this case,
-%because $D_r > D_l$ the exponent in Eqn. \ref{eq:TnetEqComp} is positive, and
-%$T_{net}$ increases with $N$.
-%
-%ii) In the case where $D_r < D_l$, the thickness of the wire increases faster
-%than the length at increasing hierarchical levels of the network.  Thus, the
-%fastest wires would be at the highest level of the network, and latency would
-%be dominated by wires at the lowest level: $T_{net} = L_0 \propto
-%\frac{l_0^2}{r_0^2} \propto N^0$.  
-%%In the case where}
-%%$D_r > D_l$, the slowest wires are at the highest level of the network and the equation
-%%reduces to $ N^{\left( \frac{2}{D_l} - \frac{2}{D_r}\right)}$.  
-%
-%iii) In the case where $D_r = D_l$, the network has perfect pipelining and the
-%latency is the same at every level of the network: $T_{net} =L \propto
-%\frac{l_0^2}{r_0^2} \propto N^0$.
-%
-%Of these cases, $T_{net}$ is minimized when $D_l >= D_r$,  and since $D_r$
-%does not affect any of the other terms in the energy-time product (Table
-%\ref{tab:equations}),  we assume this case giving $T_{sys} \propto N_0$.
-%Thus, network latency, or $E_{net}$ the time for each subsequent bit to be
-%processed by the network is independent of the number of transistors in the
-%network.
-%
-
-%NOTE: change Eq 10 to the perfect pipelining case where supply = demand at each level of the network. Make the other 2 cases parentheticals in the text.
-
-Computation time for a single node, $T_{node}$, is calculated as the transistor
-delay, $\frac{CV}{I}$, at the nodes~\cite{bakoglu90}. 
-
-\begin{equation}
-  T_{node} \propto C_0 \frac{V}{I}  \propto N^{-1/D_l}
-\end{equation}
-
-
-
-%XX
-%
-%Because $D_w$ is not a factor in any other
-%term of the energy time product, we set 
-%
-%Noting that $D_l = 2$, case XXX minimizes E
-%
-%$D_w = \frac{D_l}{D_l -1}$. Given a two dimensional chip, $D_l = 2$ and so $D_w = 2$ 
-%
-%
-%XX
-
-
-Summarizing the scaling relationships: 
-
-$E_{net} \propto N^{1-1/D_l}$
-
-$E_{node} \propto N^{1-1/D_l}$
+$E_{node} \propto N^{1-1/D_l} \propto N^{1/2}$
 
 $T_{net} \propto N^0$
 
-$T_{node} \propto N^{-1/D_l}$
+$T_{node} \propto N^{-1/D_l} \propto N^{{-1}/2}$
 
-Thus, for 2 dimensional chips in which $D_l = 2$, three components of the
-energy time product ($E_{net}$, $E_{node}$, and $T_{node}$) scale sub linearly
-(as $N^{1/2}$ and $N^{-1/2})$ but $T_{net}$ is are constant with respect to $N$.
+%Thus, for 2 dimensional chips in which $D_l = 2$, three components of the
+%energy time product ($E_{net}$, $E_{node}$, and $T_{node}$) scale sub linearly
+%(as $N^{1/2}$ and $N^{-1/2})$ but $T_{net}$ is are constant with respect to $N$.
 
 
 Putting it all together, 
 
-$E_{sys} = E_{net} + E_{node} \propto N^{1-1/D_l} \propto N^{1/2}$ 
+$E_{sys} = E_{net} + E_{node}  \propto N^{1/2}$ 
 
-$T_{sys}  = max(T_{net}, T_{node}) \propto N^0$.
+$T_{sys}  = max(T_{net}, T_{node}) \propto N^0$
 
 $E_{sys} \times T_{sys} \propto N^{\frac{1}{2}}$
 %\subsection{Fitness Functions of Design}
@@ -951,8 +845,6 @@ $E_{sys} \times T_{sys} \propto N^{\frac{1}{2}}$
 %\label{eq:computer}
 %\end{equation}\\
 
-\section{Results and Discussion}
-\label{sec:discussion}
 
  
 %Analysis of Equation~\ref{eq:organism} determines the optimal value of $D_r$
@@ -964,44 +856,33 @@ $E_{sys} \times T_{sys} \propto N^{\frac{1}{2}}$
 %therefore, the minimum energy-time product occurs at $D_r = 2$.  This result
 %shows that 
 
-The optimal network design is area preserving, i.e., when the
-aggregate cross-sectional area of pipes is the same at all hierarchical levels.
-Various derivations show that this design leads to the 3/4 power scaling of
-metabolic rate known as Kleiber's law (e.g., \cite{west97, banavar10}).
 
-The model predicts that, for the optimal network design (i.e., $D_l=3$  and
-$D_r=2$), the system's energy-time product is scales with $l_0$ and $N$.
-%Since size increases with $N$, this suggests that the energy-time product is
-%independent of body mass.
-This result has important implications for the
-energetic basis of fitness.  Some have proposed that biological fitness
-maximizes metabolic power (energy/time) \cite{lotka56, odum71}, whereas others
-have proposed that it minimizes biological times (e.g., generation times, which
-is equivalent to maximizing vital rates) \cite{lindstedt81, sibly91}. The
-invariance of the energy-time product is consistent with the fact that fitness
-of organisms is largely independent of body mass.  Organisms of all sizes, from
-small, fast, low-power microbes to large, slow, powerful mammals, coexist and,
-therefore, are likely nearly equally fit.  This implies a direct trade-off
-between maximizing metabolic power and minimizing generation times that holds
-over the many orders of magnitude variation in body mass.  The energy-time
-product reflects powerful geometric, physical and biological constraints on the
-evolution of organism designs.
+\subsection{Computational Predictions}
+\label{sec:comp-predictions}
 
-Talk about $D_r=3$ for slowing!
 
-For computers, minimizing the energy time product is trivial: also leading to
-$D_l=D_r=D_w = 2$,.  This result corresponds to ideal scaling, as suggested by
+For computers, minimizing the energy time product is trivial: 
+$D_l=D_r=D_w = 2$. This result corresponds to ideal scaling, as suggested by
 Dennard \cite{dennard74}, where the linear dimensions of transistors and wires
 scale at the same rate, and wire delay is constant and the Rent's exponent is
-1/2, consistent with observations (NEED citations.)
+1/2. While the energy time product is minimized
+for any value of $D_w$ greater than 2, values larger than 2 would require greater communication
+locality with no reduction of the energy time product. $D_w = 2$ is consistent with observed Rent's exponents (CITATIONS).  
 
-From this result, we make two important predictions.  First, power consumption
+
+The final energy-time product scales as $N^{1/2}$, showing
+that, unlike organisms, as size increases, the energy-delay product per node decreases
+systematically. 
+indicating that chips get faster and consume less energy per transistor as more transistors are packed onto a chip. Of course this results from the remarkable miniaturization of transistors and wires described by Moore's law. It is not surprising that transistors are faster ($T_{node}$) and require less energy ($E_{node}$) as they are made smaller. It also makes sense that  $E_{net}$ grows sub-linearly with the number of transistors because as $N$ increases, the distance between nodes is reduced. Additionally, $D_w = 2$, means that most bits move locally so that the distance between nearest nodes affects the average distance that bits are transmitted.  The only term in the energy time product that does not decrease with increased $N$ and decreased process size is $T_{net}$ which remains constant under Denard scaling in which wire radius and length scale proportionally to each other.
+
+
+From our scaling results, we make two important predictions.  First, power consumption
 in chips (total energy dissipated per unit of time) scales as $Power = (N\cdot
-E_{sys})/T_{sys} \propto N^{1/2}$.  Performance is given by the  number of
-computations executed per unit of time, or throughput.  Second, assuming that a
-constant fraction of the transistors is active at each cycle, throughput is
+E_{sys})/T_{sys} \propto N^{1/2}$.   Second, performance, measured as computations executed per unit of time, or throughput, is
 predicted to scale linearly with $N$,  i.e.  $Throughput\propto N/T_{sys}
 \propto N$.
+
+%assuming that a constant fraction of the transistors is active at each cycle, 
 
 
 We compared the predictions for power consumption with data obtained for 523
@@ -1011,27 +892,19 @@ measured exponent was $0.495$, which agrees closely with the prediction of
 $0.5$. Consistent data on performance across many technology generations is
 difficult to obtain because the standards have changed over the years and their
 adoption by different vendors is not uniform.  We were able to obtain
-normalized performance data for 16 Intel processors from different generations
+normalized performance data for XXX (XXX Ben, new number, and also explain where the data came from XXX) %16 
+Intel processors from different generations
 over a range of 6 orders of magnitude in transistor count.  The exponent
 obtained for these data was $1.0$, as shown in Figure~\ref{fig:throughput},
 which agrees exactly with the predictions from our analysis. This suggests that
-engineered designs approach the theoretical optimal defined by the model.  The
-final energy-time product predicted by the model scales as $N^{-1/2}$, showing
-that, unlike organisms, as size increases, the energy-delay product decreases
-systematically. This is a consequence of process technology improvement, since
-newer, larger processors use hardware that is smaller, faster and more energy
-efficient.
+engineered designs approach the theoretical optimal defined by the model.  
 
 
-Why performance is linear with N
+The linear increase in performance with the number of transistors is somewhat counter-intuitive. Given that transistor switching times have decreased dramatically as size has decreased, one might expect performance to increase as the product of clock speed and transistor number (N). This is not the case (the predicted performance if time were the inverse of clock speed is shown in the XXX line in Figure XXX). Our analysis suggests that the network is the bottleneck the network delivers bits to the transistors at a constant rate per transistor (see Eqn XX), so performance has only increased linearly with transistor number. Thus, although in principle transistors could process information more quickly, the network prevents this. As in biology, performance can not be understood without understanding the constraints of the network.
 
-The steady miniaturization of transistors and wires under “Moore’s Law” has led to predictable increases in performance. As transistors get smaller, more can be packed into the same space. Figure XX shows that performance increases linearly with the number of transistors. This is somewhat counter-intuitive. Given that transistor switching times have  decreased dramatically as size has decreased, one might expect performance to increase as the product of clock speed and transistor number (N). This is not the case. Our analysis suggests that the network is the bottleneck the network delivers bits to the transistors at a constant rate per transistor (see Eqn XX), so performance has only increased linearly with transistor number. Thus, although in principle transistors could process information more quickly, the network prevents this. 
+%[Add above] Not all transistors are computing on every clock tick because transistor activity is determined by the logic that controls the computation.
 
-As in biology, performance can not be understood without understanding the constraints of the network.
-
-[Add above] Not all transistors are computing on every clock tick because transistor activity is determined by the logic that controls the computation.
-
-[maybe somewhere] Although resting transistors do consume power (leakage power), the data is only active power.
+%[maybe somewhere] Although resting transistors do consume power (leakage power), the data is only active power.
  
 
 
@@ -1056,88 +929,42 @@ experimental data suggests that through successive generations of
 trial-and-error, innovation and optimization, engineered designs are highly
 successful, approaching the theoretical limit predicted by the model.
 
-EVOLUTIONARY TRANSITIONS TEXT
+\section{Discussion: Implications for Evolutionary Transitions}
+\label{sec:discussion}
 
-Scaling analyses provide a framework for identifying invariants and understanding constraints on both biological and computational systems over enormous size ranges. Delong et al demonstrate that metabolic scaling slopes and intercepts change at the evolutionary transitions: prokaryote (bacteria) metabolism is superlinear with size, unicellular protist metabolism is linear, and multicellular animal metabolism is sublinear, converging toward the canonical $3/4$ exponent. They hypothesize that these shifts arise from organisms overcoming a series of constraints, and then facing new constraints, as they increase in size.
+Scaling analyses provide a framework for identifying invariants and understanding constraints on both biological and computational systems over enormous size ranges. Simultaneously minimizing energy dissipation and delivery time in both the network and the nodes, predicts scaling relationships in organisms and computer chips. This broad framework also highlights similarities and differences between biological networks that deliver energy and computational networks that deliver information. 
 
-Larger bacteria acquire increased metabolic capacity with size as additional genes allow increased use of metabolic substrates, but eventually the cell surface area limits metabolic processing. Unicellular protists internalize the metabolic machinery into respiratory organelles (ie mitochondria that turn oxygen into the biologically useful energy in the form of ATP). The number of mitochondria increases linearly with cell size until internal transport constraints limit the rate of metabolic processing. Multi-cellular animals develop internal networks that speed the delivery of metabolites, subject to sublinear network scaling effects. Delong et al highlight the fundamental importance of both time and energy both in the network (ie minimizing time to deliver metabolites) and in the nodes (maximizing the capacity of nodes). They also note significant decreases in energetic efficiency at each evolutionary transition when absolute measures of time and energy increase.
+From the similarities between biological and computational network scaling we can make predictions about the trajectory of computing based on biological changes over evolutionary time. For this we turn to work by Delong et al who demonstrate that metabolic scaling slopes and intercepts change at the evolutionary transitions: prokaryote (bacteria) metabolism is superlinear with size, unicellular protist metabolism is linear, and multicellular animal metabolism is sublinear, converging toward the canonical $3/4$ exponent. They hypothesize that these shifts arise from organisms overcoming a series of constraints, and then facing new constraints, as they increase in size.
+
+Larger bacteria increase metabolism as additional genes allow increased use of metabolic substrates, but eventually the cell surface area limits metabolic processing. Unicellular protists internalize the metabolic machinery into respiratory organelles (i.e., mitochondria that turn oxygen into ATP). The number of mitochondria increases linearly with cell size until internal transport constraints limit the rate of metabolic processing. Multi-cellular animals develop internal networks that speed the delivery of metabolites, subject to sublinear network scaling effects. Delong et al highlight the fundamental importance of both time and energy both in the network (ie minimizing time to deliver metabolites) and in the nodes (maximizing the capacity of nodes). %They also note significant decreases in energetic efficiency at each evolutionary transition when absolute measures of time and energy increase.
 The explanations that they hypothesize are directly relevant to understanding how energy-time minimization affects the ongoing evolution of computer hardware.
 
-1.     Evolution of single core chips: The chip scaling we describe above shows how time and energy dissipation have decreased while performance increased as larger numbers of shrinking transistors have been packed onto each chip. During this period, similar to bacterial evolution that incorporates new genes to exploit new metabolic niches, technological innovations have emerged, for example, new materials, switching methods, etching processes and cooling technologies have pushed physical boundaries, allowing transistors to shrink and more of them to be packed onto each chip. Like bacteria, these innovations have optimized physical contraints, but ultimately a maximum is reached. There are no elephant-sized bacteria and there will be no silicon based single core chips with quadrillions (?) of transistors.
+1.     Evolution of single core chips: The chip scaling we describe above shows how time and energy dissipation have decreased while performance increased as larger numbers of shrinking transistors have been packed onto each chip. During this period, similar to bacterial evolution that incorporates new genes to exploit new metabolic niches, technological innovations have emerged, for example, new materials, switching methods, etching processes and cooling technologies have pushed physical boundaries, allowing transistors to shrink and more of them to be packed onto each chip. Like bacteria, these innovations have optimized physical constraints, but ultimately a maximum is reached. There are no elephant-sized bacteria and there will be no silicon based single core chips with quadrillions (?) of transistors.
 
-2.     Until recently, chip development has also mimicked the evolution of single celled protists. Chip performance (calculations per second, figure 3?) increases linearly with system size (N). Unicellular protists show linear increases in metabolic rate with size as more energy processing nodes  (mitochondria) are packed into larger cells. However, like protists, this regime will also end due to physical constraints. It is evident from the analysis above that the internal transport network constrains the processing speed of the system. Further, the requirement to dissipate heat over a fixed surface area constrains both cells and chips. Computer chips are now undergoing a transition to multi-core, resembling the biological transition to multicellularity.
+2.  Chips have also mimicked the linear relationship between performance and size (Figure XXX) seen in protists. Unicellular protists show linear increases in metabolic rate with size as more energy processing nodes  (mitochondria) are packed into larger cells. However, like protists, this regime will also end due to physical constraints. It is evident from the analysis above that the internal transport network already constrains the processing speed of the system (i.e., $T_{net}$ constrains $T_{sys}$). Further, the requirement to dissipate heat over a fixed surface area constrains both cells and chips. 
 
-3.     Our unified scaling framework suggests future scenarios for multicore chips. 
-%First, despite an initial increase in metabolic processing power nearly linear with the number of cells, eventually the constraints of the network between cells slows the rate at which performance increases with size. 
-Similarly to multicellular organisms, we expect that as the number of cores grows, an increasing fraction of chip power will be devoted to ever larger networks (Network-on-Chip, NoC) connecting more cores. In contrast to single core chips with have remained nearly constant in area, multi-core chips will require more physical area to accommodate more transistors. Thus NoCs that connect them will face the same decreasing returns as in biology (FIXME). 
-
-Larger networks will require more power to drive them, and it will take more time to traverse them, ultimately making time-energy minimization increasingly difficult as chips increase in size. It is however noteworthy that communication locality, as governed by the Rent’s exponent (and $D_w$ above), has the potential to result in a more favorable scaling in multi-core computation than in multi-cellular biology.
-
-4.    PULL TEXT from BEYOND Biology. Breaking out of the centralized distribution network -- 
-
-Should the Rents exponent describe locality 
-traffic in cities; communication in ants; decentralized modular communication (the communication dimmension) . Possible that these rents esponcents will hep us understand the scaling behavior of biology after the
-
- Transition to sociality and distributed systems. Delong et al does not address scaling relationships in the most recent evolutionary transition to social animals. Sociality is an important evolutionary transition, reflected in the ecological dominance of humans and ants, two social species whose networked systems exchange energy and information. These social species have captured extraordinary fractions of the available energy on earth (citations—40\% globally for humans, 50\% of biomass energy in the amazon by ants) and dispersed over vast territories. Recent evidence suggests that ant colonies and human societies follow similar scaling relationships as individual organisms (citations). Similarly, computational power has grown in large part by networking. This trend is likely to accelerate as computers are not only networked on the internet, but “the internet of things” and embedded devices in cyber physical systems promise trillions of networked computers that will vary in their size, power and degree of dependence on the larger network.
-
-CUT:
-5.     The strong similarity in the scaling of computational and biological systems results from the fundamental dependence of both systems of the number of nodes (transistors in computation and “the number of membrane-bound respiratory complexes” that synthesize ATP from oxygen) and the geometric constraints on transport distances. Computers over the last 35 years have replicated the same evolutionary transitions that occurred over billions of years in biology: through integrated circuits, innovations in materials and other technological tricks, synchronizing clock trees, multi-core chips and internetworked and distributed computers have happened almost simultaneously, but their trajectories mimic the transition from simple unicellular bacteria to the largest and most powerful animals and societies on earth.
-Engineer vs natural selection.
-
-
-Coupling with physical devices makes it closer to biological scaling
-
-
-\section{Additional possible Discussion points}
-
-\begin{itemize} 
+3. Computer chips have begun the transition to multi-core, resembling the biological transition to multicellularity. Our unified scaling framework suggests future scenarios for multicore chips. As the era of transistor minimization draws to a close, adding more transistors will require increased area, and therefore networks that span a larger area. Similarly to multicellular organisms, we expect that as the number of cores grows, an increasing fraction of chip power will be devoted to ever larger networks (Network-on-Chip, NoC) connecting more cores. Larger networks will require more power to drive them, and it will take more time to traverse them, ultimately making time-energy minimization increasingly difficult as chips increase in size. Thus we predict that networks will increasingly dominate on-chip power budgets, and the most important advances in chip design will be in increasing network efficiency, for example optical networks.
   
-  \item Technological evolution is undergoing a major evolutionary transition as distributed computing changes the metabolic landscape of technology and its interaction with the environment. [MERGE above]
   
-\item By unifying time and energy into a single model, the model accounts for
-  the wide variation in size of organisms and computers, e.g., mouse to
-  elephant and arm to multe-core.   [MAJOR POINT, and the constancy with Dr 2]
-  We propose the joule-second as a new fundamental unit of life and information.
+The differences between scaling of energy delivery biology and information delivery in computation also play an important role in evolutionary transitions. In particular, on-chip computer networks have two advantages not available to biological networks. First, technological advances have decreased ``process'' size by orders of magnitude over the last several decades, resulting in ever smaller transistors and wires that reduce both energy and delay in the nodes, as well as allowing the dramatic increase in the number of transistors and wires in a given area. This reduction in process size will end as physical limits are reached (although the miniaturization is predicted to continue for several more generations CITATIONS). Second, the locality of network traffic, characterized by the Rent's exponent and $D_w$, reduces long distance communication over computer networks. As shown above, this wire scaling results in lower $E_{net}$ and a smaller wire footprint as $N$ increases on single core chips. This advantage will likely continue for multi-core chips where communication, and therefore network bandwidth, footprint and energy consumption of NOCs can be reduced by keeping communication primarily local (maybe cite george here?). Communication locality has the potential to result in a more favorable scaling in multi-core computation than is achievable in multi-cellular biology.
 
-\item We provide an explanation for Koomey's Law (p. 13). These results also provide an explanation for Koomey's Law, which states
-roughly: ``The number of computations per joule of energy dissipated has been
-doubling approximately every 1.57 years." This follows directly from minimizing
-the energy time product and Moore's Law, the empirical observation that the
-number of transistors ($N$) doubles every 2 years. NEED a figure that combines
-data from Fig 2 and Fig 3 to show this?
-
-\item The model shows why computers have given up on reducing clock speeds and
-  gone to multi-core.  Once you reach a minimum component size, then you are at
-  a transition and a new scaling regime.  What is the regime and why is biology
-  the guide? -- MAKE sure this is hit above, don't recapitulate
+Scaling on computer chips and other systems in which networks deliver information rather than energy also lend insights into another important biological evolutionary transition, the transition to social animal societies. Delong et al does not address scaling relationships in animal societies. However, sociality is an important evolutionary transition, reflected in the ecological dominance of humans and ants, two social species whose networked systems exchange energy and information. These social species have captured extraordinary fractions of the available energy on earth (citations—40\% globally for humans, 50\% of biomass energy in the amazon by ants) and dispersed over vast territories. Recent evidence suggests that ant colonies and human societies follow similar scaling relationships as individual organisms (citations). In social animal systems and networked computer systems, networks are at least partially decentralized, for example traffic flow in cities (CITE mosessamaniego) and communication patterns in ants (CITE Noa). Understanding how communication locality has emerged in computation may lend insights into one of the important benefits in the transition to sociality in biology: animal societies have released the constraint of the centralized distribution network by evolving systems for decentralized and modular communication.
 
 
-\item Theoretical explanation for well-known empirical patterns in computer
-  architecture.
+?  PULL other TEXT from BEYOND Biology. 
 
-\item Nature dealt with network design constraints by slowing metabolism as
-  animal size increases.  Computer architecture, at least until recently,
-  focused on increase clock speeds by minimizing component size and incresing
-  energy per chip.  Also, using the third dimension to accommodate more wires, 
 
-\item Computer transions: transistors; transistors to integrated circuits;
-  single core to multi-core; desk tops to data centers.  Multicore is an
-  evolutionary transition.  IBM currently making 10 nm chips which are the
-  limit for silicon.  IBM recently announced a 7 nm transistor (more than 1000
-  times smaller than the diameter of a red blood cell) and only three times
-  larger than a strand of DNS, using silicon germanium targeting a 50\% power
-  improvement.  NYT July 9, 2015.  Then going to carbon nanofibers. 
-  
-  Optical networks Josh's point
 
-\end{itemize}
+%5.     The strong similarity in the scaling of computational and biological systems results from the fundamental dependence of both systems of the number of nodes (transistors in computation and “the number of membrane-bound respiratory complexes” that synthesize ATP from oxygen) and the geometric constraints on transport distances. 
+
+
 
 \section{Conclusion}
 
 Our analysis provides a unifying explanation for the origin of scaling laws in
 biology and computing. Despite obvious differences in form and function, the
 scaling of organisms and computers is governed by the same simple principle.
-By minimizing the energy-time product, whether through natural selection or
+By minimizing energy dissipation and the time to deliver resources, whether through natural selection or
 engineering, existing designs manage the trade-off between cost and
 performance, leading to general scaling patterns observed over several orders
 of magnitude in size.  Moreover, power laws as a function of size are not
@@ -1150,7 +977,70 @@ still lacking.  Because cost and performance, i.e., energy and time, impose
 universal constraints, we suggest that a common design principle governs the
 scaling of complex systems that process energy, materials and information.
 
-Add an Evolutionary Transition sentence
+Engineering ingenuity rather than evolution by natural selection has created increasingly fast and powerful computers through a series of innovations, including integrated circuits, innovations in materials and other technological tricks, synchronizing clock trees, multi-core chips and networked and distributed computation. Technological evolution is undergoing another major evolutionary transition as distributed computing changes the metabolic landscape of technology and its interaction with the environment. As computers become more embedded in physical devices, physical proximity and energy concerns for low-power devices may drive computational scaling to more closely resemble biological scaling. In computation dramatic changes have emerged over the last 35 years, but their trajectories mimic the biological transitions that took billions of years to evolve simple unicellular bacteria into the largest and most powerful animals and societies on earth.
+
+
+
+%By unifying time and energy into a single model, the model accounts for the wide variation in size of organisms and computers, e.g., mouse to elephant and arm to multe-core.  
+  
+  
+
+\section{Additional possible Discussion points. Which ones are worth keeping, and where?}
+
+\begin{itemize} 
+
+
+  
+\item 
+ This paragraph from before needs to be reworked here or skipped. I'm not sure if it still applies:
+ 
+The model predicts that, for the optimal network design (i.e., $D_l=3$  and
+$D_r=2$), the system's energy-time product is scales with $l_0$ and $N$.
+%Since size increases with $N$, this suggests that the energy-time product is
+%independent of body mass.
+This result has important implications for the
+energetic basis of fitness.  Some have proposed that biological fitness
+maximizes metabolic power (energy/time) \cite{lotka56, odum71}, whereas others
+have proposed that it minimizes biological times (e.g., generation times, which
+is equivalent to maximizing vital rates) \cite{lindstedt81, sibly91}. The
+invariance of the energy-time product is consistent with the fact that fitness
+of organisms is largely independent of body mass.  Organisms of all sizes, from
+small, fast, low-power microbes to large, slow, powerful mammals, coexist and,
+therefore, are likely nearly equally fit.  This implies a direct trade-off
+between maximizing metabolic power and minimizing generation times that holds
+over the many orders of magnitude variation in body mass.  The energy-time
+product reflects powerful geometric, physical and biological constraints on the
+evolution of organism designs.
+
+
+\item If we're gonna say this, we have to actually do it. I'm inclined to skip it.
+
+ Our framework gives a theoretical explanation for well-known empirical patterns in computer
+  architecture.We provide an explanation for Koomey's Law (p. 13). These results also provide an explanation for Koomey's Law, which states
+roughly: ``The number of computations per joule of energy dissipated has been
+doubling approximately every 1.57 years." This follows directly from minimizing
+the energy time product and Moore's Law, the empirical observation that the
+number of transistors ($N$) doubles every 2 years. NEED a figure that combines
+data from Fig 2 and Fig 3 to show this?
+
+
+
+%\item Nature dealt with network design constraints by slowing metabolism as
+%  animal size increases.  Computer architecture, at least until recently,
+%  focused on increase clock speeds by minimizing component size and incresing
+%  energy per chip.  Also, using the third dimension to accommodate more wires, 
+
+%\item Computer transitons: transistors; transistors to integrated circuits;
+%  single core to multi-core; desk tops to data centers.  Multicore is an
+%  evolutionary transition.  IBM currently making 10 nm chips which are the
+%  limit for silicon.  IBM recently announced a 7 nm transistor (more than 1000
+%  times smaller than the diameter of a red blood cell) and only three times
+%  larger than a strand of DNS, using silicon germanium targeting a 50\% power
+%  improvement.  NYT July 9, 2015.  Then going to carbon nanofibers. 
+  
+\end{itemize}
+
+
 
 \section{Appendix A: Details of Scaling in Organisms}
 \label{sec:AppendixOrg}
@@ -1294,6 +1184,7 @@ N^{\frac{2}{D_l} - \frac{2}{D_r}}$. }
   \case{$D_r = D_l$}{In this case the exponent is 0 and there is equal latency
   at all levels and $L \propto N^0$.}
 \end{caseof}
+
 
 
 \bibliography{references}

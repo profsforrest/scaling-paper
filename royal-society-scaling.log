@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  24 NOV 2015 07:40
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014) (preloaded format=pdflatex 2014.5.25)  27 NOV 2015 12:20
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -326,24 +326,20 @@ Missing character: There is no ™ in font ptmr7t!
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 353.
  [7]
-[8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18]
-Missing character: There is no Ò in font ptmr7t!
-Missing character: There is no Õ in font ptmr7t!
-Missing character: There is no Ó in font ptmr7t!
- [19]
+[8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19]
 <Figures/power_scaling.pdf, id=84, 535.70139pt x 411.939pt>
 File: Figures/power_scaling.pdf Graphic file (type pdf)
 
 <use Figures/power_scaling.pdf>
-Package pdftex.def Info: Figures/power_scaling.pdf used on input line 1040.
+Package pdftex.def Info: Figures/power_scaling.pdf used on input line 913.
 (pdftex.def)             Requested size: 259.00562pt x 199.16928pt.
 
 <Figures/throughput_scaling.pdf, id=85, 556.47902pt x 413.74576pt>
 File: Figures/throughput_scaling.pdf Graphic file (type pdf)
 
 <use Figures/throughput_scaling.pdf>
-Package pdftex.def Info: Figures/throughput_scaling.pdf used on input line 1047
-.
+Package pdftex.def Info: Figures/throughput_scaling.pdf used on input line 920.
+
 (pdftex.def)             Requested size: 267.8796pt x 199.16928pt.
 
 
@@ -351,19 +347,18 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [20 <./Figures/power_scaling.pdf>] [21 <./Figures/throughput_scaling.pdf>]
 [22]
-Missing character: There is no Õ in font ptmr7t!
 Missing character: There is no Ñ in font ptmr7t!
-Missing character: There is no Ò in font ptmr7t!
-Missing character: There is no Ó in font ptmr7t!
- [23]
-Missing character: There is no Ò in font ptmr7t!
-Missing character: There is no Ó in font ptmr7t!
+ [23] [24]
+Overfull \hbox (9.20262pt too wide) in paragraph at lines 988--988
+[]\OT1/ptm/b/n/17.28 Additional pos-si-ble Dis-cus-sion points. Which ones are 
+worth
+ []
+
 LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 1095.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 995.
+[25] [26] [27]
 
- [24] [25] [26] [27]
-
-LaTeX Warning: Reference `Appendix:Org' on page 28 undefined on input line 1258
+LaTeX Warning: Reference `Appendix:Org' on page 28 undefined on input line 1148
 .
 
 [28] (./royal-society-scaling.bbl [29] [30] [31]) [32] [33]
@@ -373,13 +368,13 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 3269 strings out of 493117
- 47156 string characters out of 6135433
- 115726 words of memory out of 5000000
- 6666 multiletter control sequences out of 15000+600000
+ 3271 strings out of 493117
+ 47192 string characters out of 6135433
+ 115746 words of memory out of 5000000
+ 6668 multiletter control sequences out of 15000+600000
  23377 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 38i,10n,23p,1084b,264s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 38i,10n,23p,1423b,264s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2014/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2014/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2014/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local
@@ -401,7 +396,7 @@ ts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2014/texmf-dist/fonts
 /type1/urw/times/utmb8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw
 /times/utmr8a.pfb></usr/local/texlive/2014/texmf-dist/fonts/type1/urw/times/utm
 ri8a.pfb>
-Output written on royal-society-scaling.pdf (33 pages, 355932 bytes).
+Output written on royal-society-scaling.pdf (33 pages, 357053 bytes).
 PDF statistics:
  276 PDF objects out of 1000 (max. 8388607)
  145 compressed objects within 2 object streams
