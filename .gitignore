@@ -1,0 +1,14 @@
+*.swp
+*.dvi
+*.log
+*.bak
+*.aux
+*.bbl
+*.blg
+*.idx
+*.ps
+*.eps
+*.toc
+*.out
+*.pdf
+*texpadtmp
