@@ -823,7 +823,7 @@ deviation from the simple $3/4$ power-law relationship between metabolism and
 mass~\cite{kolokotrones2010curvature}. 
 %While previous ssaling work considered only the energy dissipated in
 %the network $E_{net}$, here 
-By considering the energy dissipated in \emnph{both} the network and 
+By considering the energy dissipated in \emph{both} the network and 
 nodes ($E_{net}$ and $E_{node}$), together with earlier 
 results from~\cite{banavar10}
 ($l_0 \propto N^{\frac{1}{9}}$ and $u_0 \propto
@@ -1154,33 +1154,40 @@ successful, approaching the theoretical limit predicted by the model.
 
 Scaling analyses provide a framework for identifying invariants and
 understanding constraints on both biological and computational systems over
-enormous size ranges. Simultaneously minimizing energy dissipation and delivery
-time in both the network and the nodes, predicts scaling relationships in
-organisms and computer chips. This broad framework also highlights similarities
+enormous size ranges.  By simultaneously minimizing energy dissipation and delivery
+time, our unified model 
+%in both the network and the nodes, 
+% SF not sure what delivery time in a node is.
+predicts scaling relationships for both
+organisms and computer chips.  This broad framework highlights the similarities
 and differences between biological networks that deliver energy and
 computational networks that deliver information. 
 
-From the similarities between biological and computational network scaling we
-can make predictions about the trajectory of computing based on biological
-changes over evolutionary time. For this we turn to work by Delong et al who
-demonstrate that metabolic scaling slopes and intercepts change at the
-evolutionary transitions: prokaryote (bacteria) metabolism is superlinear with
-size, unicellular protist metabolism is linear, and multicellular animal
+The similarities between biological and computational scaling
+suggest likely future trajectories in computing based on how biology
+has changed over evolutionary time. For this we turn to work by Delong et al., who
+demonstrated that metabolic scaling slopes and intercepts change at the
+evolutionary transitions: prokaryote (bacteria) metabolism varies superlinearly with
+size, unicellular protist metabolism varies linearly, and multicellular animal
 metabolism is sublinear, converging toward the canonical $3/4$ exponent. They
-hypothesize that these shifts arise from organisms overcoming a series of
+hypothesize that these discontinuous shifts arise from organisms overcoming a series of
 constraints, and then facing new constraints, as they increase in size.
 
 Larger bacteria increase metabolism as additional genes allow increased use of
 metabolic substrates, but eventually the cell surface area limits metabolic
-processing. Unicellular protists internalize the metabolic machinery into
-respiratory organelles (i.e., mitochondria that turn oxygen into ATP). The
+processing. Unicellular protists overcome this constraint by internalizing the metabolic machinery into
+respiratory organelles (i.e., mitochondria that convert oxygen into ATP). The
 number of mitochondria increases linearly with cell size until internal
-transport constraints limit the rate of metabolic processing. Multi-cellular
-animals develop internal networks that speed the delivery of metabolites,
-subject to sublinear network scaling effects. Delong et al highlight the
-fundamental importance of both time and energy both in the network (ie
+transport constraints begin to limit the rate of metabolic processing.
+Next, multi-cellular
+animals developed internal networks to speed the delivery of metabolites,
+and are subject to sublinear network scaling effects. Delong et al. highlight the
+importance of time and energy, both in the network
+network  (i.e.
 minimizing time to deliver metabolites) and in the nodes (maximizing the
-capacity of nodes). %They also note significant decreases in energetic
+capacity of nodes). 
+FIXME(is this sentence in or out?)
+They also note significant decreases in energetic
 efficiency at each evolutionary transition when absolute measures of time and
 energy increase.  The explanations that they hypothesize are directly relevant
 to understanding how energy-time minimization affects the ongoing evolution of
@@ -1190,39 +1197,40 @@ computer hardware.
 how time and energy dissipation have decreased while performance increased as
 larger numbers of shrinking transistors have been packed onto each chip. During
 this period, similar to bacterial evolution that incorporates new genes to
-exploit new metabolic niches, technological innovations have emerged, for
+exploit new metabolic niches, technological innovations have emerged. For
 example, new materials, switching methods, etching processes and cooling
 technologies have pushed physical boundaries, allowing transistors to shrink
 and more of them to be packed onto each chip. Like bacteria, these innovations
-have optimized physical constraints, but ultimately a maximum is reached. There
+have optimized physical constraints, but there is an ultimate maximum. There
 are no elephant-sized bacteria and there will be no silicon based single core
-chips with quadrillions (?) of transistors.
+chips with quadrillions (FXIME ?) of transistors.
 
 2.  Chips have also mimicked the linear relationship between performance and
-size (Figure XXX) seen in protists. Unicellular protists show linear increases
+size (Figure FIXME XXX) seen in protists. Unicellular protists show linear increases
 in metabolic rate with size as more energy processing nodes  (mitochondria) are
-packed into larger cells. However, like protists, this regime will also end due
-to physical constraints. It is evident from the analysis above that the
+packed into larger cells. However, like protists, this regime will eventually end due
+to physical constraints.  Our earlier analysis suggests that the
 internal transport network already constrains the processing speed of the
 system (i.e., $T_{net}$ constrains $T_{sys}$). Further, the requirement to
 dissipate heat over a fixed surface area constrains both cells and chips. 
 
-3. Computer chips have begun the transition to multi-core, resembling the
+3. Computer chips have begun the evolutionary transition to multicore, resembling the
 biological transition to multicellularity. Our unified scaling framework
 suggests future scenarios for multicore chips. As the era of transistor
 minimization draws to a close, adding more transistors will require increased
 area, and therefore networks that span a larger area. Similarly to
 multicellular organisms, we expect that as the number of cores grows, an
-increasing fraction of chip power will be devoted to ever larger networks
-(Network-on-Chip, NoC) connecting more cores. Larger networks will require more
+increasing fraction of chip power will be devoted to these ever larger 
+Networks-on-Chip (NoC) connecting more cores. Larger networks will require more
 power to drive them, and it will take more time to traverse them, ultimately
-making time-energy minimization increasingly difficult as chips increase in
-size. Thus we predict that networks will increasingly dominate on-chip power
+making time-energy minimization increasingly difficult to sustain as chips increase in
+size. Thus, it is likely that networks will increasingly dominate on-chip power
 budgets, and the most important advances in chip design will be in increasing
 network efficiency, for example optical networks.
+
+4. Clock Speed?
   
-  
-The differences between scaling of energy delivery biology and information
+The differences between scaling of energy delivery in biology and information
 delivery in computation also play an important role in evolutionary
 transitions. In particular, on-chip computer networks have two advantages not
 available to biological networks. First, technological advances have decreased
@@ -1231,34 +1239,34 @@ resulting in ever smaller transistors and wires that reduce both energy and
 delay in the nodes, as well as allowing the dramatic increase in the number of
 transistors and wires in a given area. This reduction in process size will end
 as physical limits are reached (although the miniaturization is predicted to
-continue for several more generations CITATIONS). Second, the locality of
+continue for several more generations FIXME(CITATIONS). Second, the locality of
 network traffic, characterized by the Rent's exponent and $D_w$, reduces long
 distance communication over computer networks. As shown above, this wire
 scaling results in lower $E_{net}$ and a smaller wire footprint as $N$
 increases on single core chips. This advantage will likely continue for
 multi-core chips where communication, and therefore network bandwidth,
 footprint and energy consumption of NOCs can be reduced by keeping
-communication primarily local (maybe cite george here?). Communication locality
-has the potential to result in a more favorable scaling in multi-core
+communication primarily local (FIXME: maybe cite george here?). Communication locality
+has the potential to produce more favorable scaling in multicore
 computation than is achievable in multi-cellular biology.
 
 Scaling on computer chips and other systems in which networks deliver
 information rather than energy also lend insights into another important
 biological evolutionary transition, the transition to social animal societies.
-Delong et al does not address scaling relationships in animal societies.
+Delong et al. does not address scaling relationships in animal societies.
 However, sociality is an important evolutionary transition, reflected in the
 ecological dominance of humans and ants, two social species whose networked
 systems exchange energy and information. These social species have captured
-extraordinary fractions of the available energy on earth (citations—40\%
+extraordinary fractions of the available energy on earth FIXME(citations)---40\%
 globally for humans, 50\% of biomass energy in the amazon by ants) and
 dispersed over vast territories. Recent evidence suggests that ant colonies and
 human societies follow similar scaling relationships as individual organisms
-(citations). In social animal systems and networked computer systems, networks
+FIXME(citations). In social animal systems and networked computer systems, networks
 are at least partially decentralized, for example traffic flow in cities (CITE
 mosessamaniego) and communication patterns in ants (CITE Noa). Understanding
 how communication locality has emerged in computation may lend insights into
 one of the important benefits in the transition to sociality in biology: animal
-societies have released the constraint of the centralized distribution network
+societies have escaped the constraint of the centralized distribution network
 by evolving systems for decentralized and modular communication.
 
 
@@ -1279,7 +1287,7 @@ By minimizing energy dissipation and the time to deliver resources, whether thro
 engineering, existing designs manage the trade-off between cost and
 performance, leading to general scaling patterns observed over several orders
 of magnitude in size.  Moreover, power laws as a function of size are not
-unique to organisms and computers but are widely observed across a large
+unique to organisms and computers but are observed across a wide
 variety of complex systems in nature, society and technology.  The scaling of
 white and grey matter in the brain \cite{zhang00}, of energy use and GDP in
 countries \cite{brown11}, and the pace of life and population in cities
@@ -1288,19 +1296,21 @@ still lacking.  Because cost and performance, i.e., energy and time, impose
 universal constraints, we suggest that a common design principle governs the
 scaling of complex systems that process energy, materials and information.
 
-Engineering ingenuity rather than evolution by natural selection has created
-increasingly fast and powerful computers through a series of innovations,
-including integrated circuits, innovations in materials and other technological
+Engineering ingenuity and economic pressures have created increasingly
+fast and powerful computers through a series of innovations, including
+integrated circuits, innovations in materials and other technological
 tricks, synchronizing clock trees, multi-core chips and networked and
-distributed computation. Technological evolution is undergoing another major
-evolutionary transition as distributed computing changes the metabolic
-landscape of technology and its interaction with the environment. As computers
-become more embedded in physical devices, physical proximity and energy
-concerns for low-power devices may drive computational scaling to more closely
-resemble biological scaling. In computation dramatic changes have emerged over
-the last 35 years, but their trajectories mimic the biological transitions that
-took billions of years to evolve simple unicellular bacteria into the largest
-and most powerful animals and societies on earth.
+distributed computation. Technological evolution is undergoing another
+major evolutionary transition as distributed computing changes the
+metabolic landscape of technology and its interaction with the
+environment. As computers become more embedded in physical devices,
+physical proximity and energy concerns for low-power devices may drive
+computational scaling to more closely resemble biological scaling. In
+computation, dramatic changes have emerged over the last 35 years, but
+to a surprising extent, their trajectories mimic the biological
+transitions that took billions of years to evolve simple unicellular
+bacteria into the largest and most powerful animals and societies on
+earth.
 
 
 
@@ -1312,7 +1322,8 @@ and most powerful animals and societies on earth.
 
 \begin{itemize} 
 
-
+\item What do we want to say about data centers?  Is this some new
+  evolutionary level?
   
 \item 
  This paragraph from before needs to be reworked here or skipped. I'm not sure if it still applies:
