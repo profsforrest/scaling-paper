@@ -342,7 +342,7 @@ equation, in which the communication (or number of wires) per module increases
 with the hierarchical level as
 
 \begin{equation}
-w_i = w_0 \lambda^{i/D_w},
+  w_i = w_0 \lambda^{\frac{i}{D_w}},
 \label{eq:communication}
 \end{equation}
 
@@ -814,7 +814,7 @@ metabolic rate, $B$, for animals:
 
 \begin{equation}
   \label{eq:OrganismPower}
-  B \propto M^{\frac{3}{D_r} - \frac{5}{4}} + M^{\frac{3}{2D_r} + frac{1}{12}}
+  B \propto M^{\frac{3}{D_r} - \frac{5}{4}} + M^{\frac{3}{2D_r} + \frac{1}{12}}
 \end{equation}
 
 Using data from~\ref{kolokotrones12curvature}, we can fit the above model which
@@ -915,7 +915,15 @@ $l_0 \propto N^{-1/D_l}$ and $\lambda^H \propto N$ gives
 \end{equation}
 
 \noindent Note that the scaling of $E_{net} $ with $N$ depends on $D_l$ and
-$D_w$, but not on $D_r$.
+$D_w$, but not on $D_r$. Similarly to energy scaling in
+organisms, how $E_{net}$ scales depends on whether the exponent
+$\frac{1}{D_l} + \frac{1}{D_w}-1$ in Eq. \ref {eq:comp-Enet} is positive or
+negative.  If $D_w \geq \frac{D_l}{D_l -1}$ the exponent is negative and the
+summand converges to a constant (or $\log(N)$ in the exact equality case),
+leaving $E_{net} \propto N^{1-\frac{1}{D_l}}$. When $D_w < \frac{D_l}{D_l -1}$,
+$C \propto N^{\frac{1}{D_w}}$. Given $D_l$ for 2-dimensional chips, $E_{net}$
+is minimized when $D_w \geq 2$. See section~\ref{sec:AppendixChips} for
+details.
 
 We now calculate the scaling of $E_{node}$. For a single node, computation
 energy is given by the transistor's (dynamic) energy dissipation as
@@ -945,20 +953,12 @@ DIDN'T INCLUDE A CALCULATION HE JUST REFERENCES~\cite{bakoglu90}].
 Before calculating the energy time product, we observe that $T_{net}$ is the
 only term dependent on $D_r$, and so we set  $D_r = 2$ in order to minimize
 $T_{net}$. Similarly $E_{net}$ is the only term dependent on  $D_w$, and so we
-set $D_w$ in order to minimize $E_{net}$.  Similarly to energy scaling in
-organisms, how $E_{net}$ scales depends on whether the exponent
-$\frac{1}{D_l} + \frac{1}{D_w}-1$ in Eq. \ref {eq:comp-Enet} is positive or
-negative.  If $D_w \geq \frac{D_l}{D_l -1}$ the exponent is negative and the
-summand converges to a constant (or $\log(N)$ in the exact equality case),
-leaving $E_{net} \propto N^{1-\frac{1}{D_l}}$. When $D_w < \frac{D_l}{D_l -1}$,
-$C \propto N^{\frac{1}{D_w}}$. Given $D_l$ for 2-dimensional chips, $E_{net}$
-is minimized when $D_w \geq 2$. See section~\ref{sec:AppendixChips} for
-details.
- 
+set $D_w$ in order to minimize $E_{net}$.  
+
 In summary, given $D_l = 2$, the terms of the energy time product are minimized
 when $D_r = 2$ and $D_w > 2$, resulting in:
 
-[PUT these in a table]
+[PUT these in a table. DONE]
 
 $E_{net} \propto N^{1-1/D_l} \propto N^{1/2}$
 
@@ -1059,9 +1059,9 @@ wire radius and length scale proportionally to each other.
 
 From our scaling results, we make two important predictions.  First, power
 consumption in chips (total energy dissipated per unit of time) scales as
-$Power = (N\cdot E_{sys})/T_{sys} \propto N^{1/2}$.   Second, performance,
+$Power = \frac{E_{sys}}{T_{sys}} \propto N^{1/2}$.   Second, performance,
 measured as computations executed per unit of time, or throughput, is predicted
-to scale linearly with $N$,  i.e.  $Throughput\propto N/T_{sys} \propto N$.
+to scale linearly with $N$,  i.e.  $Throughput\propto \frac{N}{T_{sys}} \propto N$.
 
 %assuming that a constant fraction of the transistors is active at each cycle, 
 
