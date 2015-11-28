@@ -159,12 +159,12 @@ computer chip}\\
   empirically observed trends in the scaling of metabolic rate in organisms and
   power consumption and performance in chips across several orders of magnitude
   in size.  This result suggests that a single principle governs the designs of
-  complex systems that process energy, materials, and information. Just as
-  fundamental shifts in metabolic energy have accompanied the evolutionary
-  transitions in biology, our models suggest that energy efficiency will change
-  as computer technology becomes more distributed and decentralized in the
-  shift to multi-core and dispersed cyber-physical systems. Scaling 
-  
+  many complex systems that process energy, materials, and information. Just as
+  the evolutionary transitions in biology are associated with shifts in
+  metabolism, so do our models suggest that energy efficiency will change
+  as computer designs transitioni to decentralized multi-core and
+  distributed cyber-physical systems.
+
 \end{sciabstract}
 
 \newpage
@@ -176,7 +176,7 @@ Both organisms and computers have evolved from relatively simple beginnings
 into complex systems that vary by orders of magnitude in size and number of
 components. Evolution, by natural selection in organisms and by human
 engineering in computers, required critical features of architecture and
-function to be scaled up as size and complexity increased. In Biology,
+function to be scaled up as size and complexity increased. In biology,
 Kleiber's law describes the empirical relation between metabolic rate and many
 other traits, such as lifespan, heart rate, and number of offspring, with body
 size \cite{kleiber47}.  Similarly, computer architecture has Moore's law to
@@ -205,7 +205,7 @@ Networks that deliver resources are optimized to reduce energy dissipation and
 increase flow rates, expressed here as minimizing the energy-time product. That
 is, both living systems and computer chips are designed to maximize the rate at
 which resources are delivered to terminal nodes of a network and to minimize
-the energy cost in the network.  In biology, the vascular network of vertebrate
+the energy cost in the network.  For example, in biology the vascular network of vertebrate
 animals supplies oxygen and nutrients to every cell, fueling metabolism for
 maintenance, growth and reproduction.  Since energy is a limited resource, we
 assume that organisms are selected to minimize the energy dissipated in the
@@ -215,10 +215,10 @@ transistors on a chip.  In order to maximize computation speed and minimize
 power consumption, this network is designed to deliver the maximum information
 flow at the lowest possible energy cost.
 
-Here, we model vertebrates as composed of regions of tissue that receive oxygen
+Here, we model vertebrates as compoesed of regions of tissue that receive oxygen
 carried by blood via a hierarchical vascular network of pipes, and we model
 microprocessors as composed of transistors that perform computation, exchanging
-information over a modular network of wires.  As each system scales up in size,
+information over a network of wires.  As each system scales up in size,
 we consider: 1) the rate at which resources are delivered by the network and
 processed in the nodes; and 2) the energy dissipated during these processes.
 Despite the obvious differences between organisms and chips, we present a
@@ -248,14 +248,14 @@ than converging on a single optimal size, and in computer architecture
 engineers have designed processors ranging from a few thousand transistors to
 several billion, each of which fills a specific computational niche.
 
-In the rest of the paper, we first present the unified model of network scaling
+In the rest of the paper, we present the unified model of network scaling
 (Section \ref{sec:unified-model}) and the basic assumptions underlying the
 model (Section ~\ref{sec:assumptions}).  We then use the model to derive a
-series of predictions about how time and energy scale with system size first
+series of predictions about how time and energy scale with system size, first
 for organisms (Section \ref{sec:organisms}) and then for computers (Section
 \ref{sec:computers}). We then discuss new insights into previously analyzed
 scaling relationships in biology that we gain from the time-energy minimization
-framework, and we test scaling predictions with empirical power and performance
+framework, and we test our scaling predictions with empirical power and performance
 data on computer chips.  Finally, in Section \ref{sec:discussion}  we discuss
 the implications of these results for evolutionary transitions in nature and
 engineering.
@@ -265,15 +265,21 @@ engineering.
 \includegraphics[height=90mm]{Figures/Figure1Draft.jpg}
 \label{fig:firstfig}
 
-\caption{Panel a: idealized fractal branching model of the cardiovascular
-  network. Explain Dl, Dr, lambda H N and slowing by referring to the picture.
-  Panel c illustrates the communication dimension, $D_w$, which measures how
+\caption{Idealized branching models in biology and computers.
+  $lambda$ is the branching factor (e.g., $lambda$ is 2 in panel A); $H$ is the number
+  of hierarchical levels in the network; $N$ is the number of terminal
+  nodes in the network. $D_l$ defines the relative length of pipe
+  between successive hierarchical levels; $D_r$ defines the relative
+  radius of pipes between successive hierarchical levels of the
+  network; and $D_w$ (panel B only) defines how
   the ratio of internal (intra-module) communication per node to external
 (inter-module) communication per node scales with the level of the module in
-the hierarchy. Keep b and d? }
+the hierarchy. Panel A shows hierarchical fractal branching of the cardiovascular
+  network, and Panel B illustrates the semi-hierarchical branching of
+  a wire networks on a chip.  FIXME(Keep c and d?) }
 
 \end{figure}
-\section{A Unified Model of Network Scaling}
+\section{Unified Model of Network Scaling}
 \label{sec:unified-model}
 
 
@@ -327,19 +333,23 @@ The length parameter $D_l$ determines the spatial dimension occupied by the
 nodes of the network \cite{mandelbrot83}.  For chips, $D_l = 2$, since
 transistors are placed on a single two-dimensional layer \cite{donath81}. For
 three-dimensional organisms,  $D_l = 3$. $D_l$ describes both the relative
-length of pipe between successive hierarchical levels and the external
+length of pipe between successive hierarchical levels and the physical
 dimension of the system.
 
-Digital circuits scale in a third way in addition to length and radius, which
-has no direct analog in organisms. In vascular networks, each pipe branches at
-each hierarchical level (generally bifurcating so that $\lambda =
-2$~\cite{SavageCompBio2015}.) Chips have multiple wires per module, and their
-number increases with the hierarchical level. This difference arises from the
-fact that digital circuits are decentralized networks connecting multiple
-sources and destinations, while vascular networks are centralized, with blood
-flowing from a single heart. To account for this difference, we introduce a new
-equation, in which the communication (or number of wires) per module increases
-with the hierarchical level as
+Digital circuits scale in a third way beyond length and radius, which
+has no direct analog in organisms.  In vascular networks, each pipe
+branches at each hierarchical level forming a perfect tree structure
+(generally with $\lambda = 2$~\cite{SavageCompBio2015}, i.e., forming
+a binary tree.) Chips, however, have many cross connections at each
+level of the network, and these cross connections
+vary systematically with the hierarchical level.  Thus,
+digital circuits are partially \emph{decentralized}, with networks
+that connect
+multiple sources and destinations, while vascular networks are
+centralized, with blood flowing from a single heart. To account for
+this difference, we introduce a new equation, in which the
+communication (or number of wires) per module increases with the
+hierarchical level as:  
 
 \begin{equation}
   w_i = w_0 \lambda^{\frac{i}{D_w}},
@@ -352,10 +362,10 @@ well-known pattern in circuit design called Rent's rule \cite{christie00},
 where $p = \frac{1}{D_w}$ is the Rent's exponent.\footnote{Rent's rule is typically
   expressed as $C(n) = kn^p$, where $C_n$ is the external communication of a
   module, $n$ is the size of the module (number of nodes), $k$ is the average
-  external communication of a module with size 1, and $p$ is the Rent’s
+  external communication of a module with size 1, and $p$ is the Rent's
   exponent. For a hierarchy with branching factor of $\lambda$, the size of a
   module is given as $n = \lambda^i$, where $i$ is the hierarchical level.
-  Therefore, we can rewrite Rent’s rule as $c_i = c_0 \times \lambda^{ip}$,
+  Therefore, we can rewrite Rentt's rule as $c_i = c_0 \times \lambda^{ip}$,
 where $c_0 = w_0$ and $p = \frac{1}{D_w}$.} This pattern is not unique to circuits
 and has been shown to occur in many biological networks
 \cite{reda09,bassett10}.   Vascular systems correspond to a special case where 
@@ -365,8 +375,8 @@ $w_i = 1$ for all $i$.
 \subsection{Assumptions of the Unified Model}
 \label{sec:assumptions}
 
-Before deriving scaling predictions from the model, we make explicit
-its  assumptions and how they relate to earlier models, both in
+Before deriving scaling predictions, we state the
+assumptions of the model and how they relate to earlier models, both in
 computation and biology:
 
 \begin{enumerate}
@@ -412,7 +422,7 @@ computation and biology:
 \item {\bf Terminal units and service volumes:} In contrast to
   Ref.~\cite{west97} we do not assume that terminal units have fixed size.   In
   chips it is well known that transistor size has shrunk over many orders of
-  magnitude.   Previous scaling models of biology posit that the service volume
+  magnitude over the past 50 years.   Previous scaling models of biology posit that the service volume
   (region served by terminal units of the network) actually increases with
   system size~\cite{west97,banavar10}.  Following Ref.~\cite{banavar10}, we
   assume that capillaries have fixed radius but that their length is
@@ -439,7 +449,7 @@ refinements to accommodate salient differences between biology and computer arch
 \noindent 
 
 In biology it is known that blood flow slows by several orders of magnitude as
-it travels from the aorta to the capillaries (CITE somebody). Scaling models
+it travels from the aorta to the capillaries FIXME(CITE somebody). Scaling models
 have generally ignored this slowing~\cite{west97, banavar10}, but we leave this
 variable in our equations to highlight where velocity affects time and energy
 scaling.
