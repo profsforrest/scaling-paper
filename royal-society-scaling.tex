@@ -738,7 +738,7 @@ N^{\frac{2}{D_r} -1} $.
 \hline
 
 \end{tabular}
-\caption{Table of Scaling for various dimension values $D_r$.}
+\caption{Table of Scaling for various dimension values $D_r$.\label{tab:SummaryScalingPredictions}}
 \end{table}
 
 Summarizing all of the scaling relationships gives: 
@@ -782,77 +782,81 @@ The energy time product is $E_{sys} \times T_{sys} \propto N^{4/3}$ NOTE: The en
 \subsection{Biological Predictions}
 \label{sec:bio-predictions}
 
+The foregoing analysis showed that the optimal network design for
+minimizing the energy0time product is area preserving, i.e. $D_r = 2$
+and the aggregate cross-sectional area of pipes is constant for all
+hierarchical levels. Earlier derivations showed that area-preserving
+branching leads to the 3/4 power scaling of metabolic rate with body
+size known as Kleiber's law (e.g., \cite{west97, banavar10}).  In
+Ref.~\cite{west97}, area-preserving branching was shown to lead to the canonical
+3/4 power metabolic scaling, while it was
+an assumption in~\cite{banavar10}. Here we demonstrate that
+area-preserving branching is optimal in the sense that it minimizes the energy-time product.
+This holds even in the region of the network dominated by Poiseuillle flow, where
+West et al.\ argued that $R$ and $E_{net}$ are minimized by $D_r
+=3$\footnote{To understand how pulsitile flow affects resistance in
+  the upper part of the network, see \cite{west97}, which shows that
+  $D_r = 2$ in the upper pulsatile region.}.  FIXME (also evident in the equation for $E_{net}$ in
+Table XX).  Although $E_{net}$ is minimized for larger values of $D_r$ (up
+to the discontinuity at $D_r =3$), there is a tradeoff with $T_{net}$,
+which is minimized when $D_r =2$. As $D_r$ increases from 2 to 3,
+delivery rates are slow more quickly than energy dissipation,
+so the $D_r =2$ area-preserving case is optimal for minimizing the
+energy-time product.
 
-The analysis above shows that the optimal network design that minimizes the
-energy time product is area preserving, i.e. when $D_r = 2$ and the aggregate
-cross-sectional area of pipes is the same at all hierarchical levels. Various
-derivations show that area-preserving branching leads to the 3/4 power scaling
-of metabolic rate with body size known as Kleiber's law (e.g., \cite{west97,
-banavar10}). Area-preserving is shown by~\cite{west97} to lead to the canonical
-3/4 power metabolic scaling; area preserving branching is assumed
-in~\cite{banavar10} in that derivation of 3/4 power metabolic scaling. Here we
-demonstrate that that area preserving is optimal in that it minimizes the
-energy time product, even in the region of the network dominated by Poiseuillle
-flow, where West et al.\ demonstrated that $R$ and $E_{net}$ are minimized by
-$D_r =3$\footnote{To understand how pulsitile flow affects resistance in the
-upper part of the network, see \cite{west97}, which shows that $D_r = 2$, i.e.,
-the network is area preserving, in the upper pulsatile region.}  (also evident
-in the equation for $E_{net}$ in Table XX). While $E_{net}$ is minimized for
-larger values of $D_r$ (up to the discontinuity at $D_r =3$), there is a
-tradeoff with $T_{net}$, which is minimized when $D_r =2$. As $D_r$ increases
-from 2 to 3, delivery rates are slowed more than energy dissipation is
-minimized, so the $D_r =2$ area preserving case is optimal for minimizing the
-energy time product.
-
-However, area-preserving branching it is not feasible in animal circulatory
-networks in which blood must slow before reaching capillaries in order to
+However, in animal circulatory
+networks blood must slow before reaching capillaries in order to
 reduce pressure on the walls of small vessels and to allow oxygen to be
-dissociated from hemoglobin in the capillaries.  Energy time product
-minimization does provide a prediction for the optimal way for blood to slow.
-The derivation in Section \ref{sec:AppendixOrg} provides a straightforward
+dissociated from hemoglobin in the capillaries.   Under this circumstance,
+perfect area-preserving branching it is not feasible, but energy-time 
+minimization provides a prediction for the optimal way for blood to slow.
+The derivation in Section \ref{sec:AppendixOrg} gives a
 theoretical prediction for a maximum value of $D_r \leq 3$ in the lower region
 of the network by identifying a discontinuity in the scaling exponent at $D_r =
-3$. For $D_r > 3$ the energy time product increases much more rapidly than for
+3$. For $D_r > 3$ the energy-time product increases much more rapidly than for
 $D_r \leq 3$.
 
 Our analysis also provides an explanation for the curvature observed in
-metabolic scaling in mammals. Kolokotrones et al (and previous authors?)
-demonstrated that metabolic rate is elevated in small mammals causing a
-deviation from a simple linear relationship between metabolism and
-mass~\cite{kolokotrones2010curvature}.  While
-previous scaling work concentrated on analyzing only the energy dissipated in
-the network $E_{net}$, here we analyze energy dissipated in the network and the
-nodes ($E_{net}$ and $E_{node}$). We use results from~\cite{banavar10},
-indicating that $l_0 \propto N^{\frac{1}{9}}$ and $u_0 \propto
-N^{\frac{1}{9}}$, and the commonly used assumption that $N \propto
-M^{\frac{3}{4}}$, we can use our analysis to predict the expected basal
+metabolic scaling in mammals. Kolokotrones et al FIXME(and previous authors?)
+demonstrated that metabolic rate is elevated in small mammals, causing a
+deviation from the simple $3/4$ power-law relationship between metabolism and
+mass~\cite{kolokotrones2010curvature}. 
+%While previous ssaling work considered only the energy dissipated in
+%the network $E_{net}$, here 
+By considering the energy dissipated in \emnph{both} the network and 
+nodes ($E_{net}$ and $E_{node}$), together with earlier 
+results from~\cite{banavar10}
+($l_0 \propto N^{\frac{1}{9}}$ and $u_0 \propto
+N^{\frac{1}{9}}$) and the common assumption that $N \propto
+M^{\frac{3}{4}}$, we predict the expected basal
 metabolic rate, $B$, for animals:
-
 \begin{equation}
   \label{eq:OrganismPower}
   B \propto M^{\frac{3}{D_r} - \frac{5}{4}} + M^{\frac{3}{2D_r} + \frac{1}{12}}
 \end{equation}
 
-Using data from~\cite{kolokotrones2010curvature}, we can fit the above model
-which can be seen in Figure~\ref{fig:OrganismsPowerScaling}. By accounting for
-these two terms, each with different scaling exponents, we can account for the
+We fit this model to data taken from~\cite{kolokotrones2010curvature}
+as shown 
+in Figure~\ref{fig:OrganismsPowerScaling}. By including
+both terms, each with different scaling exponents, the model accounts well for the
 curvature.  Intuitively, in smaller animals a greater fraction of energy is
-consumed by $E_{node}$, a term which is linear in the number of service
+consumed by $E_{node}$, a term that is linear in the number of service
 volumes. In addition, the best fit to the data is achieved with $D_r = 2.24$,
 which is consistent with the observation of area preserving branching in the
 upper region of the network and $D_r = 3$ in the lower region of the network.
-Our model also provides a better fit (as measured by Mean Square Error) than
+This model provides a better fit (Mean Square Error) than
 the alternative models presented in~\cite{kolokotrones2010curvature}. 
  
 \begin{figure}[!h] \centering
   \includegraphics[height=70mm]{Figures/OrganismsPowerScaling.pdf}
 
-  \caption{Best fit model for power scaling organisms. The model was fit by
-  minimizing the distance from the empirical points to the modeled curve,
-similar to Reduced Major Axis fitting. Other minimization techniques were used
-with similar results.} 
-  
-  \label{fig:OrganismsPowerScaling}
+  \caption{Energy-time minimization model predictions for power
+    scaling in organisms. The model from Eq.~\ref{eq:OrganismPower}
+    was fit to data from FIXME(citation) by minimizing the distance
+    from the empirical points to the modeled curve, similar to Reduced
+    Major Axis fits. Other minimization techniques were tested with
+    similar results (not shown).}
+\label{fig:OrganismsPowerScaling}
 \end{figure}
 
 
@@ -881,16 +885,16 @@ In computers, unlike biology, the nodes (transistors)
 %caling of transistor count is driven by reduction in feature sizes, 
 are not of constant size and have shrunk by many orders of magnitude over 40
 years of micro architecture evolution.  During this time, chip area has grown
-much more slowly; we assume chip area to be constant for our calculations.
+much more slowly, and we assume it to be constant for our calculations.
 Putting these two constraints together, the linear dimensions of transistors
-and wires decrease with transistor count as $N^{-1/2}$ (or, more generally,
+and wires decrease with transistor count as $N^{-1/2}$ (more generally,
 $N^{-1/D_l}$) \cite{moses08}.  This miniaturization process is well understood
-and is accurately modeled by Dennard's scaling theory \cite{dennard74}.  
+and accurately described by Dennard scaling \cite{dennard74}.  
 %[TODO: Review Dennard scaling]  The final energy and time formulas with the
 %correction for technology scaling are shown in Table \ref{tab:equations}.
 Thus, $r_0 \propto l_0 \propto N^{\frac{-1}{D_l}}$. Intuitively, this means
-that the number of nodes increases by placing smaller transistors closer
-together and connecting them with smaller and shorter wires. In the following,
+that the number of nodes increases as smaller transistors are placed closer
+together and connected with smaller and shorter wires. In the following,
 we assume that all wires carry the same flow and that information is
 transferred synchronously. We now calculate how $E_{net}$, $T_{net}$,
 $E_{node}$ and $T_{node}$ scale with the number of transistors, $N$, and the 3
@@ -914,15 +918,12 @@ proportional to the total wire length of the network~\cite{donath79}:
 \sum_{i=0}^H \lambda^{i \left( \frac{1}{D_l} + \frac{1}{D_w} -1 \right)}
 \end{equation}
 
-\noindent where $l_i$ is the length of wire, $w_i$ is the number of wires per
-module, and $n_i$ is the number of modules, all at level $i$. Recalling that
-$l_0 \propto N^{-1/D_l}$ and $\lambda^H \propto N$ gives 
-
+\noindent where at all levels $i$, $l_i$ is the length of wire, $w_i$ is the number of wires per
+module, and $n_i$ is the number of modules. Recalling that
+$l_0 \propto N^{-1/D_l}$ and $\lambda^H \propto N$ gives: 
 %\begin{equation}
 %E_{net} \propto C \propto L_{net}
 % \propto  \sum_{i=0}^H l_i w_i n_i \propto l_0 w_0 \lambda^H \sum_{i=0}^H \lambda^{i \left( \frac{1}{D_l} + \frac{1}{D_w} -1 \right)}
-
-
 \begin{equation}
 \label{eq:comp-Enet}
   E_{net}  \propto  N^{(1- \frac{1}{D_l})} \sum_{i=0}^H \lambda^{i \left( 
@@ -940,24 +941,26 @@ $C \propto N^{\frac{1}{D_w}}$. Given $D_l$ for 2-dimensional chips, $E_{net}$
 is minimized when $D_w \geq 2$. See section~\ref{sec:AppendixChips} for
 details.
 
-We now calculate the scaling of $E_{node}$. For a single node, computation
+We now calculate the scaling of $E_{node}$. FIXME(should we say
+something about leakage power here, as in acknowledging that it exists
+and saying why we ignore it?) For a single node, computation
 energy is given by the transistor's (dynamic) energy dissipation as
 $\frac{CV^2}{2}$. Again assuming constant $V$ and the capacitance of a
-transistor proportional to it's length ($l_0$), we obtain $E_{node}$ by summing
+transistor proportional to it's length ($l_0$), $E_{node}$ is obtained
+by summing
 the capacitance across all $N$ nodes giving $E_{node} \propto N l_0  \propto
 N^{1-\frac{1}{D_l}}$. 
-
 
 We calculate $T_{net}$ as the time to transmit a bit over the last logic wire
 in the network that connects to each transistor. This assumes perfect
 pipelining so there is no delay in bits arriving at the last wire
 (Appendix~\ref{sec:AppendixChips} shows that perfect pipelining requires $D_r =
-2$). Thus $T_{net}$ is equivalent to the wire latency which equals resistance
+2$). Thus, $T_{net}$ is equivalent to the wire latency which equals resistance
 multiplied by the capacitance of the wire ($RC$). For wires with aspect ratio
 1, $R_i = \rho l_i /r_i^2$, where $\rho$ is the resistivity of the material,
 and $C_i \propto l_i$ as above.  Thus, $T_{net} \propto R_0C_0 \propto
 \frac{{l_0}^2}{{r_0}^2} \propto N^0$.  $ \frac{{l_0}^2}{{r_0}^2}$ is constant
-because in chips  $l_0 \propto r_0$ since both are set by process size.
+because in chips  $l_0 \propto r_0$ and both are set by process size.
 
 Computation time for each node, $T_{node}$, is calculated as the transistor
 delay, $\frac{CV}{I}$ ~\cite{bakoglu90}, where again $V$ is constant and $C$ is
@@ -966,12 +969,14 @@ l_0  \propto N^{-\frac{1}{D_l}}$. [YIKES, what happened to $I$?]. [GEORGE
 DIDN'T INCLUDE A CALCULATION HE JUST REFERENCES~\cite{bakoglu90}].
 
 Before calculating the energy time product, we observe that $T_{net}$ is the
-only term dependent on $D_r$, and so we set  $D_r = 2$ in order to minimize
-$T_{net}$. Similarly $E_{net}$ is the only term dependent on  $D_w$, and so we
-set $D_w$ in order to minimize $E_{net}$.  
+only term that depends on $D_r$, so we set  $D_r = 2$ to minimize
+$T_{net}$. Similarly, $E_{net}$ is the only term that depends on  $D_w$, and we
+set $D_w$ to minimize $E_{net}$.  In summary, given $D_l = 2$, the terms of the energy-time product are minimized
+when $D_r = 2$ and $D_w > 2$, and the scaling relations for various
+quantities are shown in Table~\ref{tab:SummaryScalingPredictions}.
 
-In summary, given $D_l = 2$, the terms of the energy time product are minimized
-when $D_r = 2$ and $D_w > 2$, resulting in:
+FIXME(SF liked the text that is now deleted that gave a narrative
+about why the results come out like they do.)
 
 [PUT these in a table. DONE]
 
@@ -1043,36 +1048,39 @@ $E_{sys} \times T_{sys} \propto N^{\frac{1}{2}}$
 %shows that 
 
 
-\subsection{Computational Predictions}
+\subsection{Predictions for Chips}
 \label{sec:comp-predictions}
 
 
-For computers, minimizing the energy time product is trivial: $D_l=D_r=D_w =
+For computers, minimizing the energy-time product in the model is trivial: $D_l=D_r=D_w =
 2$. This result corresponds to ideal scaling, as suggested by Dennard
 \cite{dennard74}, where the linear dimensions of transistors and wires scale at
-the same rate, and wire delay is constant and the Rent's exponent is 1/2. While
-the energy time product is minimized for any value of $D_w$ greater than 2,
-values larger than 2 would require greater communication locality with no
-reduction of the energy time product. $D_w = 2$ is consistent with observed
-Rent's exponents (CITATIONS).  
+the same rate, wire delay is constant, and the Rent's exponent is 1/2.  Although
+the energy-time product is also minimized for values of $D_w$ greater than 2,
+this would entail greater communication locality, which is challenging
+to engineer, and no
+improvement of the energy-time product.  Thus, it is not surprising
+that $D_w = 2$ is consistent with observed
+Rent's exponents (FIXME: CITATIONS).  
 
 
 The final energy-time product scales as $N^{1/2}$, showing that, unlike
 organisms, as size increases, the energy-delay product per node decreases
-systematically, indicating that chips get faster and consume less energy per
-transistor as more transistors are packed onto a chip. Of course this results
+systematically.  Thus, chips have become faster and they consume less energy per
+transistor as more transistors are packed onto a chip. Of course, this
+result arises 
 from the remarkable miniaturization of transistors and wires described by
 Moore's law. It is not surprising that transistors are faster ($T_{node}$) and
-require less energy ($E_{node}$) as they are made smaller. It also makes sense
-that  $E_{net}$ grows sub-linearly with the number of transistors because as
-$N$ increases, the distance between nodes is reduced. Additionally, $D_w = 2$,
-means that most bits move locally so that the distance between nearest nodes
+require less energy ($E_{node}$) as they become smaller. It also makes sense
+that  $E_{net}$ grows sub-linearly with the number of transistors, because as
+$N$ increases the distance between nodes is reduced. Additionally, $D_w = 2$,
+means that most bits move locally, so the distance between nearest nodes
 affects the average distance that bits are transmitted.  The only term in the
-energy time product that does not decrease with increased $N$ and decreased
+energy-time product that does not decrease with increased $N$ and decreased
 process size is $T_{net}$ which remains constant under Denard scaling in which
 wire radius and length scale proportionally to each other.
 
-From our scaling results, we make two important predictions.  First, power
+Our scaling models makes two important predictions.  First, power
 consumption in chips (total energy dissipated per unit of time) scales as
 $Power = \frac{E_{sys}}{T_{sys}} \propto N^{1/2}$.   Second, performance,
 measured as computations executed per unit of time, or throughput, is predicted
@@ -1080,21 +1088,22 @@ to scale linearly with $N$,  i.e.  $Throughput\propto \frac{N}{T_{sys}} \propto 
 
 %assuming that a constant fraction of the transistors is active at each cycle, 
 
-We compared the predictions for power consumption with data obtained for 523
+We compared our theoretical predictions for power consumption with data obtained for 523
 different microprocessors over a range of approximately 6 orders of magnitude
 in transistor count.  The data are shown in Figure~\ref{fig:power}, where the
-measured exponent was $0.495$, which agrees closely with the prediction of
+measured exponent was $0.495$, which agrees closely with our prediction of
 $0.5$. Consistent data on performance across many technology generations is
-difficult to obtain because the standards have changed over the years and their
+difficult to obtain because reporting standards have changed over the years and 
 adoption by different vendors is not uniform.  We were able to obtain
 normalized performance data for 100 different chips Intel Chips as measured
 with Dhyrstone Millions of Instructions per Second (DMIPS). This data came from
-a variety of published third party performance comparisons from different
+a variety of published third-party performance comparisons from different
 generations over a range of 6 orders of magnitude in transistor count.  The
 exponent obtained for these data was $1.11$, as shown in
 Figure~\ref{fig:throughput}. This is slightly higher than our prediction of
-$1$. This suggests that engineered designs slightly outperform approach the
+$1$, suggesting that engineered designs slightly outperform approach the
 theoretical optimal defined by the model.  
+% SF thinks maybe the vendors are 'cheating' on the data they report.
 
 The linear increase in performance with the number of transistors is somewhat
 counter-intuitive. Given that transistor switching times have decreased
@@ -1105,13 +1114,13 @@ green dashed line in Figure~\ref{fig:throughput}). Some performance increases
 are achievable by increasing clockspeed for a given manufacturing process,
 which may account for the higher than predicted scaling
 exponent\footnote{Additionally higher end chips are more likely to be
-  benchmarked, potentially leading to a bias in our data towards higher
-performing chips.}. Our analysis suggests that the network is the bottleneck
-the network delivers bits to the transistors at a constant rate per transistor
-(see Eqn XX), so performance has only increased linearly with transistor
-number. Thus, although in principle transistors could process information more
-quickly, the network prevents this.  As in biology, performance can not be
-understood without understanding the constraints of the network.
+  benchmarked, potentially leading to a bias in the data towards higher
+performing chips.}. Our analysis suggests that the network is indeed
+the bottleneck. The network delivers bits to transistors at a constant rate per transistor
+(see Eqn FIXME(XX)), so performance has increased only linearly with transistor
+number even though, in principle, transistors could process information more
+quickly.  As in biology, performance cannot be
+understood without considring the constraints of the network.
 
 %[Add above] Not all transistors are computing on every clock tick because transistor activity is determined by the logic that controls the computation.
 
@@ -1135,7 +1144,7 @@ understood without understanding the constraints of the network.
 
 Our model provides a simple theoretical explanation for the scaling of power
 and performance in computers over 40 years of microprocessor technology
-improvements.  The excellent agreement between the theoretical optimal and
+improvements.  The excellent agreement between the theoretical optimum and
 experimental data suggests that through successive generations of
 trial-and-error, innovation and optimization, engineered designs are highly
 successful, approaching the theoretical limit predicted by the model.
