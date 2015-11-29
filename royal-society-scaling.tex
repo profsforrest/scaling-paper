@@ -262,21 +262,23 @@ engineering.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[height=90mm]{Figures/Figure1Draft.jpg}
+\includegraphics[height=90mm]{Figures/Figure1.pdf}
 \label{fig:firstfig}
 
-\caption{Idealized branching models in biology and computers.
-  $lambda$ is the branching factor (e.g., $lambda$ is 2 in panel A); $H$ is the number
-  of hierarchical levels in the network; $N$ is the number of terminal
-  nodes in the network. $D_l$ defines the relative length of pipe
-  between successive hierarchical levels; $D_r$ defines the relative
-  radius of pipes between successive hierarchical levels of the
-  network; and $D_w$ (panel B only) defines how
-  the ratio of internal (intra-module) communication per node to external
-(inter-module) communication per node scales with the level of the module in
-the hierarchy. Panel A shows hierarchical fractal branching of the cardiovascular
-  network, and Panel B illustrates the semi-hierarchical branching of
-  a wire networks on a chip.  FIXME(Keep c and d?) }
+\caption{Idealized branching models in biology (A and B) and computers (C and D). Panel A shows an example of a bifurcating cardiovascular tree ($\lambda = 2$) with  $H = 6$ hierarchical levels and $N = 32$ terminal branches of radius $r_0$ and length $l_0$. $D_r$ defines the relative radius of pipes between successive branches; $D_r = 2$ in the upper (green) branches the network so that the summed cross sectional area at each level is equal; such area-preserving branching results in constant velocity through the pipes. In the lower (red) branches, $D_r = 2.5$; such area increasing branching slows velocity at each bifurcation. $D_l$ defines the relative length of pipe between successive hierarchical levels ($D_l = 3$ in organisms but for simplicity the figure shows $D_l = 2$. Panel B shows the radius and length of successive branches. Panel C shows the semi-hierarchical branching of logic wires on a computer chip. Wire length and radius scaling are shown with $D_r = D_l = 2$.  $D_w$ defines how the ratio of internal (intra-module) communication per node to external (inter-module) communication per node scales with the level of the module in the hierarchy. Each module within a hierarchical level is shaded the same color. Here, $D_w = 2$ so that the probability of a wire connecting to each node within a module doubles with each hierarchical level. Panel D shows the radius, length and relative communication between successive branches.}
+
+%\caption{Idealized branching models in biology and computers.
+%  $lambda$ is the branching factor (e.g., $lambda$ is 2 in panel A); $H$ is the number
+%  of hierarchical levels in the network; $N$ is the number of terminal
+%  nodes in the network. $D_l$ defines the relative length of pipe
+%  between successive hierarchical levels; $D_r$ defines the relative
+%  radius of pipes between successive hierarchical levels of the
+%  network; and $D_w$ (panel B only) defines how
+%  the ratio of internal (intra-module) communication per node to external
+%(inter-module) communication per node scales with the level of the module in
+%the hierarchy. Panel A shows hierarchical fractal branching of the cardiovascular
+%  network, and Panel B illustrates the semi-hierarchical branching of
+%  a wire networks on a chip.  FIXME(Keep c and d?) }
 
 \end{figure}
 \section{Unified Model of Network Scaling}
@@ -284,7 +286,7 @@ the hierarchy. Panel A shows hierarchical fractal branching of the cardiovascula
 
 
 Vascular systems are hierarchical branching networks where blood vessels
-(pipes) become thicker and longer as hierarchy increases from the capillaries
+(pipes) become thicker and longer through the hierarchy from the capillaries
 to the aorta. Similarly, microprocessor chips are organized hierarchically into
 a nested structure of modules and submodules, where wires become longer and
 thicker as the hierarchical level of a module increases
@@ -307,7 +309,7 @@ l_i = l_0 \lambda^{\frac{i}{D_l}}
 \noindent where $i$ is the hierarchical level of a branch or module, $\lambda$
 is the branching factor, and $D_l$ and $D_r$ are the length and thickness
 dimensions. This model is akin to the hierarchical pipe model of vascular
-systems proposed in \cite{west97}, $\lambda^{\frac{1}{Dr}}$ and
+systems proposed in \cite{west97}, and $\lambda^{\frac{1}{Dr}}$ and
 $\lambda^{\frac{1}{Dl}}$ correspond to West et al.'s $\beta$ and $\gamma$
 respectively (note that in~\cite{west97}, the aorta or top of the network is
 labelled as level 0, while here the smallest branches, the capillaries, are
@@ -338,8 +340,8 @@ dimension of the system.
 
 Digital circuits scale in a third way beyond length and radius, which
 has no direct analog in organisms.  In vascular networks, each pipe
-branches at each hierarchical level forming a perfect tree structure
-(generally with $\lambda = 2$~\cite{SavageCompBio2015}, i.e., forming
+branches at each hierarchical level forming a tree structure
+(in the simplest case with $\lambda = 2$ forming
 a binary tree.) Chips, however, have many cross connections at each
 level of the network, and these cross connections
 vary systematically with the hierarchical level.  Thus,
@@ -449,9 +451,9 @@ refinements to accommodate salient differences between biology and computer arch
 \noindent 
 
 In biology it is known that blood flow slows by several orders of magnitude as
-it travels from the aorta to the capillaries FIXME(CITE somebody). Scaling models
-have generally ignored this slowing~\cite{west97, banavar10}, but we leave this
-variable in our equations to highlight where velocity affects time and energy
+it travels from the aorta to the capillaries~\cite{west97}, but scaling models
+have generally not characterized this slowing~\cite{west97, banavar10}. We leave velocity
+our equations to highlight where velocity affects time and energy
 scaling.
 
 \section{Predictions of the Model for Organisms and Computers}
@@ -464,11 +466,9 @@ blood), and for computers the fundamental resource is a bit of information.
 Similarly, we define $E_{node}$ and $T_{node}$ as the energy dissipated and the
 time taken by the nodes to process that resource.  For organisms, the node is
 the service volume corresponding to a region of tissue supplied by a single
-capillary, which corresponds to a volume of tissue containing a constant number
-of mitochondria, the organelles that process oxygen molecules to generate
-biologically useful energy in the form of ATP. 
-FIXME(Citations needed: banavar?
-Jordan's paper, maybe Woodruff paper?) The node is defined as having a constant
+capillary~\cite{banavar10}, which corresponds to a volume of tissue containing a constant number
+of mitochondria~\cite{west2002allometric}, the organelles that process oxygen molecules to generate
+biologically useful energy in the form of ATP. The node is defined as having a constant
 rate of delivery of oxygen and a constant ability to process oxygen, but the
 volume of the nodes vary across organism size. 
 
@@ -477,7 +477,7 @@ $E_{net}$ is the energy required to deliver oxygen to the cells (as analyzed in
 incoming oxygen. $T_{net}$ is the time delay between delivering
 each unit of resource to the cell, and $T_{node}$ is the time taken
 for the cell to process a unit of resource. From the steady-state assumption, $T_{net} = T_{node}$,
-i.e., supply matches demand as in ~\cite{banavar10}.
+i.e., supply matches demand as in~\cite{banavar10}.
 
 For computers, the nodes are transistors, and 
 %$E_{net}$ and $T_{net}$ correspond to the energy dissipated and the time taken
@@ -585,18 +585,17 @@ key quantities $E_{net}$, $T_{net}$, $E_{node}$ and $T_{node}$, and
 then show
 how they scale with $N$ when Eq.~\ref{eq:TheWholeEnchilada} is minimized.
 In contrast with computer scaling, there are several theoretical scaling models 
-for biology (FIXME: CITE lots of theoretical models).  The first such model~\cite{west97} predicted
+for biology (FIXME: CITE theoretical models: WBE, banavar, Ginzberg? Dodds? others?).  The first such model~\cite{west97} predicted
 scaling relationships by minimizing energy dissipation~\cite{west97},
 and a second model focused on
-minimizing metabolic delivery time~\cite{banavar10}.  Our model
+minimizing metabolic delivery time~\cite{banavar10}. Not surprisingly, scaling models that assume different optimization principles make different predictions~\cite{newberry2015testing}.  Our model
 combines both energy and time constraints into a single framework.
 
 $E_{net}$: From basic principles of hydraulics, the energy dissipated to
 transport a constant volume of blood through the network is given by the loss
 in pressure from the aorta to the capillaries multiplied by the volume being
-transported.  FIXME(something doesn't compute here.  need to say how
-we get from P=RQ to deltaP=RQ). Pressure is the product between hydraulic resistance ($R$) and
-flow ($Q$), so the loss in pressure $\Delta P = RQ$.  Thus $E_{net} \propto
+transported.  The loss in pressure is the product between hydraulic resistance ($R$) and
+flow ($Q$), so $\Delta P = RQ$.  Thus $E_{net} \propto
 \Delta P \propto RQ$. 
 
 $E_{node}$: Following ~\cite{west97} and ~\cite{moses08}, we assume that the
@@ -699,84 +698,96 @@ value. Thus, minimizing the energy time product  requires $D_r = 2$.
 The equation for $E_{net}$ then becomes $E_{net} \propto RQ$ where R is
 Eq.~\ref{eq:resistance}, $Q \propto N^{\frac{2}{D_r}}$ under the minimization
 condition that $D_r \leq 3$.  Substituting into Eq~\ref{eq:resistance} gives:
-$R \propto N^{-1}$ and $E_{net} \propto N^{-1} N^{\frac{2}{D_r}} \propto
-N^{\frac{2}{D_r} -1} $.
+$R \propto N^{-1}$ and 
+
+\begin{equation}
+E_{net} \propto N^{-1} N^{\frac{2}{D_r}} \propto N^{\frac{2}{D_r} -1}
+\label{eq:EnetOrg}
+\end{equation}
+
+
+\noindent The final predicted scaling relationships for the case that minimizes the energy time product ($D_r = 2$) are shown in Table 1.
 
 \begin{table}
 \centering
 \begin{tabular}{|l|l|l|l|l|}
 \hline
-\multicolumn{2}{|l|}{} & $D_r=2$ & $2<D_r\leq 3$ & $Dr>3$ \\
+%\multicolumn{2}{|l|}{} Organisms& $D_r=2$\\% & $2<D_r\leq 3$ & $Dr>3$ \\
 \hline
-\multirow{2}{*}{$E_{net}$} & Organisms & $l_0 u_0$ &$l_0u_0 N^{\frac{2}{D_r}-1}$ &$l_0 u_0 N^{\frac{1}{3} - \frac{2}{D_r}}$ \\
-\cline{2-5}
-& Computers & $N^{\frac{1}{2}}$& $N^{\frac{1}{2}}$& $N^{\frac{1}{2}}$\\
+\multirow{1}{*}{$E_{net}$} & Organisms & $l_0 u_0$\\% &$l_0u_0 N^{\frac{2}{D_r}-1}$ &$l_0 u_0 N^{\frac{1}{3} - \frac{2}{D_r}}$ \\
 \hline
-\multirow{2}{*}{$E_{node}$} & Organisms &  N & N  & N \\
-\cline{2-5}
-& Computers & $N^{\frac{1}{2}}$&$N^{\frac{1}{2}}$ &$N^{\frac{1}{2}}$ \\
+\multirow{1}{*}{$E_{node}$} & Organisms &  N\\% & N  & N \\
 \hline
-\multirow{2}{*}{$T_{net}$} & Organisms & $u_0^{-1}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
-\cline{2-5}
-& Computers & $N^{0}$& $N^{0}$& $N^{0}$\\
+\multirow{1}{*}{$T_{net}$} & Organisms & $u_0^{-1}$\\% & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
 \hline
-\multirow{2}{*}{$T_{node}$} & Organisms & $u_0^{-1}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
-\cline{2-5}
-& Computers & $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$\\
+\multirow{1}{*}{$T_{node}$} & Organisms & $u_0^{-1}$\\% & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
 \hline
-\multirow{2}{*}{$E_{sys} \times T_{sys}$} & Organisms & $l_0 + u_0^{-1} N$ &$l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$ &$l_0 N^{\frac{4}{3} - \frac{4}{D_r}} + u_0^{-1}N^{2-\frac{2}{D_r}}$ \\
-\cline{2-5}
-& Computers & $N^{\frac{1}{2}} + N^{\frac{1}{2}}$&$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
+\multirow{1}{*}{$E_{sys} \times T_{sys}$} & Organisms & $l_0 + u_0^{-1} N$\\% &$l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$ &$l_0 N^{\frac{4}{3} - \frac{4}{D_r}} + u_0^{-1}N^{2-\frac{2}{D_r}}$ \\
 \hline
-\multirow{2}{*}{$\frac{E_{sys}}{T_{sys}}$} & Organisms &$l_0 u_0^2 + u_0 N$ &$l_0u_0^2 N^{2-\frac{4}{D_r}} + u_0 N^{\frac{2}{D_r}}$ & $l_0 u_0^2 N^{-\frac{2}{3}} + u_0 N^{\frac{2}{D_r}}$\\
-\cline{2-5}
-& Computers &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
 \hline
-\multirow{2}{*}{$\frac{N}{T_{sys}}$} & Organisms &NA &NA & NA\\
-\cline{2-5}
-& Computers &$N$ &$N$ &$N$ \\
+\multirow{1}{*}{$E_{net}$} & Computers & $N^{\frac{1}{2}}$\\%& $N^{\frac{1}{2}}$& $N^{\frac{1}{2}}$\\
 \hline
+\multirow{1}{*}{$E_{node}$} & Computers & $N^{\frac{1}{2}}$\\%&$N^{\frac{1}{2}}$ &$N^{\frac{1}{2}}$ \\
+\hline
+\multirow{1}{*}{$T_{net}$} & Computers & $N^{0}$\\%& $N^{0}$& $N^{0}$\\
+\hline
+\multirow{1}{*}{$T_{node}$} & Computers & $N^{-\frac{1}{2}}$\\%& $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$\\
+
+\hline
+\multirow{1}{*}{$E_{sys} \times T_{sys}$} & Computers & $N^{\frac{1}{2}}$\\%&$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
+\hline
+
+
+%\multirow{2}{*}{$\frac{E_{sys}}{T_{sys}}$} & Organisms &$l_0 u_0^2 + u_0 N$ &$l_0u_0^2 N^{2-\frac{4}{D_r}} + u_0 N^{\frac{2}{D_r}}$ & $l_0 u_0^2 N^{-\frac{2}{3}} + u_0 N^{\frac{2}{D_r}}$\\
+%\cline{2-5}
+%& Computers &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
+%\hline
+%\multirow{2}{*}{$\frac{N}{T_{sys}}$} & Organisms &NA &NA & NA\\
+%\cline{2-5}
+%& Computers &$N$ &$N$ &$N$ \\
+%\hline
 
 \end{tabular}
-\caption{Table of Scaling for various dimension values $D_r$.\label{tab:SummaryScalingPredictions}}
+\caption{Predicted scaling relationships for organisms and computers for $D_r = 2$. FIXME: add a column that includes the predictions in terms of Dr. 
+\label{tab:SummaryScalingPredictions}}
 \end{table}
 
-Summarizing all of the scaling relationships gives: 
-NOTE 1:  these should go in a table
-
-NOTE 2: the $l_0$ and $u_0$ terms need to be added.
-
-NOTE 3: The three columns of the table are not informative for
-computers, because the values are identical across all values of
-$D_r$.
-
-$E_{net} \propto N^{\frac{2}{D_r} -1} $
-
-$E_{node} \propto N$ %(by reference to WBE)
-
-$T_{net} \propto N/Q \propto N^{1-\frac{2}{D_r}}$ 
-
-$T_{node} \propto N^{1-2/D_r}$ matching $T_{net}$
-
-Note: 
-
-$D_r = 2$ in the upper pulsatile area preserving part of the network gives 
-
-$E_{net} \propto T_{net} \propto T_{node} \propto N^{0}$ and $E_{node} \propto N$.
-
-$E_{sys} \propto N$, $T_{sys} \propto N^{0}$
-
-The energy time product is $E_{sys} \times T_{sys} \propto N$. NOTE: the energy time product is invariant in N.
-
-$D_r = 3$ in the lower Poiseuillle area increasing part of the network giving 
-
-$E_{net} \propto N^{\frac{-1}{3}}$ $ T_{net} \propto T_{node} \propto N^{\frac{1}{3}}$ and $E_{node} \propto N$.
-
-$E_{sys} \propto  N^{\frac{-1}{3}} + N$
-
-$T_{sys} \propto N^{\frac{1}{3}}$
-
-The energy time product is $E_{sys} \times T_{sys} \propto N^{4/3}$ NOTE: The energy time product is invariant with M which is $\propto N^{4/3}$.
+%Summarizing all of the scaling relationships gives: 
+%NOTE 1:  these should go in a table
+%
+%NOTE 2: the $l_0$ and $u_0$ terms need to be added.
+%
+%NOTE 3: The three columns of the table are not informative for
+%computers, because the values are identical across all values of
+%$D_r$.
+%
+%$E_{net} \propto N^{\frac{2}{D_r} -1} $
+%
+%$E_{node} \propto N$ %(by reference to WBE)
+%
+%$T_{net} \propto N/Q \propto N^{1-\frac{2}{D_r}}$ 
+%
+%$T_{node} \propto N^{1-2/D_r}$ matching $T_{net}$
+%
+%Note: 
+%
+%$D_r = 2$ in the upper pulsatile area preserving part of the network gives 
+%
+%$E_{net} \propto T_{net} \propto T_{node} \propto N^{0}$ and $E_{node} \propto N$.
+%
+%$E_{sys} \propto N$, $T_{sys} \propto N^{0}$
+%
+%The energy time product is $E_{sys} \times T_{sys} \propto N$. NOTE: the energy time product is invariant in N.
+%
+%$D_r = 3$ in the lower Poiseuillle area increasing part of the network giving 
+%
+%$E_{net} \propto N^{\frac{-1}{3}}$ $ T_{net} \propto T_{node} \propto N^{\frac{1}{3}}$ and $E_{node} \propto N$.
+%
+%$E_{sys} \propto  N^{\frac{-1}{3}} + N$
+%
+%$T_{sys} \propto N^{\frac{1}{3}}$
+%
+%The energy time product is $E_{sys} \times T_{sys} \propto N^{4/3}$ NOTE: The energy time product is invariant with M which is $\propto N^{4/3}$.
 
 
 \subsection{Biological Predictions}
@@ -793,19 +804,16 @@ Ref.~\cite{west97}, area-preserving branching was shown to lead to the canonical
 an assumption in~\cite{banavar10}. Here we demonstrate that
 area-preserving branching is optimal in the sense that it minimizes the energy-time product.
 This holds even in the region of the network dominated by Poiseuillle flow, where
-West et al.\ argued that $R$ and $E_{net}$ are minimized by $D_r
+West et al.\ demonstrated that $R$ and $E_{net}$ are minimized by $D_r
 =3$\footnote{To understand how pulsitile flow affects resistance in
   the upper part of the network, see \cite{west97}, which shows that
-  $D_r = 2$ in the upper pulsatile region.}.  FIXME (also evident in the equation for $E_{net}$ in
-Table XX).  Although $E_{net}$ is minimized for larger values of $D_r$ (up
-to the discontinuity at $D_r =3$), there is a tradeoff with $T_{net}$,
+  $D_r = 2$ in the upper pulsatile region.}. Eq. \ref{eq:EnetOrg} also demonstrates that $E_{net}$ is minimized for larger values of $D_r$ (up to the discontinuity at $D_r =3$). However, there is a tradeoff with $T_{net}$,
 which is minimized when $D_r =2$. As $D_r$ increases from 2 to 3,
-delivery rates are slow more quickly than energy dissipation,
+delivery times increase more quickly than energy dissipation decreases,
 so the $D_r =2$ area-preserving case is optimal for minimizing the
 energy-time product.
 
-However, in animal circulatory
-networks blood must slow before reaching capillaries in order to
+However, in animal circulatory networks blood must slow before reaching capillaries in order to
 reduce pressure on the walls of small vessels and to allow oxygen to be
 dissociated from hemoglobin in the capillaries.   Under this circumstance,
 perfect area-preserving branching it is not feasible, but energy-time 
@@ -816,20 +824,17 @@ of the network by identifying a discontinuity in the scaling exponent at $D_r =
 3$. For $D_r > 3$ the energy-time product increases much more rapidly than for
 $D_r \leq 3$.
 
-Our analysis also provides an explanation for the curvature observed in
-metabolic scaling in mammals. Kolokotrones et al FIXME(and previous authors?)
+By considering the energy dissipated in \emph{both} the network and 
+nodes ($E_{net}$ and $E_{node}$), our analysis also provides an explanation for the curvature observed in
+metabolic scaling in mammals. Kolokotrones et al
 demonstrated that metabolic rate is elevated in small mammals, causing a
 deviation from the simple $3/4$ power-law relationship between metabolism and
 mass~\cite{kolokotrones2010curvature}. 
 %While previous ssaling work considered only the energy dissipated in
 %the network $E_{net}$, here 
-By considering the energy dissipated in \emph{both} the network and 
-nodes ($E_{net}$ and $E_{node}$), together with earlier 
-results from~\cite{banavar10}
-($l_0 \propto N^{\frac{1}{9}}$ and $u_0 \propto
-N^{\frac{1}{9}}$) and the common assumption that $N \propto
-M^{\frac{3}{4}}$, we predict the expected basal
-metabolic rate, $B$, for animals:
+Building on results from~\cite{banavar10} that  $N \propto
+M^{\frac{3}{4}}$ and $l_0 \propto u_0 \propto M^{\frac{1}{12}}$, we obtain $l_0 \propto u_0 \propto N^{\frac{1}{9}}$.
+The scaling relationships in Table 12 predict the expected metabolic rate, $B$, for animals:
 \begin{equation}
   \label{eq:OrganismPower}
   B \propto M^{\frac{3}{D_r} - \frac{5}{4}} + M^{\frac{3}{2D_r} + \frac{1}{12}}
@@ -838,24 +843,24 @@ metabolic rate, $B$, for animals:
 We fit this model to data taken from~\cite{kolokotrones2010curvature}
 as shown 
 in Figure~\ref{fig:OrganismsPowerScaling}. By including
-both terms, each with different scaling exponents, the model accounts well for the
-curvature.  Intuitively, in smaller animals a greater fraction of energy is
+energy dissipated in the network and in the nodes, each with different scaling exponents, the model naturally generates the
+curvature observed in the data.  Intuitively, in smaller animals a greater fraction of energy is
 consumed by $E_{node}$, a term that is linear in the number of service
 volumes. In addition, the best fit to the data is achieved with $D_r = 2.24$,
-which is consistent with the observation of area preserving branching in the
-upper region of the network and $D_r = 3$ in the lower region of the network.
-This model provides a better fit (Mean Square Error) than
-the alternative models presented in~\cite{kolokotrones2010curvature}. 
+which is consistent with the prediction of area preserving branching in the
+upper region of the network and $D_r = 3$ in the lower region of the network, and consistent with the empirical radius scaling in~\cite{newberry2015testing}.
+This model provides a better fit (lower Mean Square Error) than
+the alternative theoretical models presented in~\cite{kolokotrones2010curvature} (0.0264 vs FIXME: Ben, list the MSE for all other theoretical models). 
  
 \begin{figure}[!h] \centering
   \includegraphics[height=70mm]{Figures/OrganismsPowerScaling.pdf}
 
   \caption{Energy-time minimization model predictions for power
     scaling in organisms. The model from Eq.~\ref{eq:OrganismPower}
-    was fit to data from FIXME(citation) by minimizing the distance
+    was fit to data from~\cite{kolokotrones2010curvature} by minimizing the distance
     from the empirical points to the modeled curve, similar to Reduced
     Major Axis fits. Other minimization techniques were tested with
-    similar results (not shown).}
+    similar results (not shown). FIXME: include an $M^{3/4}$ line for reference?}
 \label{fig:OrganismsPowerScaling}
 \end{figure}
 
@@ -941,9 +946,11 @@ $C \propto N^{\frac{1}{D_w}}$. Given $D_l$ for 2-dimensional chips, $E_{net}$
 is minimized when $D_w \geq 2$. See section~\ref{sec:AppendixChips} for
 details.
 
-We now calculate the scaling of $E_{node}$. FIXME(should we say
-something about leakage power here, as in acknowledging that it exists
-and saying why we ignore it?) For a single node, computation
+We now calculate the scaling of $E_{node}$. 
+%%FIXME(should we say
+%something about leakage power here, as in acknowledging that it exists
+%and saying why we ignore it?) 
+For a single node, computation
 energy is given by the transistor's (dynamic) energy dissipation as
 $\frac{CV^2}{2}$. Again assuming constant $V$ and the capacitance of a
 transistor proportional to it's length ($l_0$), $E_{node}$ is obtained
@@ -958,15 +965,23 @@ pipelining so there is no delay in bits arriving at the last wire
 2$). Thus, $T_{net}$ is equivalent to the wire latency which equals resistance
 multiplied by the capacitance of the wire ($RC$). For wires with aspect ratio
 1, $R_i = \rho l_i /r_i^2$, where $\rho$ is the resistivity of the material,
-and $C_i \propto l_i$ as above.  Thus, $T_{net} \propto R_0C_0 \propto
-\frac{{l_0}^2}{{r_0}^2} \propto N^0$.  $ \frac{{l_0}^2}{{r_0}^2}$ is constant
+and $C_i \propto l_i$ as above.  Thus, 
+
+\begin{equation}
+\label{eq:comp-Tnet}
+T_{net} \propto R_0C_0 \propto
+\frac{{l_0}^2}{{r_0}^2} \propto N^0
+\end {equation}
+\noindent $ \frac{{l_0}^2}{{r_0}^2}$ is constant
 because in chips  $l_0 \propto r_0$ and both are set by process size.
 
 Computation time for each node, $T_{node}$, is calculated as the transistor
 delay, $\frac{CV}{I}$ ~\cite{bakoglu90}, where again $V$ is constant and $C$ is
 proportional to transistor length: $T_{node} \propto C_0 \frac{V}{I}  \propto
-l_0  \propto N^{-\frac{1}{D_l}}$. [YIKES, what happened to $I$?]. [GEORGE
-DIDN'T INCLUDE A CALCULATION HE JUST REFERENCES~\cite{bakoglu90}].
+l_0  \propto N^{-\frac{1}{D_l}}$. 
+
+%[YIKES, what happened to $I$?]. [GEORGE
+%DIDN'T INCLUDE A CALCULATION HE JUST REFERENCES~\cite{bakoglu90}].
 
 Before calculating the energy time product, we observe that $T_{net}$ is the
 only term that depends on $D_r$, so we set  $D_r = 2$ to minimize
@@ -975,31 +990,31 @@ set $D_w$ to minimize $E_{net}$.  In summary, given $D_l = 2$, the terms of the 
 when $D_r = 2$ and $D_w > 2$, and the scaling relations for various
 quantities are shown in Table~\ref{tab:SummaryScalingPredictions}.
 
-FIXME(SF liked the text that is now deleted that gave a narrative
-about why the results come out like they do.)
-
-[PUT these in a table. DONE]
-
-$E_{net} \propto N^{1-1/D_l} \propto N^{1/2}$
-
-$E_{node} \propto N^{1-1/D_l} \propto N^{1/2}$
-
-$T_{net} \propto N^0$
-
-$T_{node} \propto N^{-1/D_l} \propto N^{{-1}/2}$
-
-%Thus, for 2 dimensional chips in which $D_l = 2$, three components of the
-%energy time product ($E_{net}$, $E_{node}$, and $T_{node}$) scale sub linearly
-%(as $N^{1/2}$ and $N^{-1/2})$ but $T_{net}$ is are constant with respect to $N$.
-
-
-Putting it all together, 
-
-$E_{sys} = E_{net} + E_{node}  \propto N^{1/2}$ 
-
-$T_{sys}  = max(T_{net}, T_{node}) \propto N^0$
-
-$E_{sys} \times T_{sys} \propto N^{\frac{1}{2}}$
+%FIXME(SF liked the text that is now deleted that gave a narrative
+%about why the results come out like they do.)
+%
+%[PUT these in a table. DONE]
+%
+%$E_{net} \propto N^{1-1/D_l} \propto N^{1/2}$
+%
+%$E_{node} \propto N^{1-1/D_l} \propto N^{1/2}$
+%
+%$T_{net} \propto N^0$
+%
+%$T_{node} \propto N^{-1/D_l} \propto N^{{-1}/2}$
+%
+%%Thus, for 2 dimensional chips in which $D_l = 2$, three components of the
+%%energy time product ($E_{net}$, $E_{node}$, and $T_{node}$) scale sub linearly
+%%(as $N^{1/2}$ and $N^{-1/2})$ but $T_{net}$ is are constant with respect to $N$.
+%
+%
+%Putting it all together, 
+%
+%$E_{sys} = E_{net} + E_{node}  \propto N^{1/2}$ 
+%
+%$T_{sys}  = max(T_{net}, T_{node}) \propto N^0$
+%
+%$E_{sys} \times T_{sys} \propto N^{\frac{1}{2}}$
 %\subsection{Fitness Functions of Design}
 %
 %
@@ -1060,8 +1075,8 @@ the energy-time product is also minimized for values of $D_w$ greater than 2,
 this would entail greater communication locality, which is challenging
 to engineer, and no
 improvement of the energy-time product.  Thus, it is not surprising
-that $D_w = 2$ is consistent with observed
-Rent's exponents (FIXME: CITATIONS).  
+that $D_w = 2$ which is consistent with observed
+Rent's exponents that approach 1/2~\cite{yang2001wirelength}. 
 
 
 The final energy-time product scales as $N^{1/2}$, showing that, unlike
@@ -1080,12 +1095,22 @@ energy-time product that does not decrease with increased $N$ and decreased
 process size is $T_{net}$ which remains constant under Denard scaling in which
 wire radius and length scale proportionally to each other.
 
-Our scaling models makes two important predictions.  First, power
+Our scaling models make two important predictions.  First, power
 consumption in chips (total energy dissipated per unit of time) scales as
-$Power = \frac{E_{sys}}{T_{sys}} \propto N^{1/2}$.   Second, performance,
-measured as computations executed per unit of time, or throughput, is predicted
-to scale linearly with $N$,  i.e.  $Throughput\propto \frac{N}{T_{sys}} \propto N$.
 
+\begin{equation}
+\label{eq:Power}
+Power = \frac{E_{sys}}{T_{sys}} \propto N^{1/2} 
+\end{equation}
+ 
+\noindent Second, performance,
+measured as computations executed per unit of time, or throughput, is predicted
+to scale linearly with $N$,  i.e.  
+
+\begin{equation}
+\label{eq:Performance}
+Performance\propto \frac{N}{T_{sys}} \propto N
+\end{equation}
 %assuming that a constant fraction of the transistors is active at each cycle, 
 
 We compared our theoretical predictions for power consumption with data obtained for 523
@@ -1099,16 +1124,16 @@ normalized performance data for 100 different chips Intel Chips as measured
 with Dhyrstone Millions of Instructions per Second (DMIPS). This data came from
 a variety of published third-party performance comparisons from different
 generations over a range of 6 orders of magnitude in transistor count.  The
-exponent obtained for these data was $1.11$, as shown in
-Figure~\ref{fig:throughput}. This is slightly higher than our prediction of
-$1$, suggesting that engineered designs slightly outperform approach the
+exponent obtained for these data is $1.11$ (1.07 to 1.15, 95\% confidence interval), as shown in
+Figure~\ref{fig:throughput}. This is very close to our predicted exponent of
+$1$, suggesting that engineered designs slightly outperform the
 theoretical optimal defined by the model.  
 % SF thinks maybe the vendors are 'cheating' on the data they report.
 
 The linear increase in performance with the number of transistors is somewhat
 counter-intuitive. Given that transistor switching times have decreased
 dramatically as size has decreased, one might expect performance to increase as
-the product of clock speed and transistor number (N). This is not the case (the
+the product of clock speed and transistor number ($N$). This is not the case (the
 predicted performance if time were the inverse of clock speed is shown in the
 green dashed line in Figure~\ref{fig:throughput}). Some performance increases
 are achievable by increasing clockspeed for a given manufacturing process,
@@ -1117,10 +1142,10 @@ exponent\footnote{Additionally higher end chips are more likely to be
   benchmarked, potentially leading to a bias in the data towards higher
 performing chips.}. Our analysis suggests that the network is indeed
 the bottleneck. The network delivers bits to transistors at a constant rate per transistor
-(see Eqn FIXME(XX)), so performance has increased only linearly with transistor
+(Eq. \ref{eq:comp-Tnet}), so performance has increased only linearly with transistor
 number even though, in principle, transistors could process information more
 quickly.  As in biology, performance cannot be
-understood without considring the constraints of the network.
+understood without considering the constraints of the network.
 
 %[Add above] Not all transistors are computing on every clock tick because transistor activity is determined by the logic that controls the computation.
 
@@ -1131,14 +1156,14 @@ understood without considring the constraints of the network.
 \begin{figure}[!h]
 \centering
 \includegraphics[height=70mm]{Figures/ChipsPowerScaling.pdf}
-\caption{}
+\caption{Power vs number of transistors predicted from Eq. \ref{eq:Power}}
 \label{fig:power}
 \end{figure}
 
 \begin{figure}[!h]
 \centering
 \includegraphics[height=70mm]{Figures/ChipsThroughputScaling.pdf}
-\caption{}
+\caption{Performance vs number of transistors. The prediction from Eq. \ref{eq:Performance} that reflects the limitations of the network provides better predictions than the alternative assumption that performance is limited by the switching speed of the transistors.}
 \label{fig:throughput}
 \end{figure}
 
@@ -1165,7 +1190,7 @@ computational networks that deliver information.
 
 The similarities between biological and computational scaling
 suggest likely future trajectories in computing based on how biology
-has changed over evolutionary time. For this we turn to work by Delong et al., who
+has changed over evolutionary time. For this we turn to work by Delong et al.~\cite{delong2010shifts} who
 demonstrated that metabolic scaling slopes and intercepts change at the
 evolutionary transitions: prokaryote (bacteria) metabolism varies superlinearly with
 size, unicellular protist metabolism varies linearly, and multicellular animal
@@ -1182,12 +1207,7 @@ transport constraints begin to limit the rate of metabolic processing.
 Next, multi-cellular
 animals developed internal networks to speed the delivery of metabolites,
 and are subject to sublinear network scaling effects. Delong et al. highlight the
-importance of time and energy, both in the network
-network  (i.e.
-minimizing time to deliver metabolites) and in the nodes (maximizing the
-capacity of nodes). 
-FIXME(is this sentence in or out?)
-They also note significant decreases in energetic
+importance of both time and energy constraints, and they note significant decreases in energetic
 efficiency at each evolutionary transition when absolute measures of time and
 energy increase.  The explanations that they hypothesize are directly relevant
 to understanding how energy-time minimization affects the ongoing evolution of
@@ -1203,10 +1223,10 @@ technologies have pushed physical boundaries, allowing transistors to shrink
 and more of them to be packed onto each chip. Like bacteria, these innovations
 have optimized physical constraints, but there is an ultimate maximum. There
 are no elephant-sized bacteria and there will be no silicon based single core
-chips with quadrillions (FXIME ?) of transistors.
+chips with quadrillions of transistors.
 
 2.  Chips have also mimicked the linear relationship between performance and
-size (Figure FIXME XXX) seen in protists. Unicellular protists show linear increases
+size (Figure \ref{fig:throughput}) seen in protists. Unicellular protists show linear increases
 in metabolic rate with size as more energy processing nodes  (mitochondria) are
 packed into larger cells. However, like protists, this regime will eventually end due
 to physical constraints.  Our earlier analysis suggests that the
@@ -1224,11 +1244,12 @@ increasing fraction of chip power will be devoted to these ever larger
 Networks-on-Chip (NoC) connecting more cores. Larger networks will require more
 power to drive them, and it will take more time to traverse them, ultimately
 making time-energy minimization increasingly difficult to sustain as chips increase in
-size. Thus, it is likely that networks will increasingly dominate on-chip power
-budgets, and the most important advances in chip design will be in increasing
-network efficiency, for example optical networks.
+size. It is likely that the observed reductions in clock speed FIXME~\cite{} 
+in multi-core chips will continue as the power, footprint and cooling requirements of the network dominate chip design considerations. As networks increasingly dominate on-chip power
+budgets, it is also likely that the most important advances in chip design will be in increasing
+network efficiency, for example using optical networks. 
 
-4. Clock Speed?
+
   
 The differences between scaling of energy delivery in biology and information
 delivery in computation also play an important role in evolutionary
@@ -1256,10 +1277,8 @@ biological evolutionary transition, the transition to social animal societies.
 Delong et al. does not address scaling relationships in animal societies.
 However, sociality is an important evolutionary transition, reflected in the
 ecological dominance of humans and ants, two social species whose networked
-systems exchange energy and information. These social species have captured
-extraordinary fractions of the available energy on earth FIXME(citations)---40\%
-globally for humans, 50\% of biomass energy in the amazon by ants) and
-dispersed over vast territories. Recent evidence suggests that ant colonies and
+systems exchange energy and information. These social species have dispersed over vast territories across the globe and captured
+extraordinary fractions of available energy ~\cite{haberl2007quantifying, holldobler1990ants}. Recent evidence suggests that ant colonies and
 human societies follow similar scaling relationships as individual organisms
 FIXME(citations). In social animal systems and networked computer systems, networks
 are at least partially decentralized, for example traffic flow in cities (CITE
@@ -1270,7 +1289,7 @@ societies have escaped the constraint of the centralized distribution network
 by evolving systems for decentralized and modular communication.
 
 
-?  PULL other TEXT from BEYOND Biology. 
+FIXME: do we need to pull other text from the BEYOND Biology chapter? 
 
 
 
@@ -1318,18 +1337,17 @@ earth.
   
   
 
-\section{Additional possible Discussion points. Which ones are worth keeping, and where?}
+\section{Additional Discussion point}
 
-\begin{itemize} 
 
-\item What do we want to say about data centers?  Is this some new
-  evolutionary level?
-  
-\item 
- This paragraph from before needs to be reworked here or skipped. I'm not sure if it still applies:
+
+%\item What do we want to say about data centers?  Is this some new
+%  evolutionary level?
+
+FIXME, NOTE: This paragraph from before needs to be reworked given the $u_0$ and $l_0$ terms. I think they should have cancelled out for $Tnet$ and $Tnode$. Additionally, the energy time product is now in terms of $N$ and so the paragraph needs to be reworded. If we keep this, where should it go?
  
 The model predicts that, for the optimal network design (i.e., $D_l=3$  and
-$D_r=2$), the system's energy-time product is scales with $l_0$ and $N$.
+$D_r=2$), the system's energy-time product scales linearly with $N$.
 %Since size increases with $N$, this suggests that the energy-time product is
 %independent of body mass.
 This result has important implications for the
@@ -1347,15 +1365,15 @@ product reflects powerful geometric, physical and biological constraints on the
 evolution of organism designs.
 
 
-\item If we're gonna say this, we have to actually do it. I'm inclined to skip it.
-
- Our framework gives a theoretical explanation for well-known empirical patterns in computer
-  architecture.We provide an explanation for Koomey's Law (p. 13). These results also provide an explanation for Koomey's Law, which states
-roughly: ``The number of computations per joule of energy dissipated has been
-doubling approximately every 1.57 years." This follows directly from minimizing
-the energy time product and Moore's Law, the empirical observation that the
-number of transistors ($N$) doubles every 2 years. NEED a figure that combines
-data from Fig 2 and Fig 3 to show this?
+%\item If we're gonna say this, we have to actually do it. I'm inclined to skip it.
+%
+% Our framework gives a theoretical explanation for well-known empirical patterns in computer
+%  architecture.We provide an explanation for Koomey's Law (p. 13). These results also provide an explanation for Koomey's Law, which states
+%roughly: ``The number of computations per joule of energy dissipated has been
+%doubling approximately every 1.57 years." This follows directly from minimizing
+%the energy time product and Moore's Law, the empirical observation that the
+%number of transistors ($N$) doubles every 2 years. NEED a figure that combines
+%data from Fig 2 and Fig 3 to show this?
 
 
 
@@ -1372,7 +1390,7 @@ data from Fig 2 and Fig 3 to show this?
 %  larger than a strand of DNS, using silicon germanium targeting a 50\% power
 %  improvement.  NYT July 9, 2015.  Then going to carbon nanofibers. 
   
-\end{itemize}
+%\end{itemize}
 
 
 
@@ -1524,25 +1542,65 @@ N^{\frac{2}{D_l} - \frac{2}{D_r}}$. }
   at all levels and $L \propto N^0$.}
 \end{caseof}
 
+\newpage
+\begin{table}
+\centering
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\multicolumn{2}{|l|}{} & $D_r=2$ & $2<D_r\leq 3$ & $Dr>3$ \\
+\hline
+\multirow{2}{*}{$E_{net}$} & Organisms & $l_0 u_0$ &$l_0u_0 N^{\frac{2}{D_r}-1}$ &$l_0 u_0 N^{\frac{1}{3} - \frac{2}{D_r}}$ \\
+\cline{2-5}
+& Computers & $N^{\frac{1}{2}}$& $N^{\frac{1}{2}}$& $N^{\frac{1}{2}}$\\
+\hline
+\multirow{2}{*}{$E_{node}$} & Organisms &  N & N  & N \\
+\cline{2-5}
+& Computers & $N^{\frac{1}{2}}$&$N^{\frac{1}{2}}$ &$N^{\frac{1}{2}}$ \\
+\hline
+\multirow{2}{*}{$T_{net}$} & Organisms & $u_0^{-1}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
+\cline{2-5}
+& Computers & $N^{0}$& $N^{0}$& $N^{0}$\\
+\hline
+\multirow{2}{*}{$T_{node}$} & Organisms & $u_0^{-1}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
+\cline{2-5}
+& Computers & $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$\\
+\hline
+\multirow{2}{*}{$E_{sys} \times T_{sys}$} & Organisms & $l_0 + u_0^{-1} N$ &$l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$ &$l_0 N^{\frac{4}{3} - \frac{4}{D_r}} + u_0^{-1}N^{2-\frac{2}{D_r}}$ \\
+\cline{2-5}
+& Computers & $N^{\frac{1}{2}} + N^{\frac{1}{2}}$&$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
+\hline
+\multirow{2}{*}{$\frac{E_{sys}}{T_{sys}}$} & Organisms &$l_0 u_0^2 + u_0 N$ &$l_0u_0^2 N^{2-\frac{4}{D_r}} + u_0 N^{\frac{2}{D_r}}$ & $l_0 u_0^2 N^{-\frac{2}{3}} + u_0 N^{\frac{2}{D_r}}$\\
+\cline{2-5}
+& Computers &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
+\hline
+\multirow{2}{*}{$\frac{N}{T_{sys}}$} & Organisms &NA &NA & NA\\
+\cline{2-5}
+& Computers &$N$ &$N$ &$N$ \\
+\hline
 
+\end{tabular}
+\caption{Scaling relationships for various values of $D_r$.FIXME: this table should probably be cut? Or at least reorganized.\label{tab:CompleteScalingPredictions}}
+\end{table}
+
+\newpage
 
 \bibliography{references}
 \bibliographystyle{abbrv}
 
-\newpage
-
-\section*{Figure legends}
-\paragraph{Figure 1:} Log-log plot of power consumption as a function 
-of transistor count for 523 computer microprocessors from different 
-vendors and technological generations.  The linear regression slope is 
-$0.495$ with correlation coefficient of $0.81$. A regression that 
-removes the first seven data points and focuses on the main cloud of 
-more modern chips produces a slope of $0.487$.
-
-\paragraph{Figure 2:} Log-log plot of normalized throughput as a 
-function of transistor count for 16 Intel microprocessors from 
-different technological generations.  The linear regression slope is 
-1.0 with correlation coefficient of 0.97.
+%\newpage
+%
+%\section*{Figure legends}
+%\paragraph{Figure 1:} Log-log plot of power consumption as a function 
+%of transistor count for 523 computer microprocessors from different 
+%vendors and technological generations.  The linear regression slope is 
+%$0.495$ with correlation coefficient of $0.81$. A regression that 
+%removes the first seven data points and focuses on the main cloud of 
+%more modern chips produces a slope of $0.487$.
+%
+%\paragraph{Figure 2:} Log-log plot of normalized throughput as a 
+%function of transistor count for 16 Intel microprocessors from 
+%different technological generations.  The linear regression slope is 
+%1.0 with correlation coefficient of 0.97.
 
 \end{document}
 
