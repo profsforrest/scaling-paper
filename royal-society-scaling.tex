@@ -262,7 +262,7 @@ engineering.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[height=90mm]{Figures/Figure1RoyalSocietyDraft2.pdf}
+\includegraphics[height=90mm]{Figures/Figure1Draft3.png}
 \label{fig:firstfig}
 
 \caption{Idealized branching models in biology (A and B) and computers (C and D). Panel A shows a bifurcating cardiovascular tree ($\lambda = 2$) with  $H = 6$ hierarchical levels and $N = 32$ terminal branches of radius $r_0$ and length $l_0$. $D_r$ defines the relative radius of pipes between successive branches; $D_r = 2$ in the upper (green) branches the network so that the summed cross sectional area at each level is equal; such area-preserving branching results in constant velocity through the pipes. In the lower (red) branches, $D_r = 2.5$; such area increasing branching slows velocity at each bifurcation. $D_l$ defines both the physical dimension filled by the system and the relative length of pipe between successive hierarchical levels ($D_l = 3$ in 3-dimensional organisms but the 2-dimensional figure shows $D_l = 2$). Panel B shows the radius and length of successive branches. Panel C shows the semi-hierarchical branching of logic wires on a computer chip. Wire length and radius scaling are shown with $D_r = D_l = 2$.  $D_w$ defines how the ratio of internal (intra-module) communication per node to external (inter-module) communication per node scales with the level of the module in the hierarchy. Each module within a hierarchical level is shaded the same color. Here, $D_w = 2$ so that the probability of a wire connecting to each node within a module doubles with each hierarchical level. Panel D shows the radius, length and relative communication between successive branches.}
@@ -880,10 +880,10 @@ consumed by $E_{node}$, a term that is linear in the number of service
 volumes. In addition, the best fit to the data is achieved with $D_r = 2.24$,
 which is consistent with the prediction of area preserving branching in the
 upper region of the network and $D_r = 3$ in the lower region of the network, and consistent with the empirical radius scaling in~\cite{newberry2015testing}.
-This model provides a better fit (lower Mean Square Error) than
-the alternative theoretical models presented
-in~\cite{kolokotrones2010curvature} (0.0264 vs 0.0266 for the extended West,
-Brown Enquist Model, 0.0276 for the flow-mode proportional transition model,
+Our model provides a marginally better fit than
+the extensions to the West et al.\ model that were explicitly designed to induce
+curvature~\cite{kolokotrones2010curvature} (Mean Squared Error for our model is 0.0264 vs 0.0266 for the extended
+West et al.\ model, 0.0276 for the flow-mode proportional transition model,
 and 0.0280 for the flow-mode transition from the heart model). 
  
 \begin{figure}[!h] \centering
@@ -892,10 +892,8 @@ and 0.0280 for the flow-mode transition from the heart model).
   \caption{Energy-time minimization model predictions for power
     scaling in organisms. The model from Eq.~\ref{eq:OrganismPower}
     was fit to data from~\cite{kolokotrones2010curvature} by minimizing the distance
-    from the empirical points to the modeled curve, similar to Reduced
-    Major Axis fits. We include the West, Brown, Enquist~\cite{west97} model in blue to
-    accentuate the curvature that our model captures.%Other minimization techniques were tested with
-    %similar results (not shown). %FIXME: include an $M^{3/4}$ line for reference?
+    from the empirical points to the modeled curve. We show the West et al.~\cite{west97} model in blue to
+    accentuate the curvature that our model captures.
     }
 \label{fig:OrganismsPowerScaling}
 \end{figure}
