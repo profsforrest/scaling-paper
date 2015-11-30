@@ -249,23 +249,40 @@ engineers have designed processors ranging from a few thousand transistors to
 several billion, each of which fills a specific computational niche.
 
 In the rest of the paper, we present the unified model of network scaling
-(Section \ref{sec:unified-model}) and the basic assumptions underlying the
-model (Section ~\ref{sec:assumptions}).  We then use the model to derive a
+(Section~\ref{sec:unified-model}) and the basic assumptions underlying the
+model (Section~\ref{sec:assumptions}).  We then use the model to derive a
 series of predictions about how time and energy scale with system size, first
-for organisms (Section \ref{sec:organisms}) and then for computers (Section
-\ref{sec:computers}). We then discuss new insights into previously analyzed
-scaling relationships in biology that we gain from the time-energy minimization
-framework, and we test our scaling predictions with empirical power and performance
-data on computer chips.  Finally, in Section \ref{sec:discussion}  we discuss
-the implications of these results for evolutionary transitions in nature and
-engineering.
+for organisms (Section~\ref{sec:organisms}) and then for computers
+(Section~\ref{sec:computers}). We then discuss new insights into previously
+analyzed scaling relationships in biology that we gain from the time-energy
+minimization framework, and we test our scaling predictions with empirical
+power and performance data on computer chips.  Finally, in Section~\ref{sec:discussion}  we discuss the implications of these results for
+evolutionary transitions in nature and engineering.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[height=90mm]{Figures/Figure1.pdf}
+\includegraphics[height=90mm]{Figures/Figure1RoyalSocietyDraft2.pdf}
 \label{fig:firstfig}
 
-\caption{Idealized branching models in biology (A and B) and computers (C and D). Panel A shows an example of a bifurcating cardiovascular tree ($\lambda = 2$) with  $H = 6$ hierarchical levels and $N = 32$ terminal branches of radius $r_0$ and length $l_0$. $D_r$ defines the relative radius of pipes between successive branches; $D_r = 2$ in the upper (green) branches the network so that the summed cross sectional area at each level is equal; such area-preserving branching results in constant velocity through the pipes. In the lower (red) branches, $D_r = 2.5$; such area increasing branching slows velocity at each bifurcation. $D_l$ defines the relative length of pipe between successive hierarchical levels ($D_l = 3$ in organisms but for simplicity the figure shows $D_l = 2$. Panel B shows the radius and length of successive branches. Panel C shows the semi-hierarchical branching of logic wires on a computer chip. Wire length and radius scaling are shown with $D_r = D_l = 2$.  $D_w$ defines how the ratio of internal (intra-module) communication per node to external (inter-module) communication per node scales with the level of the module in the hierarchy. Each module within a hierarchical level is shaded the same color. Here, $D_w = 2$ so that the probability of a wire connecting to each node within a module doubles with each hierarchical level. Panel D shows the radius, length and relative communication between successive branches.}
+\caption{Idealized branching models in biology (A and B) and computers (C and
+D). Panel A shows an example of a bifurcating cardiovascular tree ($\lambda =
+2$) with  $H = 6$ hierarchical levels and $N = 32$ terminal branches of radius
+$r_0$ and length $l_0$. $D_r$ defines the relative radius of pipes between
+successive branches; $D_r = 2$ in the upper (green) branches the network so
+that the summed cross sectional area at each level is equal; such
+area-preserving branching results in constant velocity through the pipes. In
+the lower (red) branches, $D_r = 2.5$; such area increasing branching slows
+velocity at each bifurcation. $D_l$ defines the relative length of pipe between
+successive hierarchical levels ($D_l = 3$ in organisms but for simplicity the
+figure shows $D_l = 2$. Panel B shows the radius and length of successive
+branches. Panel C shows the semi-hierarchical branching of logic wires on a
+computer chip. Wire length and radius scaling are shown with $D_r = D_l = 2$.
+$D_w$ defines how the ratio of internal (intra-module) communication per node
+to external (inter-module) communication per node scales with the level of the
+module in the hierarchy. Each module within a hierarchical level is shaded the
+same color. Here, $D_w = 2$ so that the probability of a wire connecting to
+each node within a module doubles with each hierarchical level. Panel D shows
+the radius, length and relative communication between successive branches.}
 
 %\caption{Idealized branching models in biology and computers.
 %  $lambda$ is the branching factor (e.g., $lambda$ is 2 in panel A); $H$ is the number
@@ -706,49 +723,83 @@ E_{net} \propto N^{-1} N^{\frac{2}{D_r}} \propto N^{\frac{2}{D_r} -1}
 \end{equation}
 
 
-\noindent The final predicted scaling relationships for the case that minimizes the energy time product ($D_r = 2$) are shown in Table 1.
+\noindent The final predicted scaling relationships for the case that minimizes
+the energy time product ($D_r = 2$) are shown in
+Table~\ref{tab:SummaryScalingPredictions}.
+
+%\begin{table}
+%\centering
+%\begin{tabular}{|l|l|l|l|l|}
+%\hline
+%%\multicolumn{2}{|l|}{} Organisms& $D_r=2$\\% & $2<D_r\leq 3$ & $Dr>3$ \\
+%\hline
+%\multirow{1}{*}{$E_{net}$} & Organisms & $l_0 u_0$\\% &$l_0u_0 N^{\frac{2}{D_r}-1}$ &$l_0 u_0 N^{\frac{1}{3} - \frac{2}{D_r}}$ \\
+%\hline
+%\multirow{1}{*}{$E_{node}$} & Organisms &  N\\% & N  & N \\
+%\hline
+%\multirow{1}{*}{$T_{net}$} & Organisms & $u_0^{-1}$\\% & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
+%\hline}
+%\multirow{1}{*}{$T_{node}$} & Organisms & $u_0^{-1}$\\% & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
+%\hline
+%\multirow{1}{*}{$E_{sys} \times T_{sys}$} & Organisms & $l_0 + u_0^{-1} N$\\% &$l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$ &$l_0 N^{\frac{4}{3} - \frac{4}{D_r}} + u_0^{-1}N^{2-\frac{2}{D_r}}$ \\
+%\hline
+%\hline
+%\multirow{1}{*}{$E_{net}$} & Computers & $N^{\frac{1}{2}}$\\%& $N^{\frac{1}{2}}$& $N^{\frac{1}{2}}$\\
+%\hline
+%\multirow{1}{*}{$E_{node}$} & Computers & $N^{\frac{1}{2}}$\\%&$N^{\frac{1}{2}}$ &$N^{\frac{1}{2}}$ \\
+%\hline
+%\multirow{1}{*}{$T_{net}$} & Computers & $N^{0}$\\%& $N^{0}$& $N^{0}$\\
+%\hline
+%\multirow{1}{*}{$T_{node}$} & Computers & $N^{-\frac{1}{2}}$\\%& $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$\\
+%
+%\hline
+%\multirow{1}{*}{$E_{sys} \times T_{sys}$} & Computers & $N^{\frac{1}{2}}$\\%&$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
+%\hline
+%
+%
+%%\multirow{2}{*}{$\frac{E_{sys}}{T_{sys}}$} & Organisms &$l_0 u_0^2 + u_0 N$ &$l_0u_0^2 N^{2-\frac{4}{D_r}} + u_0 N^{\frac{2}{D_r}}$ & $l_0 u_0^2 N^{-\frac{2}{3}} + u_0 N^{\frac{2}{D_r}}$\\
+%%\cline{2-5}
+%%& Computers &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
+%%\hline
+%%\multirow{2}{*}{$\frac{N}{T_{sys}}$} & Organisms &NA &NA & NA\\
+%%\cline{2-5}
+%%& Computers &$N$ &$N$ &$N$ \\
+%%\hline
+%
+%\end{tabular}
 
 \begin{table}
 \centering
-\begin{tabular}{|l|l|l|l|l|}
-\hline
-%\multicolumn{2}{|l|}{} Organisms& $D_r=2$\\% & $2<D_r\leq 3$ & $Dr>3$ \\
-\hline
-\multirow{1}{*}{$E_{net}$} & Organisms & $l_0 u_0$\\% &$l_0u_0 N^{\frac{2}{D_r}-1}$ &$l_0 u_0 N^{\frac{1}{3} - \frac{2}{D_r}}$ \\
-\hline
-\multirow{1}{*}{$E_{node}$} & Organisms &  N\\% & N  & N \\
-\hline
-\multirow{1}{*}{$T_{net}$} & Organisms & $u_0^{-1}$\\% & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
-\hline
-\multirow{1}{*}{$T_{node}$} & Organisms & $u_0^{-1}$\\% & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
-\hline
-\multirow{1}{*}{$E_{sys} \times T_{sys}$} & Organisms & $l_0 + u_0^{-1} N$\\% &$l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$ &$l_0 N^{\frac{4}{3} - \frac{4}{D_r}} + u_0^{-1}N^{2-\frac{2}{D_r}}$ \\
+\begin{tabular}{|l|l||l|l|l|}
+\multicolumn{2}{l}{} & \multicolumn{1}{c}{$\mathbf{D_r=2}$} & \multicolumn{1}{c}{$\mathbf{2<D_r\leq 3}$} & \multicolumn{1}{c}{$\mathbf{Dr>3}$} \\
 \hline
 \hline
-\multirow{1}{*}{$E_{net}$} & Computers & $N^{\frac{1}{2}}$\\%& $N^{\frac{1}{2}}$& $N^{\frac{1}{2}}$\\
+\multirow{5}{*}{\textbf{Organisms}} & $E_{net}$ & $l_0 u_0$ &$l_0u_0 N^{\frac{2}{D_r}-1}$ &$l_0 u_0 N^{\frac{1}{3} - \frac{2}{D_r}}$ \\
+\cline{2-5}
+& $E_{node}$ &  N & N  & N \\
+\cline{2-5}
+& $T_{net}$ & $u_0^{-1}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
+\cline{2-5}
+& $T_{node}$ & $u_0^{-1}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
+\cline{2-5}
+& $E_{sys} \times T_{sys}$ & $l_0 + u_0^{-1} N$ &$l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$ &$l_0 N^{\frac{4}{3} - \frac{4}{D_r}} + u_0^{-1}N^{2-\frac{2}{D_r}}$ \\
 \hline
-\multirow{1}{*}{$E_{node}$} & Computers & $N^{\frac{1}{2}}$\\%&$N^{\frac{1}{2}}$ &$N^{\frac{1}{2}}$ \\
+\multicolumn{2}{c}{} & \multicolumn{1}{c}{$\mathbf{D_w<2}$} & \multicolumn{1}{c}{$\mathbf{D_w =2}$} & \multicolumn{1}{c}{$\mathbf{D_w \geq 2}$} \\
 \hline
-\multirow{1}{*}{$T_{net}$} & Computers & $N^{0}$\\%& $N^{0}$& $N^{0}$\\
+\multirow{5}{*}{\textbf{Computers}} & $E_{net}$ & $N^{\frac{1}{D_w}}$& $N^{\frac{1}{2}}$& $N^{\frac{1}{2}}$\\
+\cline{2-5}
+& $E_{node}$& $N^{\frac{1}{2}}$&$N^{\frac{1}{2}}$ &$N^{\frac{1}{2}}$ \\
+\cline{2-5}
+& $T_{net}$ & $N^{0}$& $N^{0}$& $N^{0}$\\
+\cline{2-5}
+& $T_{node}$& $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$\\
+\cline{2-5}
+& $E_{sys} \times T_{sys}$ & $N^{\frac{1}{D_w}} + N^{\frac{1}{2}}$&$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
 \hline
-\multirow{1}{*}{$T_{node}$} & Computers & $N^{-\frac{1}{2}}$\\%& $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$\\
-
-\hline
-\multirow{1}{*}{$E_{sys} \times T_{sys}$} & Computers & $N^{\frac{1}{2}}$\\%&$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
-\hline
-
-
-%\multirow{2}{*}{$\frac{E_{sys}}{T_{sys}}$} & Organisms &$l_0 u_0^2 + u_0 N$ &$l_0u_0^2 N^{2-\frac{4}{D_r}} + u_0 N^{\frac{2}{D_r}}$ & $l_0 u_0^2 N^{-\frac{2}{3}} + u_0 N^{\frac{2}{D_r}}$\\
-%\cline{2-5}
-%& Computers &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
-%\hline
-%\multirow{2}{*}{$\frac{N}{T_{sys}}$} & Organisms &NA &NA & NA\\
-%\cline{2-5}
-%& Computers &$N$ &$N$ &$N$ \\
-%\hline
-
 \end{tabular}
-\caption{Predicted scaling relationships for organisms and computers for $D_r = 2$. FIXME: add a column that includes the predictions in terms of Dr. 
+
+\caption{Predicted scaling relationships for organisms and computers for $D_r =
+  2$ FIXME: COLUMN IN TERMS OF $D_r$. 
 \label{tab:SummaryScalingPredictions}}
 \end{table}
 
@@ -807,7 +858,7 @@ This holds even in the region of the network dominated by Poiseuillle flow, wher
 West et al.\ demonstrated that $R$ and $E_{net}$ are minimized by $D_r
 =3$\footnote{To understand how pulsitile flow affects resistance in
   the upper part of the network, see \cite{west97}, which shows that
-  $D_r = 2$ in the upper pulsatile region.}. Eq. \ref{eq:EnetOrg} also demonstrates that $E_{net}$ is minimized for larger values of $D_r$ (up to the discontinuity at $D_r =3$). However, there is a tradeoff with $T_{net}$,
+  $D_r = 2$ in the upper pulsatile region.}. Eq.~\ref{eq:EnetOrg} also demonstrates that $E_{net}$ is minimized for larger values of $D_r$ (up to the discontinuity at $D_r =3$). However, there is a tradeoff with $T_{net}$,
 which is minimized when $D_r =2$. As $D_r$ increases from 2 to 3,
 delivery times increase more quickly than energy dissipation decreases,
 so the $D_r =2$ area-preserving case is optimal for minimizing the
@@ -818,7 +869,7 @@ reduce pressure on the walls of small vessels and to allow oxygen to be
 dissociated from hemoglobin in the capillaries.   Under this circumstance,
 perfect area-preserving branching it is not feasible, but energy-time 
 minimization provides a prediction for the optimal way for blood to slow.
-The derivation in Section \ref{sec:AppendixOrg} gives a
+The derivation in Section~\ref{sec:AppendixOrg} gives a
 theoretical prediction for a maximum value of $D_r \leq 3$ in the lower region
 of the network by identifying a discontinuity in the scaling exponent at $D_r =
 3$. For $D_r > 3$ the energy-time product increases much more rapidly than for
@@ -840,27 +891,32 @@ The scaling relationships in Table 12 predict the expected metabolic rate, $B$, 
   B \propto M^{\frac{3}{D_r} - \frac{5}{4}} + M^{\frac{3}{2D_r} + \frac{1}{12}}
 \end{equation}
 
-We fit this model to data taken from~\cite{kolokotrones2010curvature}
-as shown 
-in Figure~\ref{fig:OrganismsPowerScaling}. By including
-energy dissipated in the network and in the nodes, each with different scaling exponents, the model naturally generates the
-curvature observed in the data.  Intuitively, in smaller animals a greater fraction of energy is
-consumed by $E_{node}$, a term that is linear in the number of service
-volumes. In addition, the best fit to the data is achieved with $D_r = 2.24$,
-which is consistent with the prediction of area preserving branching in the
-upper region of the network and $D_r = 3$ in the lower region of the network, and consistent with the empirical radius scaling in~\cite{newberry2015testing}.
-This model provides a better fit (lower Mean Square Error) than
-the alternative theoretical models presented in~\cite{kolokotrones2010curvature} (0.0264 vs FIXME: Ben, list the MSE for all other theoretical models). 
+We fit this model to data taken from~\cite{kolokotrones2010curvature} as shown
+in Figure~\ref{fig:OrganismsPowerScaling}. By including energy dissipated in
+the network and in the nodes, each with different scaling exponents, the model
+naturally generates the curvature observed in the data.  Intuitively, in
+smaller animals a greater fraction of energy is consumed by $E_{node}$, a term
+that is linear in the number of service volumes. In addition, the best fit to
+the data is achieved with $D_r = 2.24$, which is consistent with the prediction
+of area preserving branching in the upper region of the network and $D_r = 3$
+in the lower region of the network, and consistent with the empirical radius
+scaling in~\cite{newberry2015testing}.  This model provides a better fit (lower
+Mean Square Error) than the alternative theoretical models presented
+in~\cite{kolokotrones2010curvature} (0.0264 vs 0.0280 for the Flow-mode
+transition from the heart model, 0.0276 for the proportional transition to
+organism size, and 0.0266 for the extended West, Brown, and Enquist model). 
  
 \begin{figure}[!h] \centering
   \includegraphics[height=70mm]{Figures/OrganismsPowerScaling.pdf}
 
-  \caption{Energy-time minimization model predictions for power
-    scaling in organisms. The model from Eq.~\ref{eq:OrganismPower}
-    was fit to data from~\cite{kolokotrones2010curvature} by minimizing the distance
-    from the empirical points to the modeled curve, similar to Reduced
-    Major Axis fits. Other minimization techniques were tested with
-    similar results (not shown). FIXME: include an $M^{3/4}$ line for reference?}
+  \caption{Energy-time minimization model predictions for power scaling in
+    organisms. The model from Eq.~\ref{eq:OrganismPower} was fit to data
+    from~\cite{kolokotrones2010curvature} by minimizing the distance from the
+    empirical points to the modeled curve, similar to Reduced Major Axis fits.
+  Other minimization techniques were tested with similar results (not shown).
+The model from \cite{west97} is included to demonstrate the curvature in the
+data.}
+
 \label{fig:OrganismsPowerScaling}
 \end{figure}
 
