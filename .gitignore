@@ -6,9 +6,7 @@
 *.bbl
 *.blg
 *.idx
-*.ps
-*.eps
 *.toc
 *.out
-*.pdf
+royal-society-scaling.pdf
 *texpadtmp
