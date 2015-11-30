@@ -264,29 +264,7 @@ evolutionary transitions in nature and engineering.
 \includegraphics[height=90mm]{Figures/Figure1RoyalSocietyDraft2.pdf}
 \label{fig:firstfig}
 
-<<<<<<< HEAD
 \caption{Idealized branching models in biology (A and B) and computers (C and D). Panel A shows a bifurcating cardiovascular tree ($\lambda = 2$) with  $H = 6$ hierarchical levels and $N = 32$ terminal branches of radius $r_0$ and length $l_0$. $D_r$ defines the relative radius of pipes between successive branches; $D_r = 2$ in the upper (green) branches the network so that the summed cross sectional area at each level is equal; such area-preserving branching results in constant velocity through the pipes. In the lower (red) branches, $D_r = 2.5$; such area increasing branching slows velocity at each bifurcation. $D_l$ defines both the physical dimension filled by the system and the relative length of pipe between successive hierarchical levels ($D_l = 3$ in 3-dimensional organisms but the 2-dimensional figure shows $D_l = 2$). Panel B shows the radius and length of successive branches. Panel C shows the semi-hierarchical branching of logic wires on a computer chip. Wire length and radius scaling are shown with $D_r = D_l = 2$.  $D_w$ defines how the ratio of internal (intra-module) communication per node to external (inter-module) communication per node scales with the level of the module in the hierarchy. Each module within a hierarchical level is shaded the same color. Here, $D_w = 2$ so that the probability of a wire connecting to each node within a module doubles with each hierarchical level. Panel D shows the radius, length and relative communication between successive branches.}
-=======
-\caption{Idealized branching models in biology (A and B) and computers (C and
-D). Panel A shows an example of a bifurcating cardiovascular tree ($\lambda =
-2$) with  $H = 6$ hierarchical levels and $N = 32$ terminal branches of radius
-$r_0$ and length $l_0$. $D_r$ defines the relative radius of pipes between
-successive branches; $D_r = 2$ in the upper (green) branches the network so
-that the summed cross sectional area at each level is equal; such
-area-preserving branching results in constant velocity through the pipes. In
-the lower (red) branches, $D_r = 2.5$; such area increasing branching slows
-velocity at each bifurcation. $D_l$ defines the relative length of pipe between
-successive hierarchical levels ($D_l = 3$ in organisms but for simplicity the
-figure shows $D_l = 2$. Panel B shows the radius and length of successive
-branches. Panel C shows the semi-hierarchical branching of logic wires on a
-computer chip. Wire length and radius scaling are shown with $D_r = D_l = 2$.
-$D_w$ defines how the ratio of internal (intra-module) communication per node
-to external (inter-module) communication per node scales with the level of the
-module in the hierarchy. Each module within a hierarchical level is shaded the
-same color. Here, $D_w = 2$ so that the probability of a wire connecting to
-each node within a module doubles with each hierarchical level. Panel D shows
-the radius, length and relative communication between successive branches.}
->>>>>>> origin/master
 
 %\caption{Idealized branching models in biology and computers.
 %  $lambda$ is the branching factor (e.g., $lambda$ is 2 in panel A); $H$ is the number
@@ -489,20 +467,12 @@ blood), and for computers the fundamental resource is a bit of information.
 Similarly, we define $E_{node}$ and $T_{node}$ as the energy dissipated and the
 time taken by the nodes to process that resource.  For organisms, the node is
 the service volume corresponding to a region of tissue supplied by a single
-<<<<<<< HEAD
-capillary~\cite{banavar10}, which corresponds to a volume of tissue containing a constant number
-of mitochondria~\cite{west2002allometric}, the organelles that process oxygen molecules to generate
-biologically useful energy in the form of ATP.  The node is defined as having a constant
-rate of delivery of oxygen and a constant ability to process oxygen, but the
-volume of the nodes vary across organism size. 
-=======
 capillary~\cite{banavar10}, which corresponds to a volume of tissue containing
 a constant number of mitochondria~\cite{west2002allometric}, the organelles
 that process oxygen molecules to generate biologically useful energy in the
 form of ATP\@. The node is defined as having a constant rate of delivery of
 oxygen and a constant ability to process oxygen, but the volume of the nodes
 vary across organism size. 
->>>>>>> origin/master
 
 $E_{net}$ is the energy required to deliver oxygen to the cells (as analyzed in
 \cite{west97}), and $E_{node}$ is the energy dissipated by cells processing
@@ -611,17 +581,6 @@ dimensions of the system.
 \label{sec:organisms}
 
 In this section, we derive general energy and time scaling relations for the
-<<<<<<< HEAD
-network and nodes in organisms, and then use them to minimize Eq.
-\ref{eq:TheWholeEnchilada}.  We first define scaling relationships for the four
-key quantities $E_{net}$, $T_{net}$, $E_{node}$ and $T_{node}$, and
-then show
-how they scale with $N$ when Eq.~\ref{eq:TheWholeEnchilada} is minimized.
-In contrast with computer scaling, many theoretical scaling models have been proposed for animals over the last century, (e.g., thompson1942arcy, west1997, banavar1999size, dodds2010optimal, banavar10). The influential West et al model~\cite{west97} predicted
-scaling relationships by minimizing energy dissipation~\cite{west97},
-while ~\cite{banavar10} focused on minimizing metabolic delivery time. Not surprisingly, scaling models that assume different optimization principles make different predictions~\cite{newberry2015testing}.  Our model
-combines both energy and time constraints into a single framework.
-=======
 network and nodes in organisms, and then use them to minimize
 Eq.~\ref{eq:TheWholeEnchilada}.  We first define scaling relationships for the
 four key quantities $E_{net}$, $T_{net}$, $E_{node}$ and $T_{node}$, and then
@@ -634,7 +593,6 @@ minimizing metabolic delivery time~\cite{banavar10}. Not surprisingly, scaling
 models that assume different optimization principles make different
 predictions~\cite{newberry2015testing}.  Our model combines both energy and
 time constraints into a single framework.
->>>>>>> origin/master
 
 $E_{net}$: From basic principles of hydraulics, the energy dissipated to
 transport a constant volume of blood through the network is given by the loss
@@ -657,13 +615,8 @@ N/Q$.
 We note that there is no distance term in the $T_{net}$ equation because of the
 steady-state assumption. $T_{net}$ is the time it takes to deliver the `next'
 oxygen molecule from a capillary. Thus $T_{net}$ is not the time it takes a
-<<<<<<< HEAD
-single molecule to traverse the network (i.e. it is not $\tau$
-in~\cite{banavar10}), but rather the inverse of the rate of delivery of
-=======
 single molecule to traverse the network (i.e.\ it is not $\tau$
 in~\cite{banavar10}, but rather the inverse of the rate of delivery of
->>>>>>> origin/master
 oxygen molecules, analogous to the inverse of clock speed in computer chips.
 
 $T_{node}$: Following \cite{banavar10} and under the steady-state assumption
@@ -742,16 +695,6 @@ the scaling of the energy time product (Eq.~\ref{eq:bio-min}):
 \label{eq:bio-min2}
 \end{equation}
 
-<<<<<<< HEAD
-\noindent where $N$ is the number of terminal units.  The energy time product is dominated by the second term in Eq.
-\ref{eq:bio-min2} which is minimized by setting $D_r$ to its minimum possible
-value. Thus, minimizing the energy time product requires $D_r = 2$, and 
- $E_{net}$ is defined in Case 1 as: 
-%then becomes $E_{net} \propto RQ$ where R is
-%Eq.~\ref{eq:resistance}, $Q \propto N^{\frac{2}{D_r}}$ under the minimization
-%condition that $D_r = 2$.  Substituting into Eq~\ref{eq:resistance} gives:
-%$R \propto N^{-1}$ and 
-=======
 \noindent where $N$ is the number of terminal units.  The energy time product
 is dominated by the second term in Eq.~\ref{eq:bio-min2} which is minimized by
 setting $D_r$ to its minimum possible value. Thus, minimizing the energy time
@@ -759,7 +702,6 @@ product  requires $D_r = 2$.  The equation for $E_{net}$ then becomes $E_{net}
 \propto RQ$ where R is Eq.~\ref{eq:resistance}, $Q \propto N^{\frac{2}{D_r}}$
 under the minimization condition that $D_r \leq 3$.  Substituting into
 Eq~\ref{eq:resistance} gives: $R \propto N^{-1}$ and 
->>>>>>> origin/master
 
 \begin{equation}
 E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1} \propto l_0 u_0
@@ -860,15 +802,11 @@ N^{\frac{1}{2}}$&$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} +
 N^{\frac{1}{2}}$ & $N^{1-\frac{1}{D_l}} + N^{1-\frac{1}{D_l}}$ \\
 \hline
 \end{tabular}
-<<<<<<< HEAD
-\caption{Predicted scaling relationships for organisms and computers for $D_r = 2$. %FIXME: add a column that includes the predictions in terms of Dr. 
-\label{tab:SummaryScalingPredictions}}
-=======
 
 \caption{Predicted scaling relationships for organisms and computers for $D_r =
-2$. FIXME: I THINK THIS LOOKS TERRIBLE}
+2$.}
+
 \label{tab:SummaryScalingPredictions}
->>>>>>> origin/master
 \end{table}
 
 %Summarizing all of the scaling relationships gives: 
@@ -926,11 +864,7 @@ This holds even in the region of the network dominated by Poiseuillle flow, wher
 West et al.\ demonstrated that $R$ and $E_{net}$ are minimized by $D_r
 =3$\footnote{To understand how pulsatile flow affects resistance in
   the upper part of the network, see \cite{west97}, which shows that
-<<<<<<< HEAD
-  $D_r = 2$ to minimize resistance in the upper pulsatile region.}. Eq. \ref{eq:EnetOrg} also demonstrates that $E_{net}$ is minimized for larger values of $D_r$ (up to the discontinuity at $D_r =3$). However, there is a tradeoff with $T_{net}$,
-=======
   $D_r = 2$ in the upper pulsatile region.}. Eq.~\ref{eq:EnetOrg} also demonstrates that $E_{net}$ is minimized for larger values of $D_r$ (up to the discontinuity at $D_r =3$). However, there is a tradeoff with $T_{net}$,
->>>>>>> origin/master
 which is minimized when $D_r =2$. As $D_r$ increases from 2 to 3,
 delivery times increase more quickly than energy dissipation decreases,
 so the $D_r =2$ area-preserving case is optimal for minimizing the
@@ -981,15 +915,6 @@ organism size, and 0.0266 for the extended West, Brown, and Enquist model).
 \begin{figure}[!h] \centering
   \includegraphics[height=70mm]{Figures/OrganismsPowerScaling.pdf}
 
-<<<<<<< HEAD
-  \caption{Energy-time minimization model predictions for power
-    scaling in organisms. The model from Eq.~\ref{eq:OrganismPower}
-    was fit to data from~\cite{kolokotrones2010curvature} by minimizing the distance
-    from the empirical points to the modeled curve, similar to Reduced
-    Major Axis fits. %Other minimization techniques were tested with
-    %similar results (not shown). %FIXME: include an $M^{3/4}$ line for reference?
-    }
-=======
   \caption{Energy-time minimization model predictions for power scaling in
     organisms. The model from Eq.~\ref{eq:OrganismPower} was fit to data
     from~\cite{kolokotrones2010curvature} by minimizing the distance from the
@@ -998,7 +923,6 @@ organism size, and 0.0266 for the extended West, Brown, and Enquist model).
 The model from \cite{west97} is included to demonstrate the curvature in the
 data.}
 
->>>>>>> origin/master
 \label{fig:OrganismsPowerScaling}
 \end{figure}
 
@@ -1431,17 +1355,11 @@ Delong et al.\ does not address scaling relationships in animal societies.
 However, sociality is an important evolutionary transition, reflected in the
 ecological dominance of humans and ants, two social species whose networked
 systems exchange energy and information. These social species have dispersed over vast territories across the globe and captured
-<<<<<<< HEAD
-extraordinary fractions of available energy ~\cite{haberl2007quantifying, holldobler1990ants}. Recent evidence suggests that ant colonies and
-human societies follow similar scaling relationships as individual organisms~\cite{moses2003allometry, bettencourt2007growth, burnside2012human, hou2010energetic, waters2010allometric}. In social animal systems and networked computer systems, networks
-are at least partially decentralized, for example traffic flow within cities ~\cite{samaniego2008cities} and among ant nests~\cite{flanagan2013fast}. Understanding
-=======
 extraordinary fractions of available energy~\cite{haberl2007quantifying, holldobler1990ants}. Recent evidence suggests that ant colonies and
 human societies follow similar scaling relationships as individual organisms
 FIXME(citations). In social animal systems and networked computer systems, networks
 are at least partially decentralized, for example traffic flow in cities (CITE
 mosessamaniego) and communication patterns in ants (CITE Noa). Understanding
->>>>>>> origin/master
 how communication locality has emerged in computation may lend insights into
 one of the important benefits in the transition to sociality in biology: animal
 societies have escaped the constraint of the centralized distribution network
@@ -1684,47 +1602,6 @@ N^{\frac{2}{D_l} - \frac{2}{D_r}}$. }
   at all levels and $L \propto N^0$.}
 \end{caseof}
 
-<<<<<<< HEAD
-%\newpage
-%\begin{table}
-%\centering
-%\begin{tabular}{|l|l|l|l|l|}
-%\hline
-%\multicolumn{2}{|l|}{} & $D_r=2$ & $2<D_r\leq 3$ & $Dr>3$ \\
-%\hline
-%\multirow{2}{*}{$E_{net}$} & Organisms & $l_0 u_0$ &$l_0u_0 N^{\frac{2}{D_r}-1}$ &$l_0 u_0 N^{\frac{1}{3} - \frac{2}{D_r}}$ \\
-%\cline{2-5}
-%& Computers & $N^{\frac{1}{2}}$& $N^{\frac{1}{2}}$& $N^{\frac{1}{2}}$\\
-%\hline
-%\multirow{2}{*}{$E_{node}$} & Organisms &  N & N  & N \\
-%\cline{2-5}
-%& Computers & $N^{\frac{1}{2}}$&$N^{\frac{1}{2}}$ &$N^{\frac{1}{2}}$ \\
-%\hline
-%\multirow{2}{*}{$T_{net}$} & Organisms & $u_0^{-1}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
-%\cline{2-5}
-%& Computers & $N^{0}$& $N^{0}$& $N^{0}$\\
-%\hline
-%\multirow{2}{*}{$T_{node}$} & Organisms & $u_0^{-1}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
-%\cline{2-5}
-%& Computers & $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$\\
-%\hline
-%\multirow{2}{*}{$E_{sys} \times T_{sys}$} & Organisms & $l_0 + u_0^{-1} N$ &$l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$ &$l_0 N^{\frac{4}{3} - \frac{4}{D_r}} + u_0^{-1}N^{2-\frac{2}{D_r}}$ \\
-%\cline{2-5}
-%& Computers & $N^{\frac{1}{2}} + N^{\frac{1}{2}}$&$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
-%\hline
-%\multirow{2}{*}{$\frac{E_{sys}}{T_{sys}}$} & Organisms &$l_0 u_0^2 + u_0 N$ &$l_0u_0^2 N^{2-\frac{4}{D_r}} + u_0 N^{\frac{2}{D_r}}$ & $l_0 u_0^2 N^{-\frac{2}{3}} + u_0 N^{\frac{2}{D_r}}$\\
-%\cline{2-5}
-%& Computers &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
-%\hline
-%\multirow{2}{*}{$\frac{N}{T_{sys}}$} & Organisms &NA &NA & NA\\
-%\cline{2-5}
-%& Computers &$N$ &$N$ &$N$ \\
-%\hline
-%
-%\end{tabular}
-%\caption{Scaling relationships for various values of $D_r$.FIXME: this table should probably be cut? Or at least reorganized.\label{tab:CompleteScalingPredictions}}
-%\end{table}
-=======
 \newpage
 \begin{table}
 \centering
@@ -1764,7 +1641,6 @@ N^{\frac{2}{D_l} - \frac{2}{D_r}}$. }
 \end{tabular}
 \caption{Scaling relationships for various values of $D_r$.FIXME: this table should probably be cut? Or at least reorganized.\label{tab:CompleteScalingPredictions}}
 \end{table}
->>>>>>> origin/master
 
 \newpage
 
