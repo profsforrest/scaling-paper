@@ -262,7 +262,7 @@ engineering.
 
 \begin{figure}[!h]
 \centering
-\includegraphics[height=90mm]{Figures/Figure1.pdf}
+\includegraphics[height=90mm]{Figures/Figure1RoyalSocietyDraft2.pdf}
 \label{fig:firstfig}
 
 \caption{Idealized branching models in biology (A and B) and computers (C and D). Panel A shows a bifurcating cardiovascular tree ($\lambda = 2$) with  $H = 6$ hierarchical levels and $N = 32$ terminal branches of radius $r_0$ and length $l_0$. $D_r$ defines the relative radius of pipes between successive branches; $D_r = 2$ in the upper (green) branches the network so that the summed cross sectional area at each level is equal; such area-preserving branching results in constant velocity through the pipes. In the lower (red) branches, $D_r = 2.5$; such area increasing branching slows velocity at each bifurcation. $D_l$ defines both the physical dimension filled by the system and the relative length of pipe between successive hierarchical levels ($D_l = 3$ in 3-dimensional organisms but the 2-dimensional figure shows $D_l = 2$). Panel B shows the radius and length of successive branches. Panel C shows the semi-hierarchical branching of logic wires on a computer chip. Wire length and radius scaling are shown with $D_r = D_l = 2$.  $D_w$ defines how the ratio of internal (intra-module) communication per node to external (inter-module) communication per node scales with the level of the module in the hierarchy. Each module within a hierarchical level is shaded the same color. Here, $D_w = 2$ so that the probability of a wire connecting to each node within a module doubles with each hierarchical level. Panel D shows the radius, length and relative communication between successive branches.}
@@ -710,34 +710,34 @@ E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1} \propto l_0 u_0
 
 \noindent The final predicted scaling relationships for the case that minimizes the energy time product ($D_r = 2$) are shown in Table 1.
 
-\begin{table}
-\centering
-\begin{tabular}{|l|l|l|l|l|}
-\hline
-%\multicolumn{2}{|l|}{} Organisms& $D_r=2$\\% & $2<D_r\leq 3$ & $Dr>3$ \\
-\hline
-\multirow{1}{*}{$E_{net}$} & Organisms & $l_0 u_0$\\% &$l_0u_0 N^{\frac{2}{D_r}-1}$ &$l_0 u_0 N^{\frac{1}{3} - \frac{2}{D_r}}$ \\
-\hline
-\multirow{1}{*}{$E_{node}$} & Organisms &  N\\% & N  & N \\
-\hline
-\multirow{1}{*}{$T_{net}$} & Organisms & $u_0^{-1}$\\% & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
-\hline
-\multirow{1}{*}{$T_{node}$} & Organisms & $u_0^{-1}$\\% & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
-\hline
-\multirow{1}{*}{$E_{sys} \times T_{sys}$} & Organisms & $l_0 + u_0^{-1} N$\\% &$l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$ &$l_0 N^{\frac{4}{3} - \frac{4}{D_r}} + u_0^{-1}N^{2-\frac{2}{D_r}}$ \\
-\hline
-\hline
-\multirow{1}{*}{$E_{net}$} & Computers & $N^{\frac{1}{2}}$\\%& $N^{\frac{1}{2}}$& $N^{\frac{1}{2}}$\\
-\hline
-\multirow{1}{*}{$E_{node}$} & Computers & $N^{\frac{1}{2}}$\\%&$N^{\frac{1}{2}}$ &$N^{\frac{1}{2}}$ \\
-\hline
-\multirow{1}{*}{$T_{net}$} & Computers & $N^{0}$\\%& $N^{0}$& $N^{0}$\\
-\hline
-\multirow{1}{*}{$T_{node}$} & Computers & $N^{-\frac{1}{2}}$\\%& $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$\\
-
-\hline
-\multirow{1}{*}{$E_{sys} \times T_{sys}$} & Computers & $N^{\frac{1}{2}}$\\%&$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
-\hline
+%\begin{table}
+%\centering
+%\begin{tabular}{|l|l|l|l|l|}
+%\hline
+%%\multicolumn{2}{|l|}{} Organisms& $D_r=2$\\% & $2<D_r\leq 3$ & $Dr>3$ \\
+%\hline
+%\multirow{1}{*}{$E_{net}$} & Organisms & $l_0 u_0$\\% &$l_0u_0 N^{\frac{2}{D_r}-1}$ &$l_0 u_0 N^{\frac{1}{3} - \frac{2}{D_r}}$ \\
+%\hline
+%\multirow{1}{*}{$E_{node}$} & Organisms &  N\\% & N  & N \\
+%\hline
+%\multirow{1}{*}{$T_{net}$} & Organisms & $u_0^{-1}$\\% & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
+%\hline
+%\multirow{1}{*}{$T_{node}$} & Organisms & $u_0^{-1}$\\% & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
+%\hline
+%\multirow{1}{*}{$E_{sys} \times T_{sys}$} & Organisms & $l_0 + u_0^{-1} N$\\% &$l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$ &$l_0 N^{\frac{4}{3} - \frac{4}{D_r}} + u_0^{-1}N^{2-\frac{2}{D_r}}$ \\
+%\hline
+%\hline
+%\multirow{1}{*}{$E_{net}$} & Computers & $N^{\frac{1}{2}}$\\%& $N^{\frac{1}{2}}$& $N^{\frac{1}{2}}$\\
+%\hline
+%\multirow{1}{*}{$E_{node}$} & Computers & $N^{\frac{1}{2}}$\\%&$N^{\frac{1}{2}}$ &$N^{\frac{1}{2}}$ \\
+%\hline
+%\multirow{1}{*}{$T_{net}$} & Computers & $N^{0}$\\%& $N^{0}$& $N^{0}$\\
+%\hline
+%\multirow{1}{*}{$T_{node}$} & Computers & $N^{-\frac{1}{2}}$\\%& $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$\\
+%
+%\hline
+%\multirow{1}{*}{$E_{sys} \times T_{sys}$} & Computers & $N^{\frac{1}{2}}$\\%&$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
+%\hline
 
 
 %\multirow{2}{*}{$\frac{E_{sys}}{T_{sys}}$} & Organisms &$l_0 u_0^2 + u_0 N$ &$l_0u_0^2 N^{2-\frac{4}{D_r}} + u_0 N^{\frac{2}{D_r}}$ & $l_0 u_0^2 N^{-\frac{2}{3}} + u_0 N^{\frac{2}{D_r}}$\\
@@ -748,6 +748,35 @@ E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1} \propto l_0 u_0
 %\cline{2-5}
 %& Computers &$N$ &$N$ &$N$ \\
 %\hline
+
+\begin{table}
+\centering
+\begin{tabular}{|l|l||l|l|l|}
+\multicolumn{2}{l}{} & \multicolumn{1}{c}{$\mathbf{D_r=2}$} & \multicolumn{1}{c}{$\mathbf{2<D_r\leq 3}$} & \multicolumn{1}{c}{$\mathbf{Dr>3}$} \\
+\hline
+\hline
+\multirow{5}{*}{\textbf{Organisms}} & $E_{net}$ & $l_0 u_0$ &$l_0u_0 N^{\frac{2}{D_r}-1}$ &$l_0 u_0 N^{\frac{1}{3} - \frac{2}{D_r}}$ \\
+\cline{2-5}
+& $E_{node}$ & $N$ & $N$  & $N$ \\
+\cline{2-5}
+& $T_{net}$ & $u_0^{-1}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
+\cline{2-5}
+& $T_{node}$ & $u_0^{-1}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ &$u_0^{-1} N^{1-\frac{2}{D_r}}$ \\
+\cline{2-5}
+& $E_{sys} \times T_{sys}$ & $l_0 + u_0^{-1} N$ &$l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$ &$l_0 N^{\frac{4}{3} - \frac{4}{D_r}} + u_0^{-1}N^{2-\frac{2}{D_r}}$ \\
+\hline
+\multicolumn{2}{c}{} & \multicolumn{1}{c}{$\mathbf{D_w<2}$} & \multicolumn{1}{c}{$\mathbf{D_w =2}$} & \multicolumn{1}{c}{$\mathbf{D_w \geq 2}$} \\
+\hline
+\multirow{5}{*}{\textbf{Computers}} & $E_{net}$ & $N^{\frac{1}{D_w}}$& $N^{\frac{1}{2}}$& $N^{\frac{1}{2}}$\\
+\cline{2-5}
+& $E_{node}$& $N^{\frac{1}{2}}$&$N^{\frac{1}{2}}$ &$N^{\frac{1}{2}}$ \\
+\cline{2-5}
+& $T_{net}$ & $N^{0}$& $N^{0}$& $N^{0}$\\
+\cline{2-5}
+& $T_{node}$& $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$& $N^{-\frac{1}{2}}$\\
+\cline{2-5}
+& $E_{sys} \times T_{sys}$ & $N^{\frac{1}{D_w}} + N^{\frac{1}{2}}$&$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
+\hline
 
 \end{tabular}
 \caption{Predicted scaling relationships for organisms and computers for $D_r = 2$. %FIXME: add a column that includes the predictions in terms of Dr. 
@@ -852,7 +881,10 @@ volumes. In addition, the best fit to the data is achieved with $D_r = 2.24$,
 which is consistent with the prediction of area preserving branching in the
 upper region of the network and $D_r = 3$ in the lower region of the network, and consistent with the empirical radius scaling in~\cite{newberry2015testing}.
 This model provides a better fit (lower Mean Square Error) than
-the alternative theoretical models presented in~\cite{kolokotrones2010curvature} (0.0264 vs FIXME: Ben, list the MSE for all other theoretical models). 
+the alternative theoretical models presented
+in~\cite{kolokotrones2010curvature} (0.0264 vs 0.0266 for the extended West,
+Brown Enquist Model, 0.0276 for the flow-mode proportional transition model,
+and 0.0280 for the flow-mode transition from the heart model). 
  
 \begin{figure}[!h] \centering
   \includegraphics[height=70mm]{Figures/OrganismsPowerScaling.pdf}
@@ -861,7 +893,8 @@ the alternative theoretical models presented in~\cite{kolokotrones2010curvature}
     scaling in organisms. The model from Eq.~\ref{eq:OrganismPower}
     was fit to data from~\cite{kolokotrones2010curvature} by minimizing the distance
     from the empirical points to the modeled curve, similar to Reduced
-    Major Axis fits. %Other minimization techniques were tested with
+    Major Axis fits. We include the West, Brown, Enquist~\cite{west97} model in blue to
+    accentuate the curvature that our model captures.%Other minimization techniques were tested with
     %similar results (not shown). %FIXME: include an $M^{3/4}$ line for reference?
     }
 \label{fig:OrganismsPowerScaling}
