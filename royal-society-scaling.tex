@@ -40,7 +40,7 @@
 %The next command sets up an environment for the abstract to your paper.
 
 \newenvironment{sciabstract}{%
-\begin{qfuote} \bf}
+\begin{quote} \bf}
 {\end{quote}}
 
 
@@ -665,28 +665,48 @@ demonstrated that metabolic rate is elevated in small mammals, causing a
 deviation from the simple $3/4$ power-law relationship between metabolism and
 mass~\cite{kolokotrones2010curvature}. 
 
-Building on results from~\cite{banavar10} that  $N \propto
-M^{\frac{3}{4}}$ and $l_0 \propto u_0 \propto M^{\frac{1}{12}}$, we obtain $l_0 \propto u_0 \propto N^{\frac{1}{9}}$.
-The scaling relationships in Table 12 predict the expected metabolic rate, $B$, for animals:
+We use a similar approach to~\cite{banavar10}, with the exception that we do
+assume that $D_r=2$. This results in the $M \propto N^{\frac{2}{d_r} +
+\frac{1}{3}}$, and $l_0 \propto u_0 \propto N^{\frac{2}{3D_r}
+-\frac{2}{9}}$\footnote{These expressions are consistent with those
+in~\cite{banavar10}, specifically when $D_r=2$, $N\propto M^{\frac{3}{4}}$ and $l_0
+\propto N^{\frac{1}{9}}$ and when $D_r=3$, $N\propto M$ and $l_0\propto N^0$.}.
+
+Combining these results with the equation in Table 12, we can predict the
+metabolic rate for animals: 
+
 \begin{equation}
   \label{eq:OrganismPower}
-  B \propto M^{\frac{3}{D_r} - \frac{5}{4}} + M^{\frac{3}{2D_r} + \frac{1}{12}}
+  B \propto M^{\frac{18-8D_r}{6+Dr}} + M^{\frac{24-2D_r}{18-3D_r}} 
 \end{equation}
 
-We fit this model to data taken from~\cite{kolokotrones2010curvature}
-as shown 
-in Figure~\ref{fig:OrganismsPowerScaling}. By including
-energy dissipated in the network and in the nodes, each with different scaling exponents, the model naturally generates the
-curvature observed in the data.  Intuitively, in smaller animals a greater fraction of energy is
-consumed by $E_{node}$, a term that is linear in the number of service
-volumes. In addition, the best fit to the data is achieved with $D_r = 2.24$,
-which is consistent with the prediction of area preserving branching in the
-upper region of the network and $D_r = 3$ in the lower region of the network, and consistent with the empirical radius scaling in~\cite{newberry2015testing}.
-Our model provides a marginally better fit than
-the extensions to the West et al.\ model that were explicitly designed to induce
-curvature~\cite{kolokotrones2010curvature} (Mean Squared Error for our model is 0.0264 vs 0.0266 for the extended
-West et al.\ model, 0.0276 for the flow-mode proportional transition model,
-and 0.0280 for the flow-mode transition from the heart model). 
+\noindent While this model is not as simple as the original $\frac{3}{4}$
+scaling suggested by West et al.~\cite{west97} or the alternative models
+proposed by Kolokotrones et al.~\cite{kolokotrones2010curvature}, we believe
+that it has a sound theoretical basis.
+%Building on results from~\cite{banavar10} that  $N \propto
+%M^{\frac{3}{4}}$ and $l_0 \propto u_0 \propto M^{\frac{1}{12}}$, we obtain $l_0 \propto u_0 \propto N^{\frac{1}{9}}$.
+%The scaling relationships in Table 12 predict the expected metabolic rate, $B$, for animals:
+%\begin{equation}
+%  \label{eq:OrganismPower}
+%  B \propto M^{\frac{3}{D_r} - \frac{5}{4}} + M^{\frac{3}{2D_r} + \frac{1}{12}}
+%\end{equation}
+
+We fit this model to data taken from~\cite{kolokotrones2010curvature} as shown
+in Figure~\ref{fig:OrganismsPowerScaling}. By including energy dissipated in
+the network and in the nodes, each with different scaling exponents, the model
+naturally generates the curvature observed in the data.  Intuitively, in
+smaller animals a greater fraction of energy is consumed by $E_{node}$, a term
+that is linear in the number of service volumes. In addition, the best fit to
+the data is achieved with $D_r = 2.56$, which is consistent with the prediction
+of area preserving branching in the upper region of the network and $D_r = 3$
+in the lower region of the network, and consistent with the empirical radius
+scaling in~\cite{newberry2015testing}.  Our model provides a marginally better
+fit than the extensions to the West et al.\ model that were explicitly designed
+to induce curvature~\cite{kolokotrones2010curvature} (Mean Squared Error for
+our model is 0.0268 vs 0.0287 for the extended West et al.\ model, 0.0274 for
+the flow-mode proportional transition model, and 0.0277 for the flow-mode
+transition from the heart model). 
  
 \begin{figure}[!h] \centering
   \includegraphics[height=70mm]{Figures/OrganismsPowerScaling.pdf}
