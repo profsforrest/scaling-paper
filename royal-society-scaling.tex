@@ -369,16 +369,11 @@ computation and biology:
   without bottlenecks and they do not accumulate at source, sink, or intermediate locations.
   \end{enumerate}
 
-\item {\bf Terminal units and service volumes:} In contrast to
-  Ref.~\cite{west97} we do not assume that terminal units have fixed size.   In
+\item {\bf Terminal units and service volumes:} In contrast to~\cite{west97} we do not assume that terminal branches of the network have fixed size.   In
   chips it is well known that transistor size has shrunk over many orders of
-  magnitude over the past 50 years.   Previous scaling models of biology posit that the service volume
-  (region served by terminal units of the network) actually increases with
-  system size~\cite{west97,banavar10}.  Following Ref.~\cite{banavar10}, we
-  assume that capillaries have fixed radius but that their length is
-  proportional to the radius of the service volume.   Similarly, the radius of
-  the isochronic region (service volume) for chips scales proportionally with
-  decreasing transistor size.
+  magnitude over the past 50 years.   Previous scaling models of biology posit that the service volume  (region served by terminal units of the network) increases with
+  system size~\cite{west97, banavar10}.  Following~\cite{banavar10}, we assume that the length of the terminal branches of the network (i.e., capillaries) is
+  proportional to the radius of the service volume.  We also follow the assumption in~\cite{banavar10} that the capillaries have fixed radius, and that the speed of flow through the service volume is proportional to its length, so that the rate of arrival of oxygen molecules to mitochondria in the service volume is constant.  Similar to the length scaling of the service volume in organisms, the radius of the isochronic region (the service area) for chips scales proportionally with decreasing transistor size~\cite{moses08}.
 \end{enumerate}
 
 In addition to these general assumptions, we make the following
@@ -508,12 +503,14 @@ single molecule to traverse the network (i.e. it is not $\tau$
 in~\cite{banavar10}), but rather the inverse of the rate of delivery of
 oxygen molecules, analogous to the inverse of clock speed in computer chips.
 
-$T_{node}$: Following \cite{banavar10} and under the steady-state assumption
-that, on average, oxygen must be processed by mitochondria in the nodes at the
-same rate that it is delivered (i.e., supply matches demand): $T_{node}=
-T_{net} \propto N/Q$.
+$T_{node}$: Following Assumption 3, and by definition that each node processes oxygen at the same rate, the time to process each oxygen molecule per node is invariant with respect to organism size and $T_{node} \propto N^0$.
 
-Substituting these relationships into Eq.~\ref{eq:TheWholeEnchilada}  gives
+%Following \cite{banavar10} and under the steady-state assumption
+%that, on average, oxygen must be processed by mitochondria in the nodes at the
+%same rate that it is delivered (i.e., supply matches demand): $T_{node}=
+%T_{net} \propto N/Q$.
+
+Substituting these relationships into Eq.~\ref{eq:TheWholeEnchilada} (where $T_{sys}$ is dominated by $T_{net}$) gives
 $(RQ + N) \times (\frac{N}{Q})$, and the minimization simplifies to:
 \begin{equation}
  min (RN + \frac{N^2}{Q})
@@ -602,7 +599,9 @@ E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1} \propto l_0 u_0
 \cline{2-4}
 & $T_{net}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & $u_0^{-1}$\\
 \cline{2-4}
-& $T_{node}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & $u_0^{-1}$ \\
+& $T_{node}$ & $N^0$ & $N^0$ \\  
+%& $T_{node}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & $u_0^{-1}$ \\  
+
 \cline{2-4}
 & $E_{sys} \times T_{sys}$ & $l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$& $l_0 + u_0^{-1} N$\\
 \cline{2-4}
@@ -681,7 +680,7 @@ metabolic rate for animals:
 \end{equation}
 
 \noindent While this model is not as simple as the original $\frac{3}{4}$
-scaling suggested by West et al.~\cite{west97} or the alternative models
+scaling predicted by West et al.~\cite{west97} or the alternative models
 proposed by Kolokotrones et al.~\cite{kolokotrones2010curvature}, we believe
 that it has a sound theoretical basis.
 %Building on results from~\cite{banavar10} that  $N \propto
