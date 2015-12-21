@@ -177,8 +177,8 @@ into complex systems that vary by orders of magnitude in size and number of
 components. Evolution, by natural selection in organisms and by human
 engineering in computers, required critical features of architecture and
 function to be scaled up as size and complexity increased. In biology,
-Kleiber's law describes the empirical relation between metabolic rate and many
-other traits, such as lifespan, heart rate, and number of offspring, with body
+Kleiber's law describes empirically how metabolic rate and many
+other traits, such as lifespan, heart rate, and number of offspring, scale with body
 size \cite{kleiber47}.  Similarly, computer architecture has Moore's law to
 describe scaling of transistor density and performance \cite{moore98}, Koomey's
 law for the energy cost per computation \cite{koomey11}, and Rent's rule for
@@ -192,7 +192,7 @@ which resources are delivered to terminal nodes of a network and to minimize
 the energy dissipated as it is delivered and processed.  For example, in biology the vascular network of vertebrate
 animals supplies oxygen and nutrients to every cell, fueling metabolism for
 maintenance, growth and reproduction.  Since energy is a limited resource, we
-assume that organisms are selected to maximize the delivery rate of oxygen while minimizing energy that is dissipated as oxygen is delivered through the network \cite{west97} and processed to produce ATP in the mitochondria. Similarly, computation in microprocessors relies on a
+assume that organisms are selected to maximize the time spent and dissipated as oxygen is delivered through the network \cite{west97} and processed to produce ATP in the mitochondria. Similarly, computation in microprocessors relies on a
 network of microscopic wires that transmits bits of information between
 transistors on a chip.  In order to maximize computation speed and minimize
 power consumption, this network is designed to deliver the maximum information
@@ -342,8 +342,8 @@ computation and biology:
 
 \begin{enumerate}
 \item {\bf Time and energy are equally important constraints:} 
-  System designs seek to deliver the maximum amount of
-  resource per unit time for the minimum amount of energy overhead. 
+  System designs seek to deliver the maximum quantity of
+  resource per unit time for the minimum quantity of energy expended. 
   In computer architecture this relationship is expressed as the
   \emph{energy-delay product}, which formalizes the insight that a
   chip that is ten times faster or ten times more energy efficient is
@@ -406,17 +406,17 @@ scaling.
 \section{Predictions of the Model for Organisms and Computers}
 
 We define $E_{net}$ and $T_{net}$ respectively to be the energy dissipated and
-the time taken by the network to deliver a unit of resource to each node.  For
+the time taken by the network to deliver a fundamental unit of resource to each node.  For
 organisms the resource is oxygen (in mammals, carried by a unit volume of
-blood), and for computers the fundamental resource is a bit of information.
+blood), and for computers the resource is a bit of information.
 Similarly, we define $E_{node}$ and $T_{node}$ as the energy dissipated and the
 time taken by the nodes to process that resource.  For organisms, the node is
 the service volume corresponding to a region of tissue supplied by a single
 capillary~\cite{banavar10}, which corresponds to a volume of tissue containing a constant number
 of mitochondria~\cite{west2002allometric}, the organelles that process oxygen molecules to generate
 biologically useful energy in the form of ATP.  The node is defined as having a constant
-rate of delivery of oxygen and a constant ability to process oxygen, but the
-volume of the nodes vary across organism size. 
+rate of delivery of oxygen and processing of oxygen, but the
+volume of the nodes varies with organism size. 
 
 $E_{net}$ is the energy required to deliver oxygen to the cells (as analyzed in
 \cite{west97}), and $E_{node}$ is the energy dissipated by cells processing
@@ -454,7 +454,7 @@ area, which we assume to be constant.
 The hypothesis that organisms and computers minimize the energy-time product
 predicts that optimized system designs will achieve
 the highest performance per cost, where performance is given by flow and cost
-by energy overhead.  To show this mathematically, 
+by energy expended.  To show this mathematically, 
 we express the optimal network design as a constraint optimization problem in
 which the whole system's energy-time product is minimized:
 
@@ -478,9 +478,9 @@ network and nodes in organisms, and then use them to minimize Eq.
 key quantities $E_{net}$, $T_{net}$, $E_{node}$ and $T_{node}$, and
 then show
 how they scale with $N$ when Eq.~\ref{eq:TheWholeEnchilada} is minimized.
-In contrast with computer scaling, many theoretical scaling models have been proposed for animals over the last century, (e.g., \cite{thompson1942arcy, west97, banavar1999size, dodds2010optimal, banavar10}). The influential West et al. model~\cite{west97} predicted
+In contrast to computer scaling, several theoretical scaling models have been proposed for animals over the last century, (e.g., \cite{thompson1942arcy, west97, banavar1999size, dodds2010optimal, banavar10}). The influential West et al. model~\cite{west97} predicted
 scaling relationships by minimizing energy dissipation~\cite{west97},
-while ~\cite{banavar10} focused on minimizing metabolic delivery time. Not surprisingly, scaling models that assume different optimization principles make different predictions~\cite{newberry2015testing}.  Our model
+whereas an alternative ~\cite{banavar10} was based on minimizing metabolic delivery time. Not surprisingly, scaling models that assume different optimization principles make different predictions~\cite{newberry2015testing}.  Our model
 combines both energy and time constraints into a single framework.
 
 $E_{net}$: From basic principles of hydraulics, the energy dissipated to
@@ -743,7 +743,7 @@ evolution of organism designs.
 We now apply the same reasoning to computer chips. 
 In computers, unlike biology, the nodes (transistors) 
 are not of constant size and have shrunk by many orders of magnitude over 40
-years of micro architecture evolution.  During this time, chip area has grown
+years of micro architecture evolution.  During this time, total chip area has grown
 much more slowly, and we assume it to be constant for our calculations.
 Putting these two constraints together, the linear dimensions of transistors
 and wires decrease with transistor count as $N^{-1/2}$ (more generally,
@@ -942,9 +942,8 @@ The model we have presented here is of course a simplification of a more complex
 \section{Discussion: Implications for Evolutionary Transitions}
 \label{sec:discussion}
 
-Scaling analyses provide a framework for identifying invariants and
-understanding constraints on both biological and computational systems over
-enormous size ranges.  By simultaneously minimizing energy dissipation and delivery
+Scaling analyses provide a framework for understanding the critical parameters and constraints on the design of both biological and computational systems spanning an
+enormous range of sizes.  By simultaneously minimizing energy dissipation and delivery
 time, our unified model 
 predicts scaling relationships for both
 organisms and computer chips.  This broad framework highlights the similarities
@@ -952,34 +951,30 @@ and differences between biological networks that deliver energy and
 computational networks that deliver information. 
 
 The similarities between biological and computational scaling
-suggest likely future trajectories in computing based on how biology
-has changed over evolutionary time. For this we turn to work by Delong et al.~\cite{delong2010shifts} who
-demonstrated that metabolic scaling slopes and intercepts change at the
-evolutionary transitions: prokaryote (bacteria) metabolism varies superlinearly with
-size, unicellular protist metabolism varies linearly, and multicellular animal
-metabolism is sublinear, converging toward the canonical $3/4$ exponent. They
-hypothesize that these discontinuous shifts arise from organisms overcoming a series of
-constraints, and then facing new constraints, as they increase in size.
+suggest likely future trajectories in computing based on how the fundamental structural and functional properties of organisms have changed over evolutionary time. For this we turn to work by Delong et al.~\cite{delong2010shifts} who
+demonstrated that slopes and intercepts of metabolic scaling relations change at the
+evolutionary transitions: prokaryote (bacteria) metabolic rate varies superlinearly with
+size, unicellular protist rate varies linearly, and whole-organism metabolic rate of multicellular animals scales sublinearly, converging toward the canonical $3/4$ exponent. They
+hypothesize that these discontinuous shifts arise from body plans overcoming pre-existing
+constraints, and then accommodating to new constraints, as body size and complexity increase.
 
-Larger bacteria increase metabolism as additional genes allow increased use of
-metabolic substrates, but eventually the cell surface area limits metabolic
+Larger bacteria have higher metabolic rates because their larger genomes allow increased use of
+metabolic substrates, but eventually cell surface area limits metabolic
 processing. Unicellular protists overcome this constraint by internalizing the metabolic machinery into
 respiratory organelles (i.e., mitochondria that convert oxygen into ATP). The
-number of mitochondria increases linearly with cell size until internal
+number of mitochondria increases linearly with cell size until intracellular
 transport constraints begin to limit the rate of metabolic processing.
 Next, multi-cellular
-animals developed internal networks to speed the delivery of metabolites,
-and are subject to sublinear network scaling effects. Delong et al. highlight the
-importance of both time and energy constraints, and they note significant decreases in energetic
-efficiency at each evolutionary transition when absolute measures of time and
-energy increase.  The explanations that they hypothesize are directly relevant
+animals have effectively invariant cell size and intracellular transport, but as as body size and number of cells increases, vascular networks evolved. These provide for rapid and efficient delivery of metabolites, but they introduce the sublinear network scaling effects characterized above. Delong et al. highlight the
+importance of both time and energy constraints, and these change at each evolutionary transition, with the consequence that the absolute time and quantity of
+energy required do deliver each molecule of oxygen increase.  The explanations that they hypothesize are directly relevant
 to understanding how energy-time minimization affects the ongoing evolution of
 computer hardware.
 
 1.     Evolution of single core chips: The chip scaling we describe above shows
 how time and energy dissipation have decreased while performance increased as
-larger numbers of shrinking transistors have been packed onto each chip. During
-this period, similar to bacterial evolution that incorporates new genes to
+larger numbers of smaller transistors have been packed onto each chip. During
+this period, similar to bacterial evolution that incorporates larger genomes with new genes to
 exploit new metabolic niches, technological innovations have emerged. For
 example, new materials, switching methods, etching processes and cooling
 technologies have pushed physical boundaries, allowing transistors to shrink
@@ -991,8 +986,7 @@ chips with quadrillions of transistors.
 2.  Chips have also mimicked the linear relationship between performance and
 size (Figure \ref{fig:throughput}) seen in protists. Unicellular protists show linear increases
 in metabolic rate with size as more energy processing nodes  (mitochondria) are
-packed into larger cells. However, like protists, this regime will eventually end due
-to physical constraints.  Our earlier analysis suggests that the
+packed into larger cells. As size continues to increase however, as in protists, this design eventually comes up against physical constraints.  Our earlier analysis suggests that the
 internal transport network already constrains the processing speed of the
 system (i.e., $T_{net}$ constrains $T_{sys}$). Further, the requirement to
 dissipate heat over a fixed surface area constrains both cells and chips. 
@@ -1005,7 +999,7 @@ area, and therefore networks that span a larger area. Similarly to
 multicellular organisms, we expect that as the number of cores grows, an
 increasing fraction of chip power will be devoted to these ever larger 
 Networks-on-Chip (NoC) connecting more cores. Larger networks will require more
-power to drive them, and it will take more time to traverse them, ultimately
+power to drive them, more time to traverse them, ultimately
 making time-energy minimization increasingly difficult to sustain as chips increase in
 size. It is likely that the reductions in clock speed
 in multi-core chips will continue as the power, footprint and cooling requirements of the network dominate chip design considerations. As networks increasingly dominate on-chip power
@@ -1013,7 +1007,7 @@ budgets, it is also likely that the most important advances in chip design will 
 network efficiency, for example using optical networks. 
 
   
-The differences between scaling of energy delivery in biology and information
+The differences between scaling of oxygen delivery in biology and information
 delivery in computation also play an important role in evolutionary
 transitions. In particular, on-chip computer networks have two advantages not
 available to cardiovascular networks. First, technological advances have decreased
@@ -1032,14 +1026,16 @@ communication primarily local~\cite{bezerra2010modeling, zarkesh2010hybrid}. Com
 has the potential to produce more favorable scaling in multicore
 computation than is achievable in multi-cellular biology.
 
+%NOTE JIM SAYS INSERT that orphaned PP here (I had already moved it above)**
+
 Scaling on computer chips and other systems in which networks deliver
-information rather than energy lend insights into another important
+information rather than materials lend insights into another important
 biological evolutionary transition, the transition to social animal societies.
 The analysis in Delong et al. does not address scaling relationships in animal societies.
 However, sociality is an important evolutionary transition, reflected in the
-ecological dominance of humans and ants, two social species whose networked
-systems exchange energy and information. These social species have dispersed over vast territories across the globe and captured
-extraordinary fractions of available energy ~\cite{haberl2007quantifying, holldobler1990ants}. Recent evidence suggests that ant colonies and
+ecological dominance of humans and ants whose networked
+systems transport both energy and information. These social species have experienced great success, dispersing over vast territories across the globe and capturing a large
+fraction of available energy ~\cite{haberl2007quantifying, holldobler1990ants}. Recent evidence suggests that ant colonies and
 human societies follow similar scaling relationships as individual organisms~\cite{moses2003allometry, bettencourt2007growth, burnside2012human, hou2010energetic, waters2010allometric}. In social animal systems and networked computer systems, networks
 are at least partially decentralized, for example traffic flow within cities ~\cite{samaniego2008cities} and among ant nests~\cite{flanagan2013fast}. Understanding
 how communication locality has emerged in computation may lend insights into
@@ -1052,19 +1048,15 @@ by evolving systems for decentralized and modular communication.
 
 Our analysis provides a unifying explanation for the origin of scaling laws in
 biology and computing. Despite obvious differences in form and function, the
-scaling of organisms and computers is governed by the same simple principle.
-By minimizing energy dissipation and the time to deliver resources, whether through natural selection or
-engineering, existing designs manage the trade-off between cost and
-performance, leading to general scaling patterns observed over several orders
-of magnitude in size.  Moreover, power laws as a function of size are not
+scaling of organisms and computers is governed by the same simple principle: minimizing the energy-time product. Both natural selection and human engineering have evolved designs that manage the trade-off between cost and performance to minimize energy dissipation and time to deliver resources, resulting in general scaling laws that hold over several orders of magnitude variation in system size. Moreover, power laws as a function of size are not
 unique to organisms and computers but are observed across a wide
 variety of complex systems in nature, society and technology.  The scaling of
 white and grey matter\cite{zhang00} and communication modularity~\cite{meunier2010modular} in the brain, of energy use and GDP in
 countries \cite{brown11}, and the pace of life and population in cities
 \cite{bettencourt07} are additional examples where a unifying explanation is
 still lacking.  Because cost and performance, i.e., energy and time, impose
-universal constraints, we suggest that a common design principle governs the
-scaling of complex systems that process energy, materials and information.
+universal constraints, we suggest that a common design principle may govern the
+scaling of many complex systems that process energy, materials and information.
 
 Engineering ingenuity and economic pressures have created increasingly
 fast and powerful computers through a series of innovations, including
