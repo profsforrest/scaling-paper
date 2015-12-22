@@ -192,7 +192,7 @@ which resources are delivered to terminal nodes of a network and to minimize
 the energy dissipated as it is delivered and processed.  For example, in biology the vascular network of vertebrate
 animals supplies oxygen and nutrients to every cell, fueling metabolism for
 maintenance, growth and reproduction.  Since energy is a limited resource, we
-assume that organisms are selected to maximize the time spent and dissipated as oxygen is delivered through the network \cite{west97} and processed to produce ATP in the mitochondria. Similarly, computation in microprocessors relies on a
+assume that organisms are selected to minimize the time spent and energy dissipated as oxygen is delivered through the network \cite{west97} and processed to produce ATP in the mitochondria. Similarly, computation in microprocessors relies on a
 network of microscopic wires that transmits bits of information between
 transistors on a chip.  In order to maximize computation speed and minimize
 power consumption, this network is designed to deliver the maximum information
@@ -220,10 +220,10 @@ engineers have designed processors ranging from thousands to
 billions of transistors, each of which fills a specific computational niche.
 
 In the rest of the paper, we present the unified model of network scaling
-(Section \ref{sec:unified-model}) and the basic assumptions underlying the
+(Sections \ref{sec:unified-model}) and the basic assumptions underlying the
 model (Section ~\ref{sec:assumptions}).  We then use the model to derive a
 series of predictions about how time and energy scale with system size, first
-for organisms (Section \ref{sec:organisms}) and then for computers (Section
+for organisms (Sections \ref{sec:organisms} and \ref{sec:bio-predictions}) and then for computers (Section
 \ref{sec:computers}). We discuss new insights into previously analyzed
 scaling relationships in biology that we gain from the time-energy minimization
 framework, and we test our scaling predictions with empirical power and performance
@@ -238,7 +238,7 @@ engineering.
 
 \caption{Idealized branching models in biology (Panel A) and computers
   (panel C). Panel A shows a cardiovascular tree with branching factor $\lambda
-  = 2$, $H = 5$ hierarchical branches, and $N = 32$ terminal
+  = 2$, $H = 5$ hierarchical branchings, and $N = 32$ terminal
   nodes. $D_r$ defines the relative radius of pipes (Panel B) between
   successive branches; $D_l$ defines the relative length of pipe
   between successive hierarchical levels ($i$ and $i+1$), with smaller pipes near the
@@ -280,9 +280,9 @@ l_i = l_0 \lambda^{\frac{i}{D_l}}
 \noindent where $i$ is the hierarchical level of a branch or module, $\lambda$
 is the branching factor, and $D_l$ and $D_r$ are the length and thickness
 dimensions. This model is akin to the hierarchical pipe model of vascular
-systems proposed in \cite{west97}, and $\lambda^{\frac{1}{Dr}}$ and
-$\lambda^{\frac{1}{Dl}}$ correspond to West et al.'s $\beta$ and $\gamma$
-respectively (note that in~\cite{west97}, the aorta or top of the network is
+systems proposed in \cite{west97}, and $\lambda^{\frac{1}{D_r}}$ and
+$\lambda^{\frac{1}{D_l}}$ correspond to  $\beta$ and $\gamma$
+respectively in~\cite{west97} (note that in~\cite{west97}, the aorta or top of the network is
 labelled as level 0, while here the smallest branches, the capillaries, are
 labelled as level 0.)
 
@@ -299,16 +299,15 @@ three-dimensional organisms,  $D_l = 3$. Based on the argument that the length o
 dimension of the system. For example in Figure \ref{sec:unified-model} C, where $\lambda = 4$ and $D_l = 2$, wires are $4^{1/2} = 2$ times longer when they connect to successively higher modules in the hierarchy.
 
 Digital circuits scale in a third way beyond length and radius, which
-has no direct analog in organisms.  In vascular networks, each pipe
+has no direct analog in organisms. Digital circuits are partially \emph{decentralized}, with networks that connect multiple sources and destinations, while vascular networks are
+centralized, with blood flowing from a single heart. 
+In vascular networks, each pipe
 branches at each hierarchical level forming a tree structure
 (in the simplest case with $\lambda = 2$ forming
-a binary tree.) Chips, however, have many cross connections at each
-level of the network, and these cross connections
-vary systematically with the hierarchical level.  Thus,
-digital circuits are partially \emph{decentralized}, with networks
-that connect
-multiple sources and destinations, while vascular networks are
-centralized, with blood flowing from a single heart. To account for
+a binary tree.) Chips, however, have many connections within each
+level of the network, and the number of these cross connections
+varies systematically with the hierarchical level.  
+ To account for
 this difference, we introduce a new equation, in which the
 communication (or number of wires) per module increases with the
 hierarchical level as:  
@@ -369,18 +368,18 @@ computation and biology:
   without bottlenecks and they do not accumulate at source, sink, or intermediate locations.
   \end{enumerate}
 
-\item {\bf Terminal units and service volumes:} In contrast to~\cite{west97} we do not assume that terminal branches of the network have fixed size.   In
+\item {\bf Terminal units and service volumes:} Previous scaling models of biology posit that the service volume (the volume of tissue that has an invariant metabolic rate and is served by terminal units of the network) increases with
+  system size~\cite{west97, banavar10}.  In contrast to~\cite{west97} we do not assume that terminal branches of the vascular network have fixed size. Following~\cite{banavar10}, we assume that the length of the terminal branches of the network (i.e., capillaries) is
+  proportional to the radius of the service volume.  We also follow the assumption in~\cite{banavar10} that the capillaries have fixed radius, and that the speed of flow through the service volume is proportional to its length, so that the rate of arrival of oxygen molecules to mitochondria in the service volume is constant.   In
   chips it is well known that transistor size has shrunk over many orders of
-  magnitude over the past 50 years.   Previous scaling models of biology posit that the service volume  (region served by terminal units of the network) increases with
-  system size~\cite{west97, banavar10}.  Following~\cite{banavar10}, we assume that the length of the terminal branches of the network (i.e., capillaries) is
-  proportional to the radius of the service volume.  We also follow the assumption in~\cite{banavar10} that the capillaries have fixed radius, and that the speed of flow through the service volume is proportional to its length, so that the rate of arrival of oxygen molecules to mitochondria in the service volume is constant.  Similar to the length scaling of the service volume in organisms, the radius of the isochronic region (the service area) for chips scales proportionally with decreasing transistor size~\cite{moses08}.
+  magnitude over the past 50 years, so terminal regions have also decreased. Similar to the length scaling of the service volume in organisms, the radius of the isochronic region (the service area) for chips scales proportionally with decreasing transistor size~\cite{moses08}. Thus service regions are smaller in more powerful chips, but they are larger in larger animals.
 \end{enumerate}
 
 In addition to these general assumptions, we make the following
 refinements to accommodate salient differences between biology and computer architecture.
 \begin{enumerate}
 \item In biology, the energy processed by a service volume,
-  $E_{node}$, is invariant with system size. That is, as the service volume
+  ($E_{node}$), is invariant with system size. That is, as the service volume
   increases with body size, the total amount of energy processed
   remains constant.   We do not make this assumption for chips.
 
@@ -395,7 +394,7 @@ refinements to accommodate salient differences between biology and computer arch
 In biology it is known that blood flow slows by several orders of magnitude as
 it travels from the aorta to the capillaries~\cite{west97}, but scaling models
 have generally not characterized this slowing~\cite{west97, banavar10}. We leave velocity in
-our equations to highlight where velocity affects time and energy
+our equations to highlight where blood velocity affect time and energy
 scaling.
 
 \section{Predictions of the Model for Organisms and Computers}
@@ -459,7 +458,7 @@ which the whole system's energy-time product is minimized:
 \end{equation}
 
 \noindent We derive expressions for $E_{sys}$ and $T_{sys}$ for organisms
-(Section~\ref{sec:organisms}) and computers (Section~\ref{sec:computers}) in terms of
+(Sections~\ref{sec:organisms} and \ref{sec:bio-predictions} ) and computers (Section~\ref{sec:computers}) in terms of
 the dimensions $D_r$, $D_w$, and $D_l$ where $D_l$ is fixed by the external
 dimensions of the system.
 
@@ -474,7 +473,7 @@ key quantities $E_{net}$, $T_{net}$, $E_{node}$ and $T_{node}$, and
 then show
 how they scale with $N$ when Eq.~\ref{eq:TheWholeEnchilada} is minimized.
 In contrast to computer scaling, several theoretical scaling models have been proposed for animals over the last century, (e.g., \cite{thompson1942arcy, west97, banavar1999size, dodds2010optimal, banavar10}). The influential West et al. model~\cite{west97} predicted
-scaling relationships by minimizing energy dissipation~\cite{west97},
+scaling relationships by minimizing energy dissipation,
 whereas an alternative ~\cite{banavar10} was based on minimizing metabolic delivery time. Not surprisingly, scaling models that assume different optimization principles make different predictions~\cite{newberry2015testing}.  Our model
 combines both energy and time constraints into a single framework.
 
@@ -503,7 +502,7 @@ single molecule to traverse the network (i.e. it is not $\tau$
 in~\cite{banavar10}), but rather the inverse of the rate of delivery of
 oxygen molecules, analogous to the inverse of clock speed in computer chips.
 
-$T_{node}$: Following Assumption 3, and by definition that each node processes oxygen at the same rate, the time to process each oxygen molecule per node is invariant with respect to organism size and $T_{node} \propto N^0$.
+$T_{node}$: Following Assumption 3, and by the definition that each node processes oxygen at the same rate, the time to process each oxygen molecule per node is invariant with respect to organism size, so $T_{node} \propto N^0$.
 
 %Following \cite{banavar10} and under the steady-state assumption
 %that, on average, oxygen must be processed by mitochondria in the nodes at the
@@ -559,8 +558,7 @@ depending on the value of $D_r$:
   \case{$D_r \geq \frac{4D_l}{1+D_l}$}{$E_{net} \propto l_0 u_0 N^{\frac{1}{D_l} -
   \frac{2}{D_r}}$}
 \end{caseof}
-\noindent We note that $D_r < 2$ is physiologically unrealistic because the network would
-then be area decreasing, causing blood velocity to increase through the network
+\noindent We note that $D_r < 2$ is physiologically unrealistic because cross-sectional area of the network would decrease toward the capillaries, causing blood velocity to increase through the network
 rather than slowing down to allow oxygen absorption at the nodes. To
 accommodate the necessary slowing of blood in the capillaries $D_r$ must be
 greater than 2~\cite{west97}.
@@ -669,8 +667,7 @@ assume that $D_r=2$. This results in the $M \propto N^{\frac{2}{d_r} +
 \frac{1}{3}}$, and $l_0 \propto u_0 \propto N^{\frac{2}{3D_r}
 -\frac{2}{9}}$\footnote{These expressions are consistent with those
 in~\cite{banavar10}, specifically when $D_r=2$, $N\propto M^{\frac{3}{4}}$ and
-$l_0 \propto N^{\frac{1}{9}}$ and when $D_r=3$, $N\propto M$ and $l_0\propto
-N^0$.}(See subsection~\ref{subsec:appendixLengthMass} for more details).
+$l_0 \propto M^{\frac{1}{12}}\propto N^{\frac{1}{9}}$ and when $D_r=3$, $N\propto M$ and $l_0\propto M^0 \propto N^0$.}(See subsection~\ref{subsec:appendixLengthMass} for more details).
 Combining these results with the equation in Table 12, we can predict the
 metabolic rate for animals: 
 
@@ -713,8 +710,7 @@ transition from the heart model).
   \caption{Energy-time minimization model predictions for power
     scaling in organisms. The model from Eq.~\ref{eq:OrganismPower}
     was fit to data from~\cite{kolokotrones2010curvature} by minimizing the distance
-    from the empirical points to the modeled curve. We show the West et al.~\cite{west97} model in blue to
-    accentuate the curvature that our model captures.
+    from the empirical points to the modeled curve. We show the West et al.~\cite{west97} $3/4$ scaling prediction in blue.
     }
 \label{fig:OrganismsPowerScaling}
 \end{figure}
@@ -842,7 +838,7 @@ For computers, minimizing the energy-time product in the model is trivial: $D_l=
 the same rate, wire delay is constant, and the Rent's exponent is 1/2.  Although
 the energy-time product is also minimized for values of $D_w$ greater than 2,
 this would entail greater communication locality, which is challenging
-to engineer, and no
+to engineer, and results in no
 improvement of the energy-time product.  Thus, it is not surprising
 that $D_w = 2$ which is consistent with observed
 Rent's exponents that approach 1/2~\cite{yang2001wirelength, solee2013evolutionary}. 
@@ -881,42 +877,43 @@ to scale linearly with $N$,  i.e.
 Performance\propto \frac{N}{T_{sys}} \propto N
 \end{equation}
 
-We compared our theoretical predictions for power consumption with data obtained for 523
-different microprocessors over a range of approximately 6 orders of magnitude
-in transistor count.  The data are shown in Figure~\ref{fig:power}, where the
-measured exponent was $0.495$ (95\% confidence interval = 0.46 to 0.53) which agrees closely with our prediction of
+We compared our theoretical predictions for power consumption with data
+obtained for 523 different microprocessors over a range of approximately 6
+orders of magnitude in transistor count.  The data are shown in
+Figure~\ref{fig:power}, where the measured exponent was $0.495$ (95\%
+confidence interval = 0.46 to 0.53) which agrees closely with our prediction of
 $0.5$. Consistent data on performance across many technology generations is
-difficult to obtain because reporting standards have changed over the years and 
+difficult to obtain because reporting standards have changed over the years and
 adoption by different vendors is not uniform.  We were able to obtain
 normalized performance data for 100 different chips Intel Chips as measured
 with Dhyrstone Millions of Instructions per Second (DMIPS). This data came from
 a variety of published third-party performance comparisons from different
 generations over a range of 6 orders of magnitude in transistor count.  The
-exponent obtained for these data is $1.11$ (95\% confidence interval =1.07 to 1.15), as shown in
-Figure~\ref{fig:throughput}. This is very close to our predicted exponent of
-$1$, suggesting that engineered designs slightly outperform the
-theoretical optimal defined by the model. Both models are fit using Ordinary
-Least Squares Regression.We have no reason to believe there are significant
-errors in the count of the number of transistors, which would necessitate the
-use of Reduced Major Axis(RMA) regression~\cite{mcardle1988structural}.
-Regardless, we tested RMA regression and received similar results.
+exponent obtained for these data is $1.11$ (95\% confidence interval =1.07 to
+1.15), as shown in Figure~\ref{fig:throughput}. This is very close to our
+predicted exponent of $1$, suggesting that engineered designs slightly
+outperform the theoretical optimal defined by the model. Both models are fit
+using Ordinary Least Squares Regression as we have no reason to believe there
+are significant errors in the count of the number of transistors, which would
+necessitate the use of other regression
+techniques~\cite{mcardle1988structural}.  
 
 The linear increase in performance with the number of transistors is somewhat
 counter-intuitive. Given that transistor switching times have decreased
 dramatically as size has decreased, one might expect performance to increase as
-the product of clock speed and transistor number ($N$). This is not the case (the
-predicted performance if time were the inverse of clock speed is shown in the
-green dashed line in Figure~\ref{fig:throughput}). Some performance increases
-are achievable by increasing clock speed for a given manufacturing process,
-which may account for the higher than predicted scaling
+the product of clock speed and transistor number ($N$). This is not the case
+(the predicted performance if time were the inverse of clock speed is shown in
+the green dashed line in Figure~\ref{fig:throughput}). Some performance
+increases are achievable by increasing clock speed for a given manufacturing
+process, which may account for the higher than predicted scaling
 exponent\footnote{Additionally higher end chips are more likely to be
-  benchmarked, potentially leading to a bias in the data towards higher
-performing chips.}. Our analysis suggests that the network is indeed
-the bottleneck. The network delivers bits to transistors at a constant rate per transistor
-(Eq. \ref{eq:comp-Tnet}), so performance has increased only linearly with transistor
-number even though, in principle, transistors could process information more
-quickly.  As in biology, performance cannot be
-understood without considering the constraints of the network.
+benchmarked, potentially leading to a bias in the data towards higher
+performing chips.}. Our analysis suggests that the network is indeed the
+bottleneck. The network delivers bits to transistors at a constant rate per
+transistor (Eq. \ref{eq:comp-Tnet}), so performance has increased only linearly
+with transistor number even though, in principle, transistors could process
+information more quickly.  As in biology, performance cannot be understood
+without considering the constraints of the network.
 
 
 \begin{figure}[!h]
@@ -940,7 +937,7 @@ experimental data suggests that through successive generations of
 trial-and-error, innovation and optimization, engineered designs are highly
 successful, approaching the theoretical limit predicted by the model.
 
-The model we have presented here is of course a simplification of a more complex reality. For example, our analysis assumes that $D_l$ $D_r$, and $D_w$ are fixed constants both throughout the network both within and across systems. In reality, each of these may vary. In fact,~\cite{newberry2015testing} $D_l$ did not find evidence for a constant $D_l = 3$ in mouse vasculature, suggesting that the network is not delivering resources uniformly throughout the body volume. This is not surprising given the variable metabolic requirements of different tissues and organs. As discussed above, $D_r$ varies within the vascular network as evidenced by area-increasing branching in smaller vessels, but \cite{newberry2015testing} find values for $D_r$ consistent with our prediction that $D_r$ is between 2 and 3. Similarly, there is evidence that $D_w$ is not constant across all hierarchical levels in computer chips~\cite{ozaktas2004information}. Accounting for these factors would allow more accurate predictions in biology and computation.  However, they are unlikely to substantively change the order-of-magnitude results presented here with our simple unified model. 
+
 
 \section{Discussion: Implications for Evolutionary Transitions}
 \label{sec:discussion}
@@ -950,8 +947,10 @@ enormous range of sizes.  By simultaneously minimizing energy dissipation and de
 time, our unified model 
 predicts scaling relationships for both
 organisms and computer chips.  This broad framework highlights the similarities
-and differences between biological networks that deliver energy and
+and differences between biological networks that deliver oxygen and
 computational networks that deliver information. 
+
+The model we have presented here is of course a simplification of a more complex reality. For example, our analysis assumes that $D_l$ $D_r$, and $D_w$ are fixed constants both throughout the network both within and across systems. In reality, each of these may vary. In fact,~\cite{newberry2015testing} did not find evidence for a constant $D_l = 3$ in mouse vasculature, suggesting that the network is not delivering resources uniformly throughout the body volume. This is not surprising given the variable metabolic requirements of different tissues and organs. As discussed above, $D_r$ varies within the vascular network as evidenced by area-increasing branching in smaller vessels, but \cite{newberry2015testing} find values for $D_r$ consistent with our prediction that $D_r$ is between 2 and 3. Similarly, there is evidence that $D_w$ is not constant across all hierarchical levels in computer chips~\cite{ozaktas2004information}. Accounting for these factors would allow more accurate predictions in biology and computation.  However, they are unlikely to substantively change the order-of-magnitude results presented here with our simple unified model. 
 
 The similarities between biological and computational scaling
 suggest likely future trajectories in computing based on how the fundamental structural and functional properties of organisms have changed over evolutionary time. For this we turn to work by Delong et al.~\cite{delong2010shifts} who
@@ -1054,7 +1053,7 @@ biology and computing. Despite obvious differences in form and function, the
 scaling of organisms and computers is governed by the same simple principle: minimizing the energy-time product. Both natural selection and human engineering have evolved designs that manage the trade-off between cost and performance to minimize energy dissipation and time to deliver resources, resulting in general scaling laws that hold over several orders of magnitude variation in system size. Moreover, power laws as a function of size are not
 unique to organisms and computers but are observed across a wide
 variety of complex systems in nature, society and technology.  The scaling of
-white and grey matter\cite{zhang00} and communication modularity~\cite{meunier2010modular} in the brain, of energy use and GDP in
+white and grey matter~\cite{zhang00} and communication modularity~\cite{meunier2010modular} in the brain, of energy use and GDP in
 countries \cite{brown11}, and the pace of life and population in cities
 \cite{bettencourt07} are additional examples where a unifying explanation is
 still lacking.  Because cost and performance, i.e., energy and time, impose
@@ -1132,7 +1131,7 @@ N^{-1} S$. How $S$ scales with $N$ is dependent on the exponent $\frac{4}{3} -
   again, equation~\ref{eq:TheWholeEnchilada} scales as $\propto l_0 +
 u_0^{-1}N^{2-\frac{2}{D_r}}$.}
 
-    \case{$3 < D_r < 12 $}{In this case the exponent in $S$ is positive,
+    \case{$D_r >3 $}{In this case the exponent in $S$ is positive,
       meaning that $S$ scales directly with $N$. Note that $c>1$ in this case
       and we can write 
       \begin{equation}
@@ -1144,12 +1143,12 @@ u_0^{-1}N^{2-\frac{2}{D_r}}$.}
       -\frac{4}{D_r})}$. This means that resistance still scales inversely with
       size, but at a faster rate than if $D_r \leq 3$. This implies the energy
     time produce scales as $\propto N^{\frac{4}{3} - \frac{4}{D_r}} +
-  N^{2-\frac{2}{D_r}}$.}
+  N^{2-\frac{2}{D_r}}$. Note that this results in a positive scaling of $R$ with $N$ if $D_r>12$. }
 
-   \case{$D_r \geq 12$}{This final case is analogous to the one above, except
-   that now resistance scales positively with $N$, implying that the energy in
- the network would scale positively with $N$. This is likely a non-physical
- possibility, but we include it here for completeness.}
+%   \case{$D_r \geq 12$}{This final case is analogous to the one above, except
+%   that now resistance scales positively with $N$, implying that the energy in
+% the network would scale positively with $N$. This is likely a non-physical
+% possibility, but we include it here for completeness.}
 
 \end{caseof}
 
