@@ -895,7 +895,9 @@ generations over a range of 6 orders of magnitude in transistor count.  The
 exponent obtained for these data is $1.11$ (95\% confidence interval =1.07 to 1.15), as shown in
 Figure~\ref{fig:throughput}. This is very close to our predicted exponent of
 $1$, suggesting that engineered designs slightly outperform the
-theoretical optimal defined by the model.  
+theoretical optimal defined by the model. Both models were fit using Reduced
+Major Axis(RMA) regression~\cite{mcardle1988structural}, however, ordinary
+least squares regression yielded similar results. 
 
 The linear increase in performance with the number of transistors is somewhat
 counter-intuitive. Given that transistor switching times have decreased
