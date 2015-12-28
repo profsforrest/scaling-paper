@@ -502,15 +502,17 @@ single molecule to traverse the network (i.e. it is not $\tau$
 in~\cite{banavar10}), but rather the inverse of the rate of delivery of
 oxygen molecules, analogous to the inverse of clock speed in computer chips.
 
-$T_{node}$: Following Assumption 3, and by the definition that each node processes oxygen at the same rate, the time to process each oxygen molecule per node is invariant with respect to organism size, so $T_{node} \propto N^0$.
+$T_{node}$: Due to the steady state assumption, $T_{node} \propto T_{net} \propto N/Q$. 
+
 
 %Following \cite{banavar10} and under the steady-state assumption
 %that, on average, oxygen must be processed by mitochondria in the nodes at the
 %same rate that it is delivered (i.e., supply matches demand): $T_{node}=
 %T_{net} \propto N/Q$.
 
-Substituting these relationships into Eq.~\ref{eq:TheWholeEnchilada} (where $T_{sys}$ is dominated by $T_{net}$) gives
-$(RQ + N) \times (\frac{N}{Q})$, and the minimization simplifies to:
+Substituting these relationships into Eq.~\ref{eq:TheWholeEnchilada} (where $E_{sys} = RQ + N$ and $T_{sys} \propto N/Q$ giving
+
+%$(RQ + N) \times (\frac{N}{Q})$, and the minimization simplifies to:
 \begin{equation}
  min (RN + \frac{N^2}{Q})
 \label{eq:bio-min}
@@ -535,7 +537,12 @@ We derive upper and lower bounds for $D_r$ in the network given that the goal
 is to minimize the energy-time product (Equation \ref{eq:bio-min}).  Recalling
 that $\lambda^{-H} = N^{-1}$, in the case
 where $D_r \leq \frac{4D_l}{1+D_l}$, the summation in Eq.~\ref{eq:resistance} converges to a
-constant ($\log(N)$ in the case of equality), and $R \propto l_0 N^{-1}$. As
+constant ($\log(N)$ in the case of equality), and 
+
+\begin{equation}
+R \propto l_0 N^{-1} 
+\end {equation}
+As
 $D_r$ increases above $\frac{4D_l}{1+D_l}$, $R$ increases from $\propto l_0 N^{-1}$ to $\propto
 l_0 N^{\frac{1}{D_l} - \frac{4}{D_r}}$. 
 See Section~\ref{sec:AppendixOrg} for details of the calculation.
@@ -547,10 +554,16 @@ substituting from Eq.~\ref{eq:rscaling}, $Q = u_0 \pi r_0^2
 \lambda^{\frac{2H}{D_r}} = u_0 \pi r_0^2N^{\frac{2}{D_r}} $.  We do not assume
 that $u_H$ is independent of $N$, so $u_0$ is included in the scaling
 equations.  We assume $Q$ is equal at all levels of the network (steady state
-assumption) giving: $Q \propto u_0 N^{\frac{2}{D_r}}$. 
+assumption) giving
 
-Having derived $R$ and $Q$ it is evident that $E_{net}$ scales differently
-depending on the value of $D_r$:
+\begin{equation}
+Q \propto u_0 N^{\frac{2}{D_r}}
+\end{equation}
+
+
+Having derived $R$ and $Q$, we substitute these relationships into the scaling equations for $E_{net}$, $E_{node}$, $T_{net}$, and $T_{node}$ and list the scaling predictions in the first column of Table 1.
+
+It it is evident that $E_{net}$ scales differently depending on the value of $D_r$:
 
 \begin{caseof}
   \case{$D_r \leq \frac{4D_l}{1+D_l}$}{$E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1}$}
@@ -563,7 +576,7 @@ rather than slowing down to allow oxygen absorption at the nodes. To
 accommodate the necessary slowing of blood in the capillaries $D_r$ must be
 greater than 2~\cite{west97}.
 
-Section \ref{sec:AppendixOrg} gives the equations
+Section \ref{sec:AppendixOrg} gives the derivations for $E_{net}$
 for all values of $D_r$. Here we show the case ($D_r \leq 3$) that minimizes
 the scaling of the energy time product (Eq.~\ref{eq:bio-min}):
 \begin{equation}
@@ -583,7 +596,8 @@ E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1} \propto l_0 u_0
 \end{equation}
 
 
-\noindent The final predicted scaling relationships for the case that minimizes the energy time product ($D_r = 2$) are shown in Table 1.
+\noindent The predicted scaling relationships for the case that minimizes the energy time product ($D_r = 2$) are also shown in Table 1.
+
 
 
 \begin{table}
@@ -597,8 +611,8 @@ E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1} \propto l_0 u_0
 \cline{2-4}
 & $T_{net}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & $u_0^{-1}$\\
 \cline{2-4}
-& $T_{node}$ & $N^0$ & $N^0$ \\  
-%& $T_{node}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & $u_0^{-1}$ \\  
+%& $T_{node}$ & $N^0$ & $N^0$ \\  
+& $T_{node}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & $u_0^{-1}$ \\  
 
 \cline{2-4}
 & $E_{sys} \times T_{sys}$ & $l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$& $l_0 + u_0^{-1} N$\\
@@ -655,7 +669,10 @@ of the network by identifying a discontinuity in the scaling exponent at $D_r =
 3$. (For $D_r > 3$ the energy-time product increases much more rapidly than for
 $D_r \leq 3$.)
 
-By considering the energy dissipated in \emph{both} the network and 
+Additionally, we can make a specific prediction for the value of $D_r$ that provides optimal slowing. By our definition of a node as the volume of tissue that processes oxygen at a fixed rate, then $T_{node}$ is invariant. However, when $D_r = 2$, $T_{node}$ varies inversely with $u_0$ (blood velocity through he capillary.) Following~\cite{banavar10}, in the optimal case $u_0$ increases with organism mass, and therefore with $N$. See Section~\ref{subsec:appendixLengthMass} for the derivation that $u_0 \propto l_0 \propto N^{\frac{2}{3D_r} - \frac{2}{9}}$. Substituting this equation for $u_0$ into the equation for $T_{node}$ in Table 1, we find that $T_{node}$ is invariant with respect to $N$ when $D_r = \frac{24}{11} = 2.18$. We test this prediction using data from~\cite{kolokotrones2010curvature}.
+
+
+By considering blood slowing through the network due to $D_r > 2$ and by considering the energy dissipated in \emph{both} the network and 
 nodes ($E_{net}$ and $E_{node}$), our analysis also provides an explanation for the curvature observed in
 metabolic scaling in mammals. Kolokotrones et al.
 demonstrated that metabolic rate is elevated in small mammals, causing a
@@ -663,23 +680,21 @@ deviation from the simple $3/4$ power-law relationship between metabolism and
 mass~\cite{kolokotrones2010curvature}. 
 
 We use a similar approach to~\cite{banavar10}, with the exception that we do
-assume that $D_r=2$. This results in the $M \propto N^{\frac{2}{d_r} +
-\frac{1}{3}}$, and $l_0 \propto u_0 \propto N^{\frac{2}{3D_r}
--\frac{2}{9}}$\footnote{These expressions are consistent with those
+assume that $D_r=2$. This results in $M \propto N^{\frac{2}{d_r} +
+\frac{1}{3}}$\footnote{These expressions are consistent with those
 in~\cite{banavar10}, specifically when $D_r=2$, $N\propto M^{\frac{3}{4}}$ and
-$l_0 \propto M^{\frac{1}{12}}\propto N^{\frac{1}{9}}$ and when $D_r=3$, $N\propto M$ and $l_0\propto M^0 \propto N^0$.}(See subsection~\ref{subsec:appendixLengthMass} for more details).
-Combining these results with the equation in Table 12, we can predict the
-metabolic rate for animals: 
+$l_0 \propto M^{\frac{1}{12}}\propto N^{\frac{1}{9}}$ and when $D_r=3$, $N\propto M$ and $l_0\propto M^0 \propto N^0$.} and
 
 \begin{equation}
   \label{eq:OrganismPower}
   B \propto M^{\frac{18-8D_r}{6+Dr}} + M^{\frac{24-2D_r}{18-3D_r}} 
 \end{equation}
 
-\noindent While this model is not as simple as the original $\frac{3}{4}$
+\noindent (See subsection~\ref{subsec:appendixLengthMass} for details of the calculations).
+While this model is not as simple as the original $\frac{3}{4}$
 scaling predicted by West et al.~\cite{west97} or the alternative models
-proposed by Kolokotrones et al.~\cite{kolokotrones2010curvature}, we believe
-that it has a sound theoretical basis.
+proposed by Kolokotrones et al.~\cite{kolokotrones2010curvature}, these exponents arise by combining two scaling relationships: that of the metabolic rate of the nodes and the metabolic power required to drive the network. (Note that the metabolic energy that pushes oxygen through the network to the nodes is driven by oxygen delivered directly to the heart, bypassing the network itself.)
+
 %Building on results from~\cite{banavar10} that  $N \propto
 %M^{\frac{3}{4}}$ and $l_0 \propto u_0 \propto M^{\frac{1}{12}}$, we obtain $l_0 \propto u_0 \propto N^{\frac{1}{9}}$.
 %The scaling relationships in Table 12 predict the expected metabolic rate, $B$, for animals:
@@ -688,21 +703,21 @@ that it has a sound theoretical basis.
 %  B \propto M^{\frac{3}{D_r} - \frac{5}{4}} + M^{\frac{3}{2D_r} + \frac{1}{12}}
 %\end{equation}
 
-We fit this model to data taken from~\cite{kolokotrones2010curvature} as shown
+We fit Equation \ref{eq:OrganismPower} to data taken from~\cite{kolokotrones2010curvature} as shown
 in Figure~\ref{fig:OrganismsPowerScaling}. By including energy dissipated in
 the network and in the nodes, each with different scaling exponents, the model
 naturally generates the curvature observed in the data.  Intuitively, in
 smaller animals a greater fraction of energy is consumed by $E_{node}$, a term
-that is linear in the number of service volumes. In addition, the best fit to
-the data is achieved with $D_r = 2.56$, which is consistent with the prediction
+that is linear in the number of service volumes. The best fit to
+the data is achieved with $D_r = 2.56$ using RMA regression (and $D_r = 2.497$ using OLS regression) which is consistent with the prediction
 of area preserving branching in the upper region of the network and $D_r = 3$
 in the lower region of the network, and consistent with the empirical radius
 scaling in~\cite{newberry2015testing}.  Our model provides a marginally better
-fit than the extensions to the West et al.\ model that were explicitly designed
+fit (red-dashed line) than the extensions to the West et al.\ model that were explicitly designed
 to induce curvature~\cite{kolokotrones2010curvature} (Mean Squared Error for
 our model is 0.0268 vs 0.0287 for the extended West et al.\ model, 0.0274 for
 the flow-mode proportional transition model, and 0.0277 for the flow-mode
-transition from the heart model). 
+transition from the heart model).  We also tested the predicted value of $D_r = 2.18$ which also gives a marginally better fit (green dashed line, MSE = 0.0271) than alternative models in ~\cite{kolokotrones2010curvature}. The theoretically predicted $D_r = 2.18$ also generates curvature for larger masses, accounting for the elevated metabolic rate of the largest mammals, not accounted for by any other scaling model.
  
 \begin{figure}[!h] \centering
   \includegraphics[height=70mm]{Figures/OrganismsPowerScaling.pdf}
@@ -714,22 +729,6 @@ transition from the heart model).
     }
 \label{fig:OrganismsPowerScaling}
 \end{figure}
-
-
-The model predicts that, for the optimal network design (i.e., $D_l=3$  and
-$D_r=2$), the system's energy-time product scales approximately linearly with $N$. Highlighting the inherent tradeoff between energy dissipation and delivery times 
-has important implications for the energetic basis of fitness.  Some have proposed that biological fitness
-maximizes metabolic power (energy/time) \cite{lotka56, odum71}, whereas others
-have proposed that it minimizes biological times (e.g., generation times, which
-is equivalent to maximizing vital rates) \cite{lindstedt81, sibly91}. The
-invariance of the energy-time product on a per-node basis is consistent with the fact that fitness
-of organisms is largely independent of body mass.  Organisms of all sizes, from
-small, fast, low-power microbes to large, slow, powerful mammals, coexist and,
-therefore, are likely nearly equally fit.  This implies a direct trade-off
-between maximizing metabolic power and minimizing generation times that holds
-over the many orders of magnitude variation in body mass.  The energy-time
-product reflects powerful geometric, physical and biological constraints on the
-evolution of organism designs.
 
 
 \subsection{Computers}
@@ -950,7 +949,25 @@ organisms and computer chips.  This broad framework highlights the similarities
 and differences between biological networks that deliver oxygen and
 computational networks that deliver information. 
 
-The model we have presented here is of course a simplification of a more complex reality. For example, our analysis assumes that $D_l$ $D_r$, and $D_w$ are fixed constants both throughout the network both within and across systems. In reality, each of these may vary. In fact,~\cite{newberry2015testing} did not find evidence for a constant $D_l = 3$ in mouse vasculature, suggesting that the network is not delivering resources uniformly throughout the body volume. This is not surprising given the variable metabolic requirements of different tissues and organs. As discussed above, $D_r$ varies within the vascular network as evidenced by area-increasing branching in smaller vessels, but \cite{newberry2015testing} find values for $D_r$ consistent with our prediction that $D_r$ is between 2 and 3. Similarly, there is evidence that $D_w$ is not constant across all hierarchical levels in computer chips~\cite{ozaktas2004information}. Accounting for these factors would allow more accurate predictions in biology and computation.  However, they are unlikely to substantively change the order-of-magnitude results presented here with our simple unified model. 
+The model we have presented here is of course a simplification of a more complex reality. For example, our analysis assumes that $D_l$ $D_r$, and $D_w$ are fixed constants both throughout the network both within and across systems. In reality, each of these may vary. In fact,~\cite{newberry2015testing} did not find evidence for a constant $D_l = 3$ in mouse vasculature, suggesting that the network does not deliver resources uniformly throughout the body volume. This is not surprising given the variable metabolic requirements of different tissues and organs. As discussed above, $D_r$ varies within the vascular network as evidenced by area-increasing branching in smaller vessels, but \cite{newberry2015testing} find values for $D_r$ consistent with our prediction that $D_r$ is between 2 and 3. Similarly, there is evidence that $D_w$ is not constant across all hierarchical levels in computer chips~\cite{ozaktas2004information}. Accounting for these factors would allow more accurate predictions in biology and computation.  However, they are unlikely to substantively change the order-of-magnitude results presented here with our simple unified model. 
+
+Our model makes novel predictions in both biology and computation. For organisms we give the first quantitative prediction for $D_r$ that both accounts for blood slowing through the network and accounts for the empirically observed curvature in the scaling for both small and large animals. Additionally, 
+%we show that the optimal network design (i.e., $D_l=3$  and $D_r=2$), 
+this prediction ($D_r = \frac{24}{11}$) results in an energy-time product that is approximately linearly with $N$ ($E_{sys} \propto N^{1/12} + N^0$, Table 1). Highlighting the inherent tradeoff between energy dissipation and delivery times 
+has important implications for the energetic basis of fitness.  Some have proposed that biological fitness
+maximizes metabolic power (energy/time) \cite{lotka56, odum71}, whereas others
+have proposed that it minimizes biological times (e.g., generation times, which
+is equivalent to maximizing vital rates) \cite{lindstedt81, sibly91}. The
+invariance of the energy-time product on a per-node basis is consistent with the fact that fitness
+of organisms is largely independent of body mass.  Organisms of all sizes, from
+small, fast, low-power microbes to large, slow, powerful mammals, coexist and,
+therefore, are likely nearly equally fit.  This implies a direct trade-off
+between maximizing metabolic power and minimizing generation times that holds
+over the many orders of magnitude variation in body mass.  The energy-time
+product reflects powerful geometric, physical and biological constraints on the
+evolution of organism designs.
+
+In computation, our model accurately predicts power consumption and performance of computer chips as simple functions of the number of transistors. The performance predictions highlight that delivery of bits through the network, rather than processing bits at the transistors, is the rate limiting step that constrains performance. 
 
 The similarities between biological and computational scaling
 suggest likely future trajectories in computing based on how the fundamental structural and functional properties of organisms have changed over evolutionary time. For this we turn to work by Delong et al.~\cite{delong2010shifts} who
@@ -1032,18 +1049,17 @@ computation than is achievable in multi-cellular biology.
 
 Scaling on computer chips and other systems in which networks deliver
 information rather than materials lend insights into another important
-biological evolutionary transition, the transition to social animal societies.
+biological evolutionary transition, the transition to social animal societies. Understanding, and improving, the flow of energy, materials and information through human societies is one of the greatest challenges in science and engineering, and scaling analyses lend an important perspective on this problem~\cite{moses2012beyond}.
 The analysis in Delong et al. does not address scaling relationships in animal societies.
 However, sociality is an important evolutionary transition, reflected in the
 ecological dominance of humans and ants whose networked
 systems transport both energy and information. These social species have experienced great success, dispersing over vast territories across the globe and capturing a large
-fraction of available energy ~\cite{haberl2007quantifying, holldobler1990ants}. Recent evidence suggests that ant colonies and
-human societies follow similar scaling relationships as individual organisms~\cite{moses2003allometry, bettencourt2007growth, burnside2012human, hou2010energetic, waters2010allometric}. In social animal systems and networked computer systems, networks
-are at least partially decentralized, for example traffic flow within cities ~\cite{samaniego2008cities} and among ant nests~\cite{flanagan2013fast}. Understanding
-how communication locality has emerged in computation may lend insights into
-one of the important benefits in the transition to sociality in biology: animal
-societies have escaped the constraint of the centralized distribution network
-by evolving systems for decentralized and modular communication.
+fraction of available energy ~\cite{haberl2007quantifying, holldobler1990ants}. Recent evidence suggests that ant colonies and human societies follow similar scaling relationships as individual organisms~\cite{moses2003allometry, bettencourt2007growth, burnside2012human, hou2010energetic, waters2010allometric}. 
+
+In social animal systems and networked computer systems, networks
+are at least partially decentralized, for example traffic flow within cities ~\cite{samaniego2008cities} and among ant nests~\cite{flanagan2013fast}. Tainter et. al.~\cite{tainter2003resource} argue that complex human and ant societies, are able to exploit ``low-gain'' energy systems: those that provide low concentrations of dispersed energy, but that are ubiquitous and therefore can be exploited by complex systems capable of processing and storing vast quantities of energy. Understanding the forces that have driven the tremendous power and performance scaling in computing may lend insights into how other technologies can exploit similar scaling relationships. In particular, communication locality in computation suggests an important strategy in the transition to sociality: animal societies can escape the constraints of the centralized distribution network
+by evolving systems for decentralized transportation and modular communication. Indeed, the transition to solar energy is capitalizing on the same kind of dramatic technological performance improvements that computer technology experienced as Moore's Law~\cite{farmer2015predictable}.  The history of computing suggests enormous gains in energy delivery if increasingly powerful solar cells utilize dispersed solar energy locally to escape the centralized distribution overhead of the fossil fuel based economy.
+ 
 
 
 \section{Conclusion}
@@ -1152,44 +1168,41 @@ u_0^{-1}N^{2-\frac{2}{D_r}}$.}
 
 \end{caseof}
 
-\subsection{Length and Mass Scaling}
+\subsection{Length, Velocity and Mass Scaling}
 \label{subsec:appendixLengthMass}
 
-We determine the scaling of $l_0$ and $M$ following the same method as that
+We determine the scaling of $l_0$, $u_0$ and $M$ following the method 
 presented in Banavar et al.~\cite{banavar10}. Specifically, we assume that $M
-\propto V$, where $V$ is the volume of the organism and
+\propto V \propto V_{net}$, where $V$ is the volume of the organism, $V_{net}$ is the volume of the network
+transporting oxygen molecules, and
 
 \begin{equation}
 u_0 \propto l_0 \propto \left (\frac{V}{N} \right) ^{\frac{1}{3}}
 \end{equation}
 
-We first calculate the volume of the network, $V_{net}$.
+We calculate $V_{net}$ as: 
 
 \begin{align*}
-V_{net} &= \sum_{i=0}^H V_i = \sum l_i r_i^2 n_i \\
-  &= \sum_{i=0}^H l_0 \lambda^{\frac{i}{D_l}} r_0^2 \lambda^{\frac{2i}{D_r}}
+V_{net} &= \sum_{i=0}^H V_i = \sum s^{-1} l_i r_i^2 n_i \\
+  &= \sum_{i=0}^H {l_0}^{-1} l_0 \lambda^{\frac{i}{D_l}} r_0^2 \lambda^{\frac{2i}{D_r}}
   \lambda^{H-i} \\
-  &= \lambda^H l_0 r_0^2 \sum_{i=0}^H \lambda^{i \left(\frac{i}{D_l} +
+  &= \lambda^H r_0^2 \sum_{i=0}^H \lambda^{i \left(\frac{i}{D_l} +
   \frac{2}{D_r} - 1 \right) } \\
-  &\propto l_0 N^{\frac{1}{D_l} + \frac{2}{D_r}} 
+  &\propto N^{\frac{1}{D_l} + \frac{2}{D_r}} 
 \end{align*}
 
-\noindent The above assumes that $\frac{1}{D_l} + \frac{2}{D_r} -1 > 0$ which
-will always be the case with $2 < D_r < 3$, and $D_l=3$. Banavar et al.\ assume
-that the velocity of the oxygen molecules in the service volume is proportional
-to the length and that the service volume is constant among species so the
-total service volume of the animal is $V = \frac{V_{net}}{u_0} \propto
-N^{\frac{1}{D_l} + \frac{2}{D_r}}$.
+Note that $s \propto l_0$ is the linear distance between oxygen molecules that will be delivered to the same capillary, allowing narrower vessels when oxygen travels at higher velocity (see ~\cite{banavar10} Figure 3 for further explanation). The calculation assumes that $\frac{1}{D_l} + \frac{2}{D_r} -1 > 0$ which
+will always be the case with $2 < D_r < 3$, and $D_l=3$. 
 
-The above implies that $M\propto V \propto N^{\frac{1}{D_l} +
+Therefore $M\propto N^{\frac{1}{D_l} +
 \frac{2}{D_r}}$,
 and $N \propto M^{\frac{1}{\frac{1}{3} + \frac{2}{D_r}}}$, where $D_l=3$.
-Additionally, using our derived $V$ we determine that
+Additionally
 
 \begin{align*}
-l_0 & \propto \left( \frac{V}{N} \right)^{\frac{1}{3}} \\
+u_0 \propto l_0 & \propto \left( \frac{V}{N} \right)^{\frac{1}{3}} \\
     & \propto \left( N^{\frac{1}{3} + \frac{2}{D_r} - 1} \right)^{\frac{1}{3}} \\
-u_0 \propto l_0 & \propto N^{\frac{2}{3D_r} - \frac{2}{9}}
+    & \propto N^{\frac{2}{3D_r} - \frac{2}{9}}
 \end{align*}
 
 Combining these results with $E_{sys}$ and $T_{sys}$ in
