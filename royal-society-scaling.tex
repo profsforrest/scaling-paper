@@ -877,42 +877,43 @@ to scale linearly with $N$,  i.e.
 Performance\propto \frac{N}{T_{sys}} \propto N
 \end{equation}
 
-We compared our theoretical predictions for power consumption with data obtained for 523
-different microprocessors over a range of approximately 6 orders of magnitude
-in transistor count.  The data are shown in Figure~\ref{fig:power}, where the
-measured exponent was $0.495$ (95\% confidence interval = 0.46 to 0.53) which agrees closely with our prediction of
+We compared our theoretical predictions for power consumption with data
+obtained for 523 different microprocessors over a range of approximately 6
+orders of magnitude in transistor count.  The data are shown in
+Figure~\ref{fig:power}, where the measured exponent was $0.495$ (95\%
+confidence interval = 0.46 to 0.53) which agrees closely with our prediction of
 $0.5$. Consistent data on performance across many technology generations is
-difficult to obtain because reporting standards have changed over the years and 
+difficult to obtain because reporting standards have changed over the years and
 adoption by different vendors is not uniform.  We were able to obtain
 normalized performance data for 100 different chips Intel Chips as measured
 with Dhyrstone Millions of Instructions per Second (DMIPS). This data came from
 a variety of published third-party performance comparisons from different
 generations over a range of 6 orders of magnitude in transistor count.  The
-exponent obtained for these data is $1.11$ (95\% confidence interval =1.07 to 1.15), as shown in
-Figure~\ref{fig:throughput}. This is very close to our predicted exponent of
-$1$, suggesting that engineered designs slightly outperform the
-theoretical optimal defined by the model. Both models are fit using Ordinary
-Least Squares Regression.We have no reason to believe there are significant
-errors in the count of the number of transistors, which would necessitate the
-use of Reduced Major Axis(RMA) regression~\cite{mcardle1988structural}.
-Regardless, we tested RMA regression and received similar results.
+exponent obtained for these data is $1.11$ (95\% confidence interval =1.07 to
+1.15), as shown in Figure~\ref{fig:throughput}. This is very close to our
+predicted exponent of $1$, suggesting that engineered designs slightly
+outperform the theoretical optimal defined by the model. Both models are fit
+using Ordinary Least Squares Regression as we have no reason to believe there
+are significant errors in the count of the number of transistors, which would
+necessitate the use of other regression
+techniques~\cite{mcardle1988structural}.  
 
 The linear increase in performance with the number of transistors is somewhat
 counter-intuitive. Given that transistor switching times have decreased
 dramatically as size has decreased, one might expect performance to increase as
-the product of clock speed and transistor number ($N$). This is not the case (the
-predicted performance if time were the inverse of clock speed is shown in the
-green dashed line in Figure~\ref{fig:throughput}). Some performance increases
-are achievable by increasing clock speed for a given manufacturing process,
-which may account for the higher than predicted scaling
+the product of clock speed and transistor number ($N$). This is not the case
+(the predicted performance if time were the inverse of clock speed is shown in
+the green dashed line in Figure~\ref{fig:throughput}). Some performance
+increases are achievable by increasing clock speed for a given manufacturing
+process, which may account for the higher than predicted scaling
 exponent\footnote{Additionally higher end chips are more likely to be
-  benchmarked, potentially leading to a bias in the data towards higher
-performing chips.}. Our analysis suggests that the network is indeed
-the bottleneck. The network delivers bits to transistors at a constant rate per transistor
-(Eq. \ref{eq:comp-Tnet}), so performance has increased only linearly with transistor
-number even though, in principle, transistors could process information more
-quickly.  As in biology, performance cannot be
-understood without considering the constraints of the network.
+benchmarked, potentially leading to a bias in the data towards higher
+performing chips.}. Our analysis suggests that the network is indeed the
+bottleneck. The network delivers bits to transistors at a constant rate per
+transistor (Eq. \ref{eq:comp-Tnet}), so performance has increased only linearly
+with transistor number even though, in principle, transistors could process
+information more quickly.  As in biology, performance cannot be understood
+without considering the constraints of the network.
 
 
 \begin{figure}[!h]
