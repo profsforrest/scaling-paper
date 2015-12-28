@@ -108,6 +108,8 @@
 
 %%%%%%%%%%%%%%%%% END OF PREAMBLE %%%%%%%%%%%%%%%%
 
+\newcommand\T{\rule{0pt}{3ex}}       % Top strut
+\newcommand\B{\rule[-1.2ex]{0pt}{0pt}} % Bottom strut
 
 
 \begin{document} 
@@ -604,33 +606,38 @@ E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1} \propto l_0 u_0
 \centering
 \begin{tabular}{l|l||l|l|}
 \multicolumn{2}{l}{} & \multicolumn{1}{c}{$\mathbf{D_r \leq
-\frac{4D_l}{1+D_l}}$} & \multicolumn{1}{c}{$\mathbf{D_l=3, D_r=2}$}\\[2pt]
+\frac{4D_l}{1+D_l}}$} & \multicolumn{1}{c}{$\mathbf{D_l=3, D_r=\frac{24}{11}}$}
+  \T \B \\
   \cline{2-4}
-\multirow{5}{*}{\textbf{Organisms}} & $E_{net}$ &$l_0u_0 N^{\frac{2}{D_r}-1}$ &  $l_0 u_0$\\
+\multirow{5}{*}{\textbf{Organisms}} & $E_{net}$ &$l_0u_0 N^{\frac{2}{D_r}-1}$ &
+  $N^{\frac{1}{12}}$ \T \\
 \cline{2-4}
-& $E_{node}$ &  $N$ & $N$ \\
+& $E_{node}$ &  $N$ & $N$ \T \\
 \cline{2-4}
-& $T_{net}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & $u_0^{-1}$\\
+& $T_{net}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & $N^0$ \T \\
 \cline{2-4}
 %& $T_{node}$ & $N^0$ & $N^0$ \\  
-& $T_{node}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & $u_0^{-1}$ \\  
+& $T_{node}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & $N^0$ \T \\  
 
 \cline{2-4}
-& $E_{sys} \times T_{sys}$ & $l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$& $l_0 + u_0^{-1} N$\\
+& $E_{sys} \times T_{sys}$ & $l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$ &
+$N^{\frac{1}{12}} + N$ \T \\
 \cline{2-4}
+%\multicolumn{4}{c}{} \\[-10pt] %Total Hack to make the table look decent
 \multicolumn{2}{c}{}  & \multicolumn{1}{c}{$\mathbf{D_w \geq
-\frac{D_l}{D_l-1}}$} & \multicolumn{1}{c}{$\mathbf{D_l=2,D_w =2}$} \\[2pt]
+\frac{D_l}{D_l-1}}$} & \multicolumn{1}{c}{$\mathbf{D_l=2,D_w =2}$} \T \B \\
 \cline{2-4}
-
-\multirow{5}{*}{\textbf{Computers}} & $E_{net}$ & $N^{1-\frac{1}{D_l}}$& $N^{\frac{1}{2}}$\\
+\multirow{5}{*}{\textbf{Computers}} & $E_{net}$ & $N^{1-\frac{1}{D_l}}$&
+$N^{\frac{1}{2}}$ \T \\
 \cline{2-4}
-& $E_{node}$&$N^{1-\frac{1}{D_l}}$ &$N^{\frac{1}{2}}$ \\
+& $E_{node}$&$N^{1-\frac{1}{D_l}}$ &$N^{\frac{1}{2}}$ \T \\
 \cline{2-4}
-& $T_{net}$ & $N^{0}$& $N^{0}$\\
+& $T_{net}$ & $N^{0}$& $N^{0}$ \T \\
 \cline{2-4}
-& $T_{node}$& $N^{-\frac{1}{D_l}}$& $N^{-\frac{1}{2}}$\\
+& $T_{node}$& $N^{-\frac{1}{D_l}}$& $N^{-\frac{1}{2}}$ \T \\
 \cline{2-4}
-& $E_{sys} \times T_{sys}$ &$N^{1-\frac{1}{D_l}} + N^{1-\frac{1}{D_l}}$ &$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \\
+& $E_{sys} \times T_{sys}$ &$N^{1-\frac{1}{D_l}} + N^{1-\frac{1}{D_l}}$
+&$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \T \\
 \cline{2-4}
 \end{tabular}
 \caption{Predicted scaling relationships for organisms and computers. The first column shows the general scaling equation under conditions that minimize the energy time product. The second column shows how each quantity scales with $N$ given the values of the dimensional parameters that minimize the energy time product, $D_r = 2$ for organisms and $D_w > 2$ for chips. 
