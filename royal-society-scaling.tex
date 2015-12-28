@@ -603,7 +603,8 @@ E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1} \propto l_0 u_0
 \begin{table}
 \centering
 \begin{tabular}{l|l||l|l|}
-\multicolumn{2}{l}{} & \multicolumn{1}{c}{$\mathbf{D_r \leq \frac{4D_l}{1+D_l}}$} & \multicolumn{1}{c}{$\mathbf{D_l=3, D_r=2}$}\\
+\multicolumn{2}{l}{} & \multicolumn{1}{c}{$\mathbf{D_r \leq
+\frac{4D_l}{1+D_l}}$} & \multicolumn{1}{c}{$\mathbf{D_l=3, D_r=2}$}\\[2pt]
   \cline{2-4}
 \multirow{5}{*}{\textbf{Organisms}} & $E_{net}$ &$l_0u_0 N^{\frac{2}{D_r}-1}$ &  $l_0 u_0$\\
 \cline{2-4}
@@ -617,7 +618,8 @@ E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1} \propto l_0 u_0
 \cline{2-4}
 & $E_{sys} \times T_{sys}$ & $l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$& $l_0 + u_0^{-1} N$\\
 \cline{2-4}
-\multicolumn{2}{c}{}  & \multicolumn{1}{c}{$\mathbf{D_w \geq \frac{D_l}{D_l-1}}$} & \multicolumn{1}{c}{$\mathbf{D_l=2,D_w =2}$} \\
+\multicolumn{2}{c}{}  & \multicolumn{1}{c}{$\mathbf{D_w \geq
+\frac{D_l}{D_l-1}}$} & \multicolumn{1}{c}{$\mathbf{D_l=2,D_w =2}$} \\[2pt]
 \cline{2-4}
 
 \multirow{5}{*}{\textbf{Computers}} & $E_{net}$ & $N^{1-\frac{1}{D_l}}$& $N^{\frac{1}{2}}$\\
@@ -680,6 +682,7 @@ deviation from the simple $3/4$ power-law relationship between metabolism and
 mass~\cite{kolokotrones2010curvature}. 
 
 We use a similar approach to~\cite{banavar10}, with the exception that we do
+not
 assume that $D_r=2$. This results in $M \propto N^{\frac{2}{d_r} +
 \frac{1}{3}}$\footnote{These expressions are consistent with those
 in~\cite{banavar10}, specifically when $D_r=2$, $N\propto M^{\frac{3}{4}}$ and
@@ -717,10 +720,13 @@ fit (red-dashed line) than the extensions to the West et al.\ model that were ex
 to induce curvature~\cite{kolokotrones2010curvature} (Mean Squared Error for
 our model is 0.0268 vs 0.0287 for the extended West et al.\ model, 0.0274 for
 the flow-mode proportional transition model, and 0.0277 for the flow-mode
-transition from the heart model).  We also tested the predicted value of $D_r = 2.18$ which also gives a marginally better fit (green dashed line, MSE = 0.0271) than alternative models in ~\cite{kolokotrones2010curvature}. The theoretically predicted $D_r = 2.18$ also generates curvature for larger masses, accounting for the elevated metabolic rate of the largest mammals, not accounted for by any other scaling model.
+transition from the heart model).  We also tested the predicted value of $D_r =
+\frac{24}{11}$ which also gives a marginally better fit (green dashed line, MSE
+= 0.0271) than alternative models in~\cite{kolokotrones2010curvature}. The
+theoretically predicted $D_r =\frac{24}{11}$ also generates curvature for larger masses, accounting for the elevated metabolic rate of the largest mammals, not accounted for by any other scaling model.
  
 \begin{figure}[!h] \centering
-  \includegraphics[height=70mm]{Figures/OrganismsPowerScaling.pdf}
+  \includegraphics[height=70mm]{Figures/OrganismsPowerScalingv2.pdf}
 
   \caption{Energy-time minimization model predictions for power
     scaling in organisms. The model from Eq.~\ref{eq:OrganismPower}
