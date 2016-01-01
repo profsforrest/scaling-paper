@@ -982,8 +982,9 @@ without considering the constraints of the network.
 \includegraphics[height=70mm]{Figures/ChipsThroughputScaling.pdf}
 \caption{Performance vs. number of transistors. The
   Eq. \ref{eq:Performance} prediction is shown with the solid black
-  line.  The dotted line shows predicted performance if switching
-  speed of transistors dominates performance rather than the network.}
+  line.  The dotted line shows predicted performance if throughput scales with
+  both switching speed and the number of transistors rather than being bounded
+by the network.}
 \label{fig:throughput}
 \end{figure}
 
@@ -1431,6 +1432,19 @@ N^{\frac{2}{D_l} - \frac{2}{D_r}}$. }
   at all levels and $L \propto N^0$.}
 \end{caseof}
 
+\subsection{Chip Data}
+\label{subsec:chipdata}
+
+We obtain data on chip power usage and throughput from several third party
+sources. For power output we consulted two web archives of over 523 chips
+listing power consumption and transistor count~\cite{chipsPower1,chipsPower2}.
+When possible the figures were cross checked with data directly from the
+manufacturer. For throughput data, we consulted a combination of third party
+sources, starting with a list published on wikipedia~\cite{wikiMIPS}. Each
+source for the data was consulted independently and verified before inclusion
+in the dataset. Additional throughput data was obtained from benchmarks
+performed by online technology publication Tom's Hardware~\cite{tomsBenchmark}.
+The data can be found in the supplementary information.
 
 \bibliography{references}
 \bibliographystyle{abbrv}
