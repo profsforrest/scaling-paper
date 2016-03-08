@@ -1,4 +1,4 @@
-PROJECT=royal-society-scaling
+PROJECT=final
 RESPONSE=response
 TEX=pdflatex
 BIBTEX=bibtex
