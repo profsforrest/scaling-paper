@@ -278,7 +278,7 @@ by that vessel, each successive vessel in the hierarchy also scales
 according to Eq. 1 with $D_l = 3$~\cite{west97, banavar10}. Similarly,
 the length of each successive wire on a 2-dimensional chip defines the
 area to which that wire delivers signals~\cite{moses08}. Thus, in the simplest networks that efficiently deliver resources homogeneously throughout a volume or area, $D_l$ describes both the relative length of pipe between successive hierarchical levels and the physical
-dimension of the system. For example in Figure \ref{sec:unified-model} C, where $\lambda = 4$ and $D_l = 2$, wires are $4^{1/2} = 2$ times longer when they connect to successively higher modules in the hierarchy.
+dimension of the system. For example in \red{Figure \ref{fig:firstfig} C}, where $\lambda = 4$ and $D_l = 2$, wires are $4^{1/2} = 2$ times longer when they connect to successively higher modules in the hierarchy.
 
 Digital circuits scale in a third way beyond length and radius, which
 has no direct analog in organisms. Digital circuits are partially \emph{decentralized}, with networks that connect multiple sources and destinations, while vascular networks are
@@ -649,16 +649,16 @@ work showed that metabolic rate is elevated in both small and very large mammals
 deviations from a simple $3/4$ power-law relationship between metabolism and
 mass.  This appears as a slight curvature in the canonical log-log
 plots, as shown in figure~\ref{fig:OrganismsPowerScaling}.}
-By considering how blood slows through the network ($D_r > 2$) and the energy dissipated in \emph{both} the network and 
-nodes ($E_{net}$ and $E_{node}$), our analysis accounts for this phenomenon.
+%By considering how blood slows through the network ($D_r > 2$) and the energy dissipated in \emph{both} the network and 
+%nodes ($E_{net}$ and $E_{node}$), our analysis accounts for this phenomenon.
 
 \red{Next, we derive the equation relating metabolism (B) to mass (M),
   following the approach used in~\cite{banavar10}, but
 we relax the assumption that
-$D_r=2$} giving $M \propto N^{\frac{2}{d_r} +
-\frac{1}{3}}$\footnote{These expressions are consistent with those
+$D_r=2$} giving\footnote{These expressions are consistent with those
 in~\cite{banavar10}, specifically when $D_r=2$, $N\propto M^{\frac{3}{4}}$ and
-$l_0 \propto M^{\frac{1}{12}}\propto N^{\frac{1}{9}}$ and when $D_r=3$, $N\propto M$ and $l_0\propto M^0 \propto N^0$.} and
+$l_0 \propto M^{\frac{1}{12}}\propto N^{\frac{1}{9}}$ and when $D_r=3$, $N\propto M$ and $l_0\propto M^0 \propto N^0$.} $M \propto N^{\frac{2}{d_r} +
+\frac{1}{3}}$ and
 
 \begin{equation}
   \label{eq:OrganismPower}
@@ -797,8 +797,12 @@ $C \propto N^{\frac{1}{D_w}}$. Given $D_l = 2$ for two-dimensional chips, $E_{ne
 is minimized when $D_w \geq 2$. See Section~\ref{sec:AppendixChips} for
 details.
 
-We now calculate the scaling of $E_{node}$ ignoring leakage power. 
-For a single node , computation
+We now calculate the scaling of $E_{node}$ ignoring leakage
+power.\footnote{\red{Transistors and other devices conduct a small amount
+  of current even when they are not being used. This energy loss is referred
+  to as leakage power and is a significant issue in modern
+  microprocessor design not explicitly addressed by our model.}}
+For a single node, computation
 energy is given by the transistor's (dynamic) energy dissipation as
 $\frac{CV^2}{2}$. Again assuming constant $V$ and the capacitance of a
 transistor proportional to its length ($l_0$), $E_{node}$ is obtained
@@ -896,7 +900,7 @@ difficult to obtain because reporting standards have changed over the years and
 their adoption by different vendors is not uniform.  \red{We obtained
 normalized performance data for 100 different Intel chips, measured
 with \red{Dhrystone} Millions of Instructions per Second (DMIPS), from
-a variety of sources.} These sources included
+a variety of sources (see Section \ref{subsec:chipdata}).} These sources included
 a variety of published third-party performance comparisons from different
 generations over a range of 6 orders of magnitude in transistor count.  The
 best-fit exponent for these data is $1.11$ (95\% confidence interval =1.07 to
@@ -929,9 +933,9 @@ without considering the constraints of the network.
 \begin{figure}[!h]
 \centering
 \includegraphics[height=70mm]{Figures/ChipsPowerScaling.pdf}
-\red{The energy-time minimization model predicts power
+\caption{\red{The energy-time minimization model predicts power
 scaling in chips. Power and transistor count data taken from \cite{moses08}.  Our model
-prediction (Eq. \ref{eq:Power})  is shown in blue, and the OLS best fit line is shown in red.}
+prediction (Eq. \ref{eq:Power})  is shown in blue, and the OLS best fit line is shown in red.}}
 \label{fig:power}
 \end{figure}
 
@@ -939,7 +943,8 @@ prediction (Eq. \ref{eq:Power})  is shown in blue, and the OLS best fit line is 
 \centering
 \includegraphics[height=70mm]{Figures/ChipsThroughputScaling.pdf}
 \caption{\red{The energy-time minimization model predicts how throughput
-  scales with the number of transistors. The model's
+  scales with the number of transistors.  The raw data are includes as
+  supplementary materials. The model's
  prediction  (Eq. \ref{eq:Performance})  is shown with the solid blue
   line.   The dotted line shows the prediction if throughput were 
   bound by the nodes (switching speed) rather than the network. The
@@ -957,6 +962,11 @@ successful, approaching and sometimes exceeding the theoretical optimum predicte
 
 \section{Discussion: Implications for Evolutionary Transitions}
 \label{sec:discussion}
+
+[THIS PARAGRAPH TAKEN FROM REVIEWER 3.]
+The paper proposes an unified principle for the emergence of scaling in the metabolic rate in animals and the power consumption of computers, i.e., the design of natural and artificial networks has evolved in a way that minimises energy cost while maximising information flow. This theoretical principle can be used to make testable predictions, e.g., energetic efficiency will change with multi-core processors. This is important for future technological development.
+Regarding biological predictions, the current framework extends previous predictions to the observed curvature in metabolic scaling (see Kolokotrones et al., 2010) by including an energy dissipation term.  Other studies have interpreted this deviation as the ‘non-universal’ character of metabolic scaling. The present framework accounts for this deviation and further explains the elevated metabolic rate of largest mammals, which was not addressed in previous models.
+The model is consistent with the results of a previous study (Delong et al., 2010) showing how metabolic scaling relationships change at the evolutionary transitions. In this context, the model provides evidence of strong convergence between natural and artificial designs due to physical constraints. This is surprising because there are obvious differences between these two systems. These results might be useful when understanding the emergence of sociality and the transition to complex animal societies.
 
 Scaling analyses provide a framework for understanding the critical
 parameters and constraints on the design of both biological and
