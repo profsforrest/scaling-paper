@@ -689,8 +689,20 @@ mammals, not addressed by any other scaling model. It is also consistent with th
 is area preserving, while $D_r = 3$ in the lower region, and it is consistent with the empirical radius
 scaling reported in~\cite{newberry2015testing}.  }
 
-To compare this theoretical prediction to the data, we fit $D_r$ in Equation \ref{eq:OrganismPower} to data taken from~\cite{kolokotrones2010curvature},as shown
-in Figure~\ref{fig:OrganismsPowerScaling}.  The best fit to
+To compare this theoretical prediction to the data, we fit $D_r$ in
+Equation~\ref{eq:OrganismPower} to data taken
+from~\cite{kolokotrones2010curvature},as shown in
+Figure~\ref{fig:OrganismsPowerScaling}. Because Equation~\ref{eq:OrganismPower}
+is non-linear, standard linear regression will be insufficient. We take two
+approaches: numerically determine the value of $D_r$ that 1) minimizes the sum
+of the log squared distances between the data and the predicted metabolic rate;
+2) minimize the sum of log squared distances between the data and the closest
+point on the line formed by equation~\ref{eq:OrganismPower}. The first method
+is similar to analogous to least squares regression, while the second is
+analogous to Reduced Major Axis (RMA) regression. Confidence intervals are
+obtained through bootstrapping (10,000 samples) and refitting the model. 
+
+The best fit to
 the data is achieved with $D_r = 2.56$ using RMA regression (and $D_r
 = 2.497$ using OLS regression), which is close to our theoretical
 prediction [CONFIDENCE INTERVALS GO HERE.]  
