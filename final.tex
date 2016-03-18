@@ -739,13 +739,19 @@ prediction [CONFIDENCE INTERVALS GO HERE.]
 We now apply the same reasoning to computer chips. 
 In computers, unlike biology,  nodes (transistors) 
 are not constant size but have shrunk by many orders of magnitude over 40
-years of microarchitecture evolution.  During this time, total chip area has grown
-much more slowly, and we assume it to be constant for our calculations.
+years of microarchitecture evolution.  \red{During this time, total chip area has grown
+much more slowly, and we assume it to be constant for our
+calculations.   In addition, the total area of all transistors on the
+chip is a fixed fraction of the area of the chip \cite{moses08}. 
 Putting these two constraints together, the linear dimensions of transistors
-and wires decrease with transistor count as $N^{-1/2}$ (more generally,
-$N^{-1/D_l}$) \cite{moses08}.  This miniaturization process is well understood
-and accurately described by Dennard scaling \cite{dennard74}.  
-Thus, $r_0 \propto l_0 \propto N^{\frac{-1}{D_l}}$. Intuitively, this means
+%and wires 
+decrease with transistor count as $N^{-1/2}$ (more generally,
+$N^{-1/D_l}$). }
+$r_0 \propto N^{\frac{-1}{D_l}}$ because minimum
+transistor size and wire width are both determined by the process size.
+Similarly $l_0 \propto  N^{\frac{-1}{D_l}}$ because transistor linear density
+is increasing as $n^{\frac{1}{2}}$.
+Intuitively, this means
 that the number of nodes increases as smaller transistors are placed closer
 together and connected with smaller and shorter wires. In the following,
 we assume that all wires carry the same flow and that information is
@@ -826,31 +832,31 @@ l_0  \propto N^{-\frac{1}{D_l}}$.
 Before calculating the energy-time product, we observe that $T_{net}$ is the
 only term that depends on $D_r$, so we set  $D_r = 2$ to minimize
 $T_{net}$. Similarly, $E_{net}$ is the only term that depends on  $D_w$, and we
-set $D_w$ to minimize $E_{net}$.  In summary, given $D_l = 2$, the terms of the energy-time product are minimized
-when $D_r = 2$ and $D_w > 2$. The scaling relations for various
+set $D_w$ to minimize $E_{net}$. \red{In summary, given $D_l = 2$, the terms of the energy-time product are minimized
+when $D_r = 2$ and $D_w > 2$. Although
+the energy-time product is minimized for values of $D_w$ greater than 2,
+this would entail greater communication locality, which is challenging
+to engineer and doesn't improve
+the energy-time product.  Thus, the model predicts 
+that $D_w = 2$, which is consistent with observed
+Rent's exponents that approach 1/2~\cite{yang2001wirelength, solee2013evolutionary}.}  The scaling relations for various
 quantities are summarized in Table~\ref{tab:SummaryScalingPredictions}.
 
 \subsection{Predictions for Chips}
 \label{sec:comp-predictions}
 
-
-For computers, minimizing the energy-time product in the model is trivial: $D_l=D_r=D_w =
-2$. This result corresponds to ideal scaling, as suggested by Dennard
+\red{Summarizing the results from the previous section, the energy-time
+product for chips is minimized when 
+$D_l=D_r =2 =D_w$.}
+This result corresponds to ideal scaling, as suggested by Dennard
 \cite{dennard74}, where the linear dimensions of transistors and wires scale at
-the same rate, wire delay is constant, and the Rent's exponent is 1/2.  Although
-the energy-time product is also minimized for values of $D_w$ greater than 2,
-this would entail greater communication locality, which is challenging
-to engineer and doesn't improve
-the energy-time product.  Thus, it is not surprising
-that $D_w = 2$ which is consistent with observed
-Rent's exponents that approach 1/2~\cite{yang2001wirelength, solee2013evolutionary}. 
+the same rate, wire delay is constant, and the Rent's exponent is 1/2.  
 
-
-The final energy-time product scales as $N^{1/2}$, showing that, unlike
+The final energy-time product scales as $N^{1/2}$\red{\cite{tab:SummaryScalingPredictions}}, showing that, unlike
 organisms, as size increases, the energy-delay product per node decreases
 systematically.  Thus, chips have become faster and they consume less energy per
 transistor as more transistors are packed onto a chip. Of course, this
-trend arised
+trend \red{arises}
 from the remarkable miniaturization of transistors and wires described by
 Moore's law. It is not surprising that transistors are faster ($T_{node}$) and
 require less energy ($E_{node}$) as they become smaller. It also makes sense
@@ -859,7 +865,7 @@ $N$ increases the distance between nodes is reduced. Additionally, $D_w = 2$,
 means that most bits move locally, so the distance between nearest nodes
 affects the average distance that bits are transmitted.  The only term in the
 energy-time product that does not decrease with increased $N$ and decreased
-process size is $T_{net}$ which remains constant under Denard scaling where
+process size is $T_{net}$ which remains constant under Dennard scaling where
 wire radius and length scale proportionally to each other.
 
 These scaling models make two testable predictions.  First, power
@@ -887,12 +893,13 @@ Figure~\ref{fig:power}, where the measured exponent was $0.495$ (95\%
 confidence interval = 0.46 to 0.53) which agrees closely with our prediction of
 $0.5$. Consistent data on performance across many technology generations is
 difficult to obtain because reporting standards have changed over the years and
-their adoption by different vendors is not uniform.  We were able to obtain
-normalized performance data for 100 different chips Intel Chips as measured
-with Dhyrstone Millions of Instructions per Second (DMIPS). These data came from
+their adoption by different vendors is not uniform.  \red{We obtained
+normalized performance data for 100 different Intel chips, measured
+with \red{Dhrystone} Millions of Instructions per Second (DMIPS), from
+a variety of sources.} These sources included
 a variety of published third-party performance comparisons from different
 generations over a range of 6 orders of magnitude in transistor count.  The
-exponent obtained for these data is $1.11$ (95\% confidence interval =1.07 to
+best-fit exponent for these data is $1.11$ (95\% confidence interval =1.07 to
 1.15), as shown in Figure~\ref{fig:throughput}. This is very close to our
 predicted exponent of $1$, suggesting that engineered designs slightly
 outperform the theoretical optimum defined by the model. Both models were fit
@@ -922,19 +929,21 @@ without considering the constraints of the network.
 \begin{figure}[!h]
 \centering
 \includegraphics[height=70mm]{Figures/ChipsPowerScaling.pdf}
-\caption{Power vs. number of transistors predicted from
-  Eq. \ref{eq:Power}.}
+\red{The energy-time minimization model predicts power
+scaling in chips. Power and transistor count data taken from \cite{moses08}.  Our model
+prediction (Eq. \ref{eq:Power})  is shown in blue, and the OLS best fit line is shown in red.}
 \label{fig:power}
 \end{figure}
 
 \begin{figure}[!h]
 \centering
 \includegraphics[height=70mm]{Figures/ChipsThroughputScaling.pdf}
-\caption{Performance vs. number of transistors. The
-  Eq. \ref{eq:Performance} prediction is shown with the solid black
-  line.  The dotted line shows predicted performance if throughput scales with
-  both switching speed and the number of transistors rather than being bounded
-by the network.}
+\caption{\red{The energy-time minimization model predicts how throughput
+  scales with the number of transistors. The model's
+ prediction  (Eq. \ref{eq:Performance})  is shown with the solid blue
+  line.   The dotted line shows the prediction if throughput were 
+  bound by the nodes (switching speed) rather than the network. The
+  red dashed line is the OLS best fit to the data.}}
 \label{fig:throughput}
 \end{figure}
 
