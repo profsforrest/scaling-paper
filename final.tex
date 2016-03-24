@@ -691,27 +691,28 @@ mammals, not addressed by any other scaling model. It is also consistent with th
 is area preserving, while $D_r = 3$ in the lower region, and it is consistent with the empirical radius
 scaling reported in~\cite{newberry2015testing}.  }
 
-To compare this theoretical prediction to the data, we fit $D_r$ in
+\red{To compare this theoretical prediction to the data, we fit $D_r$ in
 Equation~\ref{eq:OrganismPower} to data taken
-from~\cite{kolokotrones2010curvature},as shown in
+from~\cite{kolokotrones2010curvature}, as shown in
 Figure~\ref{fig:OrganismsPowerScaling}. Because Equation~\ref{eq:OrganismPower}
-is non-linear, standard linear regression will be insufficient. We take two
-approaches: numerically determine the value of $D_r$ that 1) minimizes the sum
-of the log squared distances between the data and the predicted metabolic rate;
-2) minimize the sum of log squared distances between the data and the closest
-point on the line formed by equation~\ref{eq:OrganismPower}. The first method
+is nonlinear, standard linear regression is insufficient. We used two
+different methods: Numerically determine the value of $D_r$ that (1) minimizes the sum
+of the log squared distances between the data and the predicted metabolic rate,
+(2) minimizes the sum of log squared distances between the data and the closest
+point on the line formed by equation~\ref{eq:OrganismPower}.  The first method
 is similar to analogous to least squares regression, while the second is
-analogous to Reduced Major Axis (RMA) regression. Confidence intervals are
-obtained through bootstrapping (10,000 samples) and refitting the model. 
-
+analogous to Reduced Major Axis (RMA) regression. 
 The best fit to
 the data is achieved with $D_r = 2.56$ using RMA regression (and $D_r
 = 2.497$ using OLS regression), which is close to our theoretical
-prediction [CONFIDENCE INTERVALS GO HERE.]  
+prediction.  Note that Eq.~\ref{eq:OrganismPower} includes two
+arbitrary scaling constants.  These are calibrated in each of the
+three models shown in 
+Fig.~\ref{fig:OrganismsPowerScaling} to give the best fit to the data.}
 % This  model provides a marginally better
 % fit (red-dashed line) than the West et al.\ extensions that were
 % designed intentionally to induce
-% curvature~\cite{kolokotrones2010curvature} (
+% curvature~\cite{kolokotrones2010curvature} 
 
  
 \begin{figure}[!h] \centering
@@ -720,11 +721,11 @@ prediction [CONFIDENCE INTERVALS GO HERE.]
   \caption{\red{The energy-time minimization model predicts metabolic
     scaling in organisms. Data from ~\cite{kolokotrones2010curvature}
     are plotted, showing metabolic rate vs. mass of mammals.  The West et
-    al.~\cite{west97} $3/4$ scaling prediction are shown in blue, and
+    al.~\cite{west97} $3/4$ scaling prediction is shown in blue, and
     the theoretical optimum predicted by Eq.~\ref{eq:OrganismPower}
     with $D_r = \frac{24}{11}$ is shown in green.  For comparison the
     best empirical fit of  Eq.~\ref{eq:OrganismPower} to the data is
-    shown in red ($D_r = 2.56$). }}
+    shown in red ($D_r = 2.56$).}}
 \label{fig:OrganismsPowerScaling}
 \end{figure}
 
@@ -963,34 +964,49 @@ successful, approaching and sometimes exceeding the theoretical optimum predicte
 \section{Discussion: Implications for Evolutionary Transitions}
 \label{sec:discussion}
 
-[THIS PARAGRAPH TAKEN FROM REVIEWER 3.]
-The paper proposes an unified principle for the emergence of scaling in the metabolic rate in animals and the power consumption of computers, i.e., the design of natural and artificial networks has evolved in a way that minimises energy cost while maximising information flow. This theoretical principle can be used to make testable predictions, e.g., energetic efficiency will change with multi-core processors. This is important for future technological development.
-Regarding biological predictions, the current framework extends previous predictions to the observed curvature in metabolic scaling (see Kolokotrones et al., 2010) by including an energy dissipation term.  Other studies have interpreted this deviation as the ‘non-universal’ character of metabolic scaling. The present framework accounts for this deviation and further explains the elevated metabolic rate of largest mammals, which was not addressed in previous models.
-The model is consistent with the results of a previous study (Delong et al., 2010) showing how metabolic scaling relationships change at the evolutionary transitions. In this context, the model provides evidence of strong convergence between natural and artificial designs due to physical constraints. This is surprising because there are obvious differences between these two systems. These results might be useful when understanding the emergence of sociality and the transition to complex animal societies.
-
-Scaling analyses provide a framework for understanding the critical
+Scaling analyses provide a framework for understanding critical
 parameters and constraints on the design of both biological and
-computational systems spanning an enormous range of sizes.  By
-simultaneously minimizing energy dissipation and delivery time, our
-unified model predicts scaling relationships for both organisms and
-computer chips.  This broad framework highlights the similarities and
+computational systems spanning an enormous range of sizes.   Here, we 
+presented a unified model, which predicts scaling relationships for both organisms and
+computer chips by simultaneously minimizing energy dissipation and delivery time. 
+%gives
+%unified model, accounting for how both natural and artificial
+%networks have evolved. 
+This broad framework highlights the similarities and
 differences between biological networks that deliver oxygen and
 computational networks that deliver information.  \red{Earlier scaling
 models focus either on minimizing energy dissipation or on minimizing
 delivery time, e.g., \cite{west97,RIVER}.  Here we extend that work by considering both
 simultaneously and investigating the tradeoffs between them.}
 
-The model presented here is, of course, a simplification of a more
+\red{This theoretical model can be used to make testable predictions, both
+for biology and for technological systems.  In biology, Section
+\ref{sec:bio-predictions} extends previous predictions to explain the
+observed curvature in metabolic scaling of organisms by including an
+energy dissipation term.  Other studies have interpreted this
+deviation as the 'non-universal' character of metabolic scaling.  The
+framework presented here accounts for this deviation, and further, it explains the
+elevated metabolic rate of largest mammals not addressed in
+previous models.  The model is consistent with the results of a
+previous study~\cite{delong2010shifts} at the evolutionary transitions. In this context,
+the model provides evidence of strong convergence between natural and
+artificial designs due to physical constraints despite the obvious
+differences between them.} 
+%These
+%results might be useful when understanding the emergence of sociality
+%and the transition to complex animal societies.
+
+The model presented here is, of course, a simplification of the more
 complex reality. For example, our analysis assumes that $D_l$, $D_r$,
 and $D_w$ are fixed constants throughout the network both within and
 across systems. In reality, each of these may vary.  For
-example,~\cite{newberry2015testing} did not find evidence for a
+example, Ref.~\cite{newberry2015testing} did not find evidence for a
 constant $D_l = 3$ in mouse vasculature, suggesting that the network
 does not deliver resources uniformly throughout the body volume. This
 is not surprising given that different tissues and organs have
 different metabolic requirements. $D_r$ may vary
 within the vascular network with area-preserving branching closer to the heart and area-increasing branching slowing blood velocity in smaller
-vessels, but \cite{newberry2015testing} find values for $D_r$
+vessels, but Ref.~\cite{newberry2015testing} find values for $D_r$
 consistent with our predictions.  Similarly, there is evidence that
 $D_w$ varies across hierarchical levels in computer
 chips~\cite{ozaktas2004information}. Including these factors in the
@@ -1024,7 +1040,7 @@ transistors. These order-of-magnitude performance predictions highlight that del
 bits through the network, rather than processing bits at the
 transistors, is the rate limiting step that constrains performance.
 More precise predictions may be obtained by incorporating additional
-factors, for example as leakage power, which comprises an increasing fraction
+factors, for example leakage power, which comprises an increasing fraction
 of the power budget of computer chips.
 
 The similarities between biological and computational scaling suggest
@@ -1054,30 +1070,29 @@ energy required to deliver each molecule of oxygen increase.  The explanations t
 to understanding how energy-time minimization affects the ongoing evolution of
 computer hardware.
 
-\paragraph{Evolution of single core chips:} The chip scaling described
-above shows how time and energy dissipation have decreased while
-performance increased as larger numbers of smaller transistors have
-been packed onto each chip. During this era, technological innovations
-have emerged similarly to how bacteria have evolved larger genomes,
-using new genes to exploit new metabolic niches. In chips, new
-materials, switching methods, etching processes and cooling
-technologies have pushed physical boundaries, allowing transistors to
-shrink and more of them to be packed onto each chip. Like bacteria,
-these innovations have optimized physical constraints, but there are
-limits to how far this process can go.  There are no elephant-sized bacteria and there will
-be no silicon based single core chips with quadrillions of
-transistors.
+\red{\paragraph{Chips are like bacteria:}} The chip scaling described above
+shows how time and energy dissipation have decreased while performance
+increased as larger numbers of smaller transistors have been packed
+onto each chip. During this era, technological innovations in chips
+have emerged that optimize against physcial constraints.  Just as
+bacteria have evolved larger genomes and used the new genes to exploit
+new metabolic niches, new materials, switching methods, etching
+processes and cooling technologies have pushed physical boundaries,
+allowing transistors to shrink and more of them to be packed onto each
+chip. Like bacteria, However, there are limits to how far this process
+can go.  There are no elephant-sized bacteria, and there will be no
+silicon-based single core chips with quadrillions of transistors.
 
-\paragraph{Evolution of protists:} Chips have also mimicked the linear relationship between performance and
+\red{\paragraph{Chips are like protists:}} Historical chip scaling mimics the linear relationship between performance and
 size (Figure \ref{fig:throughput}) seen in protists. Unicellular protists show linear increases
 in metabolic rate with size as more energy processing nodes  (mitochondria) are
-packed into larger cells. As size continues to increase however, this
+packed into larger cells \red{[FIXME: Add Delong cite and fig num here]}. As size continues to increase however, this
 design strategy also reaches physical limits.  Our analysis suggests that the
 internal transport network already constrains processing speeds
 ($T_{net}$ constrains $T_{sys}$). Further, the requirement to
 dissipate heat over a fixed surface area constrains both cells and chips. 
 
-\paragraph{Multicellularity:} Computer chips are currently undergoing
+\red{\paragraph{Chips transition to multicellularity:}} Computer chips are currently undergoing
 the evolutionary transition to multicore, resembling the biological
 transition to multicellularity. Our unified scaling framework suggests
 some future scenarios. As the era of transistor minimization wanes,
@@ -1088,16 +1103,17 @@ an increasing fraction of chip power will be devoted to these ever
 larger Networks-on-Chip (NoC) connecting more cores. Larger networks
 will consume more power, take more time to traverse, and ultimately
 the time-energy minimization will be increasingly difficult to sustain
-as chips increase in size.  It is likely that the reductions in clock
-speed in multi-core chips will continue as the power, footprint and
-cooling requirements of the network dominate chip design
-considerations. As networks increasingly dominate on-chip power
-budgets, it is also likely that the most important advances in chip
-design will increase network efficiency, for example using optical
+as chips increase in size.  Clock speeds have already leveled off as 
+power, footprint and
+cooling requirements 
+%of the network 
+dominate chip design
+considerations\red{\cite{FIXME}}.  If chips follow biology, we can expect
+that the most important future advances in chip
+design will increase network efficiency, for example by using optical
 networks.
 
-
-There are also important differences between scaling of oxygen delivery in biology and information
+\red{\paragraph{Chips are not exactly like biology:}} There are also important differences between scaling of oxygen delivery in biology and information
 delivery in computation, which play an important role in evolutionary
 transitions. In particular, on-chip computer networks have two advantages not
 available to cardiovascular networks.  First, the continued reduction
@@ -1105,7 +1121,8 @@ in ``process'' size over several decades (smaller
 transistors and wires)  reduces both energy and
 delay in the nodes, while the number of nodes increases.
 This reduction in process size will ultimately end
-as physical limits are reached. 
+as physical limits are reached. \red{FIXME[cite something to say that these
+limits have been reached.  Recent paper from Nature?]}
 Second, the locality of
 network traffic, characterized by the Rent's exponent and $D_w$, reduces long
 distance communication over computer networks. As shown above, this
@@ -1115,13 +1132,12 @@ increases on single core chips. This advantage will likely continue for
 multi-core chips where communication, and therefore network bandwidth,
 footprint and energy consumption of NOCs can be reduced by keeping
 communication primarily local~\cite{bezerra2010modeling, zarkesh2010hybrid}. Communication locality
-has the potential to produce more favorable scaling in multicore
-computation than is achievable in multi-cellular biology.
+has the potential to produce more favorable scaling in multi-core
+computation than is achievable in multicellular biology.
 
-
-Scaling on computer chips and other systems in which networks deliver
-information rather than materials lend insights into another important
-biological evolutionary transition, the transition to social animal societies. Understanding, and improving, the flow of energy, materials and information through human societies is one of the greatest challenges in science and engineering, and scaling analyses lend an important perspective on this problem~\cite{moses2012beyond}.
+\red{\paragraph{Decentralized designs and sociality:}}  We now
+consider how the lessons learned from computer architecture may lend insights into an important
+biological evolutionary transition, the transition to social animal societies. Understanding, and improving, the flow of energy, materials and information through human societies is one of the greatest challenges facing science and engineering, and scaling analyses lend an important perspective on this problem~\cite{moses2012beyond}.
 The analysis in Delong et al. does not address scaling relationships in animal societies.
 However, sociality is an important evolutionary transition, reflected in the
 ecological dominance of humans and ants whose networked
