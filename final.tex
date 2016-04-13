@@ -180,7 +180,14 @@ processed in the nodes; and 2) the energy dissipated during these processes.
 Despite the obvious differences between animals and chips, we present a
 general model and derive energy and time scaling relations from physical
 principles applicable to each system. Using these relations, we express the
-optimal network design as a trade-off between energy cost and processing speed. 
+optimal network design as a trade-off between energy cost and processing speed. This energy-time framework is consistent with the major
+evolutionary transitions,
+such as the transition from protists to
+multicellular animals and the transition from single- to multi-core
+computer chips.
+It also points to likely future trajectories of the evolution of
+computer architecture and to possible extensions of metabolic scaling
+theory to account for sociality.
 
 
 Previous biological scaling models have sought either to minimize energy dissipation, e.g.,~\cite{west97} or to maximize resource delivery rate~\cite{banavar10}, but they have
@@ -628,12 +635,12 @@ reduce pressure on the walls of small vessels and to allow oxygen to be
 dissociated from hemoglobin in the capillaries.   Under this circumstance,
 perfect area-preserving branching is not feasible, and $D_r$ must be greater than 2.
 
-We make a specific prediction for the value of $D_r$ that slows blood and also meets the conditions of our model. By our definition of a node as the volume of tissue that processes oxygen at a fixed rate, then $T_{node}$ is invariant. Table 1 shows the equation $T_{node} \propto u_0^{-1}N^{1-\frac{2}{D_r}}$.
+We make a specific prediction for the value of $D_r$ that minimizes the energy-time product while both slowing the flow of blood to the capillaries and matching the supply and demand for oxygen. By our definition of a node as the volume of tissue that processes oxygen at a fixed rate, $T_{node}$ must be invariant. Table 1 shows the model prediction $T_{node} \propto u_0^{-1}N^{1-\frac{2}{D_r}}$.
 
-Following~\cite{banavar10}, in the optimal case $u_0$ increases with organism mass, and therefore with $N$. See Section~\ref{subsec:appendixLengthMass} for the derivation that $u_0 \propto l_0 \propto N^{\frac{2}{3D_r} - \frac{2}{9}}$. Substituting this equation for $u_0$ into the equation for $T_{node}$ in Table 1, we find that $T_{node}$ is invariant with respect to $N$ when $D_r = \frac{24}{11} = 2.18$. The last column of Table 1 lists the scaling predictions for this value of $D_r$. We test this prediction for $D_r$ using data from~\cite{kolokotrones2010curvature}.
+Following~\cite{banavar10}, in the optimal case $u_0$ increases with organism mass, and therefore with $N$. See Section~\ref{subsec:appendixLengthMass} for the derivation that $u_0 \propto l_0 \propto N^{\frac{2}{3D_r} - \frac{2}{9}}$. Substituting this equation for $u_0$ into the equation for $T_{node}$ in Table 1, we find that $T_{node}$ is invariant with respect to $N$ when $D_r = \frac{24}{11} = 2.18$. The last column of Table 1 lists the scaling predictions given this value of $D_r$. We test this prediction for $D_r$ using data from~\cite{kolokotrones2010curvature} below.
 
 By considering blood slowing through the network due to $D_r > 2$ and by considering the energy dissipated in \emph{both} the network and 
-nodes ($E_{net}$ and $E_{node}$), our analysis also provides an explanation for the curvature observed in
+nodes ($E_{net}$ and $E_{node}$), our energy-time minimization model provides an explanation for the curvature observed in
 metabolic scaling in mammals~\cite{kolokotrones2010curvature}.  \red{This
 work by Kolokotrones et al. showed that metabolic rate is elevated in both small and very large mammals, causing
 deviations from a simple $3/4$ power-law relationship between metabolism and
@@ -678,7 +685,7 @@ transition from the heart model.
 In addition, our model naturally generates curvature for large
 masses, accounting for the elevated metabolic rate of the largest
 mammals, not addressed by any other scaling model. It is also consistent with the idea that the upper region of the network
-is area preserving, while $D_r = 3$ in the lower region, and it is consistent with the empirical radius
+is area preserving with $D_r = 2$ , while $D_r = 3$ in the lower region as proposed by~\cite{west97}, and it is consistent with the empirical radius
 scaling reported in~\cite{newberry2015testing}.  }
 
 \red{To compare this theoretical prediction to the data, we fit $D_r$ in
