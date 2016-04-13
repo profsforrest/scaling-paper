@@ -170,24 +170,23 @@ network of microscopic wires that transmits bits of information between
 transistors on a chip. This network is designed to deliver the maximum information
 flow at the lowest possible energy cost.
 
-Here, we model mammals as composed of regions of tissue (service
-volumes) that receive oxygen
-carried by blood via a hierarchical vascular network of pipes, and we model
-microprocessors as composed of transistors that perform computation, communicating
-information (bits) over a network of wires.  As each system scales up in size,
+Here, we model mammals as composed of nodes (regions of tissue that process oxygen)
+delivered via a hierarchical vascular network, and we model
+microprocessors as composed of nodes (transistors that perform computation), communicating
+bits over a network of wires.  As each system scales up in size,
 we consider: 1) the rate at which resources are delivered by the network and
 processed in the nodes; and 2) the energy dissipated during these processes.
 Despite the obvious differences between animals and chips, we present a
 general model and derive energy and time scaling relations from physical
 principles applicable to each system. Using these relations, we express the
-optimal network design as a trade-off between energy cost and processing speed. This energy-time framework is consistent with the major
+optimal network design as a trade-off between energy cost and processing speed. \red{This energy-time minimization model is consistent with shifts across the major
 evolutionary transitions,
 such as the transition from protists to
 multicellular animals and the transition from single- to multi-core
 computer chips.
 It also points to likely future trajectories of the evolution of
 computer architecture and to possible extensions of metabolic scaling
-theory to account for sociality.
+theory to account for sociality.}
 
 
 Previous biological scaling models have sought either to minimize energy dissipation, e.g.,~\cite{west97} or to maximize resource delivery rate~\cite{banavar10}, but they have
@@ -199,11 +198,10 @@ than converging on a single optimal size, and in computer architecture
 engineers have designed processors ranging from thousands to
 billions of transistors, each of which fills a specific computational niche.
 
-In the rest of the paper, we present the unified model of network scaling
-(Section \ref{sec:unified-model}) and the basic assumptions underlying the
-model (Section ~\ref{sec:assumptions}).  We then use the model to derive a
+In the rest of the paper, we present the unified time-energy minimization model
+(Section \ref{sec:unified-model}) and its assumptions (Section ~\ref{sec:assumptions}).  We then use the model to derive a
 series of predictions about how time and energy scale with system size, first
-for mammals (Sections \ref{sec:organisms} and \ref{sec:bio-predictions}) and then for computers (Section
+for mammals (Sections \ref{sec:mammals} and \ref{sec:bio-predictions}) and then for computers (Section
 \ref{sec:computers}). We discuss new insights into previously analyzed
 scaling relationships in biology that we gain from the time-energy minimization
 framework, and we test our scaling predictions with empirical power and performance
@@ -360,13 +358,13 @@ computation and biology:
 Similar to the length scaling of the service volume in mammals, the
 radius of the isochronic region (the service area) for chips scales
 proportionally with decreasing transistor size~\cite{moses08}. Thus,
-	service regions are \emph{smaller} in more powerful chips (which have more transistors), but they are \emph{larger} in larger animals.
+	service regions are \emph{smaller} in more powerful chips (which have more transistors), but they are \emph{larger} in larger animals. We refer to the service volumes in mammals and the service regions on chips as \emph{nodes}.
 \end{enumerate}
 
 In addition to these general assumptions, we make the following
 refinements to accommodate salient differences between biology and computer architecture.
 \begin{enumerate}
-\item In biology, the energy processed by a service volume
+\item In biology, the energy processed by a node 
   ($E_{node}$) is invariant with system size. That is, as the size of a service volume
   increases with body size, the total amount of energy it processes
   remains constant. We do not make this assumption for chips.
@@ -424,8 +422,7 @@ E_{net} + E_{node}$.  \footnote{\red{For computers it is intuitive that these qu
 
 
 In the following, we derive general scaling relationships between $E_{net}$,
-$T_{net}$, $E_{node}$ and $T_{node}$ and the number of nodes (service
-regions) $N$, under the assumption that the energy-time product is minimized.  $N$ is our
+$T_{net}$, $E_{node}$ and $T_{node}$ and the number of nodes $N$, under the assumption that the energy-time product is minimized.  $N$ is our
 measure of system size (number of capillaries or number of transistors). In mammals, larger $N$
 implies larger organism volume and mass. For computer chips, $N$ increases by
 shrinking components, and so increasing $N$ does not imply increasing chip
@@ -623,7 +620,7 @@ $N^{\frac{1}{2}}$ \T \\
 \label{tab:Predictions}}
 \end{table}
 
-
+\newpage
 \subsection{Biological Predictions}
 \label{sec:bio-predictions}
 
@@ -637,19 +634,18 @@ perfect area-preserving branching is not feasible, and $D_r$ must be greater tha
 
 We make a specific prediction for the value of $D_r$ that minimizes the energy-time product while both slowing the flow of blood to the capillaries and matching the supply and demand for oxygen. By our definition of a node as the volume of tissue that processes oxygen at a fixed rate, $T_{node}$ must be invariant. Table 1 shows the model prediction $T_{node} \propto u_0^{-1}N^{1-\frac{2}{D_r}}$.
 
-Following~\cite{banavar10}, in the optimal case $u_0$ increases with organism mass, and therefore with $N$. See Section~\ref{subsec:appendixLengthMass} for the derivation that $u_0 \propto l_0 \propto N^{\frac{2}{3D_r} - \frac{2}{9}}$. Substituting this equation for $u_0$ into the equation for $T_{node}$ in Table 1, we find that $T_{node}$ is invariant with respect to $N$ when $D_r = \frac{24}{11} = 2.18$. The last column of Table 1 lists the scaling predictions given this value of $D_r$. We test this prediction for $D_r$ using data from~\cite{kolokotrones2010curvature} below.
+Following~\cite{banavar10}, in the optimal case $u_0$ increases with organism mass, and therefore with $N$. See Section~\ref{subsec:appendixLengthMass} for the derivation that $u_0 \propto l_0 \propto N^{\frac{2}{3D_r} - \frac{2}{9}}$. Substituting this equation for $u_0$ into the equation for $T_{node}$ in Table 1, we find that $T_{node}$ is invariant with respect to $N$ when $D_r = \frac{24}{11} = 2.18$. The last column of Table 1 lists the scaling predictions given this value of $D_r$. 
 
-By considering blood slowing through the network due to $D_r > 2$ and by considering the energy dissipated in \emph{both} the network and 
-nodes ($E_{net}$ and $E_{node}$), our energy-time minimization model provides an explanation for the curvature observed in
-metabolic scaling in mammals~\cite{kolokotrones2010curvature}.  \red{This
-work by Kolokotrones et al. showed that metabolic rate is elevated in both small and very large mammals, causing
-deviations from a simple $3/4$ power-law relationship between metabolism and
+%By considering blood slowing through the network due to $D_r > 2$ and by considering the energy dissipated in \emph{both} the network and nodes ($E_{net}$ and $E_{node}$), our energy-time minimization model provides an explanation for the curvature observed in metabolic scaling in mammals~\cite{kolokotrones2010curvature}.  
+We test the prediction that $D_r = 24/11$ using data from~\cite{kolokotrones2010curvature}.
+\red{This influential Kolokotrones et al. paper showed that metabolic rate is elevated in both small and very large mammals, indicating systematic
+deviations from a simple power-law relationship between metabolism and
 mass.  Although the deviation appears only as a slight curvature in the canonical log-log
-plots, as shown in figure~\ref{fig:OrganismsPowerScaling}, it is important because the lack of a single scaling exponent calls into question the scaling models that purport to explain a universal scaling exponent.}
+plots, as shown in figure~\ref{fig:OrganismsPowerScaling}, it is important because the lack of a single scaling exponent calls into question prior scaling models that purport to explain a universal scaling exponent.}
 %By considering how blood slows through the network ($D_r > 2$) and the energy dissipated in \emph{both} the network and 
 %nodes ($E_{net}$ and $E_{node}$), our analysis accounts for this phenomenon.
 
-\red{Next, we derive the equation relating metabolism ($B$) to mass ($M$),
+\red{We derive the equation relating metabolism ($B$) to mass ($M$),
   following the approach used in~\cite{banavar10}, but
 we relax the assumption that
 $D_r=2$} giving\footnote{These expressions are consistent with those
@@ -664,48 +660,47 @@ $l_0 \propto M^{\frac{1}{12}}\propto N^{\frac{1}{9}}$ and when $D_r=3$, $N\propt
 
 \noindent See subsection~\ref{subsec:appendixLengthMass} for details of the calculations.
 
-Although this model is not as simple as the original $\frac{3}{4}$
+\red{Although this prediction for $B$ is not as simple as the $\frac{3}{4}$
 scaling predicted by West et al.~\cite{west97} or the alternative models
 proposed by Kolokotrones et al.~\cite{kolokotrones2010curvature}, the
 exponents in Equation \ref{eq:OrganismPower} arise naturally by
 combining two scaling relationships: that of the metabolic rate of the
-nodes and the metabolic power required to drive the network.  
-\red{By including energy dissipated in
-the network and in the nodes, each with different scaling exponents, the model
+nodes and the metabolic power required to drive the network.  }
+
+\red{By considering blood slowing through the network due to $D_r > 2$ and by including energy dissipated in both
+the network and the nodes, each with different scaling exponents, the model
 naturally generates the curvature observed in the data.  Intuitively, in
 smaller animals a greater fraction of energy is consumed by $E_{node}$, a term
-that is linear in the number of nodes.  We tested the predicted value of $D_r =
-\frac{24}{11}$, which minimizes the energy-time product, and it gives a marginally better fit (green dashed line, MSE
-= 0.0271) than alternative models in~\cite{kolokotrones2010curvature}.
-The Mean Squared Errors for the three Kolokotrones models
-%0.0268 vs 
-are: 0.0287 for the extended West et al.\ model, 0.0274 for
-the flow-mode proportional transition model, and 0.0277 for the flow-mode
-transition from the heart model.  
-In addition, our model naturally generates curvature for large
-masses, accounting for the elevated metabolic rate of the largest
-mammals, not addressed by any other scaling model. It is also consistent with the idea that the upper region of the network
-is area preserving with $D_r = 2$ , while $D_r = 3$ in the lower region as proposed by~\cite{west97}, and it is consistent with the empirical radius
-scaling reported in~\cite{newberry2015testing}.  }
+that is linear in the number of nodes.  }
 
-\red{To compare this theoretical prediction to the data, we fit $D_r$ in
-Equation~\ref{eq:OrganismPower} to data taken
-from~\cite{kolokotrones2010curvature}, as shown in
-Figure~\ref{fig:OrganismsPowerScaling}. Because Equation~\ref{eq:OrganismPower}
-is nonlinear, standard linear regression is insufficient. We used two
-different methods: Numerically determine the value of $D_r$ that (1) minimizes the sum
-of the log squared distances between the data and the predicted metabolic rate,
-(2) minimizes the sum of log squared distances between the data and the closest
-point on the line formed by equation~\ref{eq:OrganismPower}.  The first method
-is similar to analogous to least squares regression, while the second is
-analogous to Reduced Major Axis (RMA) regression. 
-The best fit to
-the data is achieved with $D_r = 2.56$ using RMA regression, and $D_r
-= 2.50$ using OLS regression, which is close to our theoretical
-prediction. Following Kolokotrones et al, the orca outlier was eliminated from Figure 2 and the fit, however including it has negligible impact on the fit. Note that Eq.~\ref{eq:OrganismPower} includes two
-arbitrary scaling constants.  These are calibrated in each of the
-three models shown in 
-Fig.~\ref{fig:OrganismsPowerScaling} to give the best fit to the data.}
+\red{We tested the predicted value of $D_r =
+\frac{24}{11}$, which minimizes the energy-time product, and find a marginally better fit (solid blue line in Figure~\ref{fig:OrganismsPowerScaling}),  than alternative models in~\cite{kolokotrones2010curvature}.
+The Mean Squared Error (MSE) for our model is 0.0271 vs 0.0287 for the extended West et al.\ model (dashed red line in Figure~\ref{fig:OrganismsPowerScaling}). The alternative models in~\cite{kolokotrones2010curvature} that were specifically designed to account for curvature have MSE 0.274 and 0.0277. We also calculated a value of $D_r$ that is the best statistical fit to the data. Following~\cite{kolokotrones2010curvature} we use least squares regression, eliminate the orca which is an outlier, and choose scaling constants to best fit the data. We find that $D_r = 2.5$ gives the best statistical fit (dashed green line in Figure~\ref{fig:OrganismsPowerScaling}). Alternative fitting methods and inclusion of the outlier have negligible effect on the best fit value of $D_r$.}
+
+The energy-time minimization model is the only model that naturally generates curvature accounting for the elevated metabolic rate of the largest
+mammals as well as the smallest. The predicted value of $D_r$ between 2 and 3 is also consistent with the idea that the upper region of the network
+is area preserving with $D_r = 2$, while $D_r = 3$ in the lower region as proposed by~\cite{west97}, and it is consistent with the empirical radius
+scaling reported in~\cite{newberry2015testing}.
+
+%To compare this theoretical prediction to the data, we fit $D_r$ in
+%Equation~\ref{eq:OrganismPower} to data taken
+%from~\cite{kolokotrones2010curvature}, as shown in
+%Figure~\ref{fig:OrganismsPowerScaling}. Because Equation~\ref{eq:OrganismPower}
+%is nonlinear, standard linear regression is insufficient. We used two
+%different methods: Numerically determine the value of $D_r$ that (1) minimizes the sum
+%of the log squared distances between the data and the predicted metabolic rate,
+%(2) minimizes the sum of log squared distances between the data and the closest
+%point on the line formed by equation~\ref{eq:OrganismPower}.  The first method
+%is similar to analogous to least squares regression, while the second is
+%analogous to Reduced Major Axis (RMA) regression. 
+%The best fit to
+%the data is achieved with $D_r = 2.56$ using RMA regression, and $D_r
+%= 2.50$ using OLS regression, which is close to our theoretical
+%prediction. Following Kolokotrones et al, the orca outlier was eliminated from Figure 2 and the fit, however including it has negligible impact on the fit. Note that Eq.~\ref{eq:OrganismPower} includes two
+%arbitrary scaling constants.  These are calibrated in each of the
+%three models shown in 
+%Fig.~\ref{fig:OrganismsPowerScaling} to give the best fit to the data.
+
 % This  model provides a marginally better
 % fit (red-dashed line) than the West et al.\ extensions that were
 % designed intentionally to induce
@@ -717,12 +712,10 @@ Fig.~\ref{fig:OrganismsPowerScaling} to give the best fit to the data.}
 
   \caption{\red{The energy-time minimization model predicts metabolic
     scaling in mammals. Data from ~\cite{kolokotrones2010curvature}
-    are plotted, showing slight but theoretically important curvature in the scaling of metabolic rate vs. mass of mammals.  The West et
-    al.~\cite{west97} $3/4$ scaling prediction is shown in blue, and
-    the theoretical optimum predicted by Eq.~\ref{eq:OrganismPower}
-    with $D_r = \frac{24}{11}$ is shown in green.  For comparison the
-    best empirical fit of  Eq.~\ref{eq:OrganismPower} to the data is
-    shown in red ($D_r = 2.56$).}}
+    show slight, but theoretically important, curvature in the scaling of metabolic rate vs. mass of mammals.  The  theoretical optimum predicted by Eq.~\ref{eq:OrganismPower}
+    with $D_r = \frac{24}{11}$ is shown as a solid blue line. The West et
+    al. $3/4$ scaling prediction~\cite{west97} is shown as a dashed red line, and the best empirical fit of Eq.~\ref{eq:OrganismPower} to the data is
+    shown as a dashed green line ($D_r = 2.56$).}}
 \label{fig:OrganismsPowerScaling}
 \end{figure}
 
@@ -958,39 +951,35 @@ trial-and-error, innovation and optimization, engineered designs are highly
 successful, approaching and sometimes exceeding the theoretical optimum predicted by the model.
 
 
-\section{Discussion: Implications for Evolutionary Transitions}
+\section{Discussion}
 \label{sec:discussion}
 
+\subsection{Summary of time-energy minimization model predictions}
 Scaling analyses provide a framework for understanding critical
 parameters and constraints on the design of both biological and
-computational systems spanning an enormous range of sizes.   Here, we 
-presented a unified model, which predicts scaling relationships for both mammals and
+computational systems spanning an enormous range of sizes.   We have
+presented a unified model which predicts scaling relationships for both mammals and
 computer chips by simultaneously minimizing energy dissipation and delivery time. 
 %gives
 %unified model, accounting for how both natural and artificial
 %networks have evolved. 
-This broad framework highlights the similarities and
+The energy-time minimization model highlights the similarities and
 differences between biological networks that deliver oxygen and
 computational networks that deliver information.  \red{Earlier scaling
 models focus either on minimizing energy dissipation or on minimizing
-delivery time, e.g., \cite{west97,RIVER}.  Here we extend that work by considering energy and time
+delivery time, e.g., \cite{west97,RIVER}.  Here we extend that work by considering minimization of energy and time
 simultaneously and investigating the tradeoffs between them.}
 
-\red{This theoretical model can be used to make testable predictions, both
-for biology and for technological systems.  In biology, Section
+\red{This theoretical model makes testable scaling predictions for biological metabolism and for the power and performance of computers.  In biology, Section
 \ref{sec:bio-predictions} extends previous predictions to explain the
-observed curvature in metabolic scaling of mammals by including an
-energy dissipation term.  Other studies have interpreted this
-deviation as the `non-universal' character of metabolic scaling.  The
-framework presented here accounts for this deviation, and further, it explains the
-elevated metabolic rate of largest mammals not addressed in
-previous models.  
-In computation, the unified model predicts well Rent's exponents, active power consumption and chip performance over 40 years of chip design.
+observed curvature in metabolic scaling of mammals.  Other studies have interpreted the
+deviation from linear scaling as indicating that there is no single unified metabolic scaling theory.  The
+framework presented here accounts for curvature by including time and energy minimization in the network and the nodes. In computation, the unified model accurately predicts Rent's exponents, active power consumption and chip performance in over 40 years of chip design.
 %The model is consistent with the results of a
 %previous study~\cite{delong2010shifts} at the evolutionary transitions. 
 Thus,
 the model provides evidence of strong convergence between natural and
-artificial designs due to physical constraints despite the obvious
+engineered designs due to physical constraints despite the obvious
 differences between them.} 
 %These
 %results might be useful when understanding the emergence of sociality
@@ -1000,19 +989,19 @@ The model presented here is, of course, a simplification of the more
 complex reality. For example, our analysis assumes that $D_l$, $D_r$,
 and $D_w$ are fixed constants throughout the network both within and
 across systems. In reality, each of these may vary.  For
-example, Ref.~\cite{newberry2015testing} did not find evidence for a
+example,~\cite{newberry2015testing} did not find evidence for a
 constant $D_l = 3$ in mouse vasculature, suggesting that the network
 does not deliver resources uniformly throughout the body volume. This
 is not surprising given that different tissues and organs have
 different metabolic requirements. $D_r$ may vary
 within the vascular network with area-preserving branching closer to the heart and area-increasing branching slowing blood velocity in smaller
-vessels, but Ref.~\cite{newberry2015testing} find values for $D_r$
+vessels, but~\cite{newberry2015testing} find values for $D_r$
 consistent with our predictions.  Similarly, there is evidence that
 $D_w$ varies across hierarchical levels in computer
 chips~\cite{ozaktas2004information}. Including these factors in the
 model would allow more accurate predictions, but they are unlikely to
-substantively change the order-of-magnitude results presented
-with our simple unified model.
+substantively change the order-of-magnitude predictions of 
+our simple unified model.
 
 Our model makes novel predictions both for mammals and
 computation. For mammals we give the first quantitative prediction
@@ -1043,6 +1032,8 @@ More precise predictions may be obtained by incorporating additional
 factors, for example leakage power, which comprises an increasing fraction
 of the power budget of computer chips.
 
+\subsection{Implications for Evolutionary Transitions}
+
 The similarities between biological and computational scaling suggest
 future trajectories in computing based on how the fundamental
 structural and functional properties of organisms from bacteria to mammals have changed over
@@ -1070,7 +1061,7 @@ energy required to deliver each molecule of oxygen increase.  The explanations t
 to understanding how energy-time minimization affects the ongoing evolution of
 computer hardware.
 
-\red{Innovations in chip design mimic innovation in bacteria evolution:} The chip scaling described above
+\red{Innovations in chip design mimic innovation in the evolution of bacteria:} The chip scaling described above
 shows how time and energy dissipation have decreased while performance
 increased as larger numbers of smaller transistors have been packed
 onto each chip. During this era, technological innovations in chips
@@ -1079,8 +1070,7 @@ bacteria have evolved larger genomes and used the new genes to exploit
 new metabolic niches, new materials, switching methods, etching
 processes and cooling technologies have pushed physical boundaries,
 allowing transistors to shrink and more of them to be packed onto each
-chip. Like bacteria, however, there are limits to how far this process
-can go.  There are no elephant-sized bacteria, and there will be no
+chip. Like bacteria, however, there are limits to this process.  There are no elephant-sized bacteria, and there will be no
 silicon-based single core chips with quadrillions of transistors.
 
 \red {Single core chips scale like unicellular protists:} Historical chip scaling mimics the linear relationship between performance and
