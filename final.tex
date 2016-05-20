@@ -18,6 +18,8 @@
 \usepackage[toc,page]{appendix}
 \usepackage[symbol]{footmisc}
 \usepackage[hyphens]{url}
+\usepackage[table]{xcolor}
+\usepackage{hhline}
 % Use times if you have the font installed; otherwise, comment out the
 % following line.
 
@@ -577,41 +579,50 @@ E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1} \propto l_0 u_0
 
 \begin{table}
 \centering
-\begin{tabular}{l|l||l|l|}
-\multicolumn{2}{l}{} & \multicolumn{1}{c}{$\mathbf{D_r \leq
-\frac{4D_l}{1+D_l}}$} & \multicolumn{1}{c}{$\mathbf{D_l=3, D_r=\frac{24}{11}}$}
+\begin{tabular}{l|l|c|c|}
+  \multicolumn{2}{l}{} & \multicolumn{1}{c}{\textbf{General}} &
+  \multicolumn{1}{c}{\textbf{Energy Time Minimization}} \\
+  \hhline{|~|~|-|-|}
+\multicolumn{2}{l|}{} & \multicolumn{1}{c|}{$\mathbf{D_r \leq
+\frac{4D_l}{1+D_l}}$} & \multicolumn{1}{c|}{\cellcolor{gray!25} $\mathbf{D_l=3, D_r=\frac{24}{11}}$}
   \T \B \\
-  \cline{2-4}
-\multirow{5}{*}{\textbf{Mammals}} & $E_{net}$ &$l_0u_0 N^{\frac{2}{D_r}-1}$ &
+  \hhline{|~|-|-|-|}
+  \multirow{5}{*}{\textbf{Mammals}} & $\mathbf{E_{net}}$ &$l_0u_0
+  N^{\frac{2}{D_r}-1}$ &\cellcolor{gray!25}
   $N^{\frac{1}{12}}$ \T \\
-\cline{2-4}
-& $E_{node}$ &  $N$ & $N$ \T \\
-\cline{2-4}
-& $T_{net}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & $N^0$ \T \\
-\cline{2-4}
-& $T_{node}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & $N^0$ \T \\  
+  \hhline{|~|-|-|-|}
+& $\mathbf{E_{node}}$ &  $N$ & \cellcolor{gray!25} $N$ \T \\
+  \hhline{|~|-|-|-|}
+& $\mathbf{T_{net}}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & \cellcolor{gray!25} $N^0$ \T \\
+  \hhline{|~|-|-|-|}
+& $\mathbf{T_{node}}$ & $u_0^{-1}N^{1-\frac{2}{D_r}}$ & \cellcolor{gray!25} $N^0$ \T \\  
 
-\cline{2-4}
-& $E_{sys} \times T_{sys}$ & $l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$ &
-$N^{\frac{1}{12}} + N$ \T \\
-\cline{2-4}
-\multicolumn{2}{c}{}  & \multicolumn{1}{c}{$\mathbf{D_w \geq
-\frac{D_l}{D_l-1}}$} & \multicolumn{1}{c}{$\mathbf{D_l=2,D_w =2}$} \T \B \\
-\cline{2-4}
-\multirow{5}{*}{\textbf{Computers}} & $E_{net}$ & $N^{1-\frac{1}{D_l}}$&
+  \hhline{|~|-|-|-|}
+& $\mathbf{E_{sys} \times T_{sys}}$ & $l_0 + u_0^{-1}N^{2-\frac{2}{D_r}}$ &
+ \cellcolor{gray!25} $N^{\frac{1}{12}} + N$ \T \\
+  \hhline{|~|-|-|-|}
+\multicolumn{4}{c}{} \\
+  \hhline{|~|~|-|-|}
+\multicolumn{2}{c|}{}  & \multicolumn{1}{c|}{$\mathbf{D_w \geq
+\frac{D_l}{D_l-1}}$} & \multicolumn{1}{c|}{\cellcolor{gray!25}  $\mathbf{D_l=2,D_w =2}$} \T \B \\
+  \hhline{|~|-|-|-|}
+\multirow{5}{*}{\textbf{Computers}} & $\mathbf{E_{net}}$ & $N^{1-\frac{1}{D_l}}$& \cellcolor{gray!25}
 $N^{\frac{1}{2}}$ \T \\
-\cline{2-4}
-& $E_{node}$&$N^{1-\frac{1}{D_l}}$ &$N^{\frac{1}{2}}$ \T \\
-\cline{2-4}
-& $T_{net}$ & $N^{0}$& $N^{0}$ \T \\
-\cline{2-4}
-& $T_{node}$& $N^{-\frac{1}{D_l}}$& $N^{-\frac{1}{2}}$ \T \\
-\cline{2-4}
-& $E_{sys} \times T_{sys}$ &$N^{1-\frac{1}{D_l}} + N^{1-\frac{1}{D_l}}$
-&$N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \T \\
-\cline{2-4}
+  \hhline{|~|-|-|-|}
+& $\mathbf{E_{node}}$&$N^{1-\frac{1}{D_l}}$ &\cellcolor{gray!25}  $N^{\frac{1}{2}}$ \T \\
+  \hhline{|~|-|-|-|}
+& $\mathbf{T_{net}}$ & $N^{0}$& \cellcolor{gray!25} $N^{0}$ \T \\
+  \hhline{|~|-|-|-|}
+& $\mathbf{T_{node}}$& $N^{-\frac{1}{D_l}}$& \cellcolor{gray!25} $N^{-\frac{1}{2}}$ \T \\
+  \hhline{|~|-|-|-|}
+& $\mathbf{E_{sys} \times T_{sys}}$ &$N^{1-\frac{1}{D_l}} + N^{1-\frac{1}{D_l}}$
+&\cellcolor{gray!25}  $N^{\frac{1}{2}} + N^{\frac{1}{2}}$ \T \\
+  \hhline{|~|-|-|-|}
 \end{tabular}
-\caption{Predicted scaling relationships for mammals and computer chips. The first column shows the general scaling equation under conditions that minimize the energy-time product. The second column shows how each quantity scales with $N$ given the values of the dimensional parameters that minimize the energy-time product, $D_r = \frac{24}{11}$ for mammals and $D_w = 2$ for chips. 
+\caption{Predicted scaling relationships for mammals and computer chips. The
+  first column shows the general scaling equation for dimensional parameters in
+  plausible ranges, ($2 \leq D_r \leq 3$ and $D_w \geq 2$). The second column
+  (shaded) shows how each quantity scales with $N$ given the values of the dimensional parameters that minimize the energy-time product, $D_r = \frac{24}{11}$ for mammals and $D_w = 2$ for chips. 
 \label{tab:Predictions}}
 \end{table}
 
@@ -1303,7 +1314,7 @@ Recall that $D_l = 2$ for $2$ dimensional computer
 chips and that $\lambda^{-H}=N^{-1}$. We can then calculate capacitance as:
 
 \begin{equation}
-  C \propto  N^{(1- \frac{1}{D_l}} \sum_{i=0}^H \lambda^{i \left( 
+  C \propto  N^{(1- \frac{1}{D_l})} \sum_{i=0}^H \lambda^{i \left( 
 \frac{1}{D_l} + \frac{1}{D_w} -1 \right)}
 \end{equation}
 
