@@ -582,11 +582,11 @@ E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1} \propto l_0 u_0
 \begin{tabular}{l|l|c|c|}
   \multicolumn{2}{l}{} & \multicolumn{1}{c}{\textbf{General}} &
   \multicolumn{1}{c}{\textbf{Energy Time Minimization}} \\
-  \hhline{|~|~|-|-|}
-\multicolumn{2}{l|}{} & \multicolumn{1}{c|}{$\mathbf{D_r \leq
-\frac{4D_l}{1+D_l}}$} & \multicolumn{1}{c|}{\cellcolor{gray!25} $\mathbf{D_l=3, D_r=\frac{24}{11}}$}
-  \T \B \\
   \hhline{|~|-|-|-|}
+%\multicolumn{2}{l|}{} & \multicolumn{1}{c|}{$\mathbf{D_r \leq
+%\frac{4D_l}{1+D_l}}$} & \multicolumn{1}{c|}{\cellcolor{gray!25} $\mathbf{D_l=3, D_r=\frac{24}{11}}$}
+%  \T \B \\
+%  \hhline{|~|-|-|-|}
   \multirow{5}{*}{\textbf{Mammals}} & $\mathbf{E_{net}}$ &$l_0u_0
   N^{\frac{2}{D_r}-1}$ &\cellcolor{gray!25}
   $N^{\frac{1}{12}}$ \T \\
@@ -602,9 +602,9 @@ E_{net} \propto l_0 u_0 N^{\frac{2}{D_r}-1} \propto l_0 u_0
  \cellcolor{gray!25} $N^{\frac{1}{12}} + N$ \T \\
   \hhline{|~|-|-|-|}
 \multicolumn{4}{c}{} \\
-  \hhline{|~|~|-|-|}
-\multicolumn{2}{c|}{}  & \multicolumn{1}{c|}{$\mathbf{D_w \geq
-\frac{D_l}{D_l-1}}$} & \multicolumn{1}{c|}{\cellcolor{gray!25}  $\mathbf{D_l=2,D_w =2}$} \T \B \\
+%  \hhline{|~|~|-|-|}
+%\multicolumn{2}{c|}{}  & \multicolumn{1}{c|}{$\mathbf{D_w \geq
+%\frac{D_l}{D_l-1}}$} & \multicolumn{1}{c|}{\cellcolor{gray!25}  $\mathbf{D_l=2,D_w =2}$} \T \B \\
   \hhline{|~|-|-|-|}
 \multirow{5}{*}{\textbf{Computers}} & $\mathbf{E_{net}}$ & $N^{1-\frac{1}{D_l}}$& \cellcolor{gray!25}
 $N^{\frac{1}{2}}$ \T \\
@@ -621,8 +621,11 @@ $N^{\frac{1}{2}}$ \T \\
 \end{tabular}
 \caption{Predicted scaling relationships for mammals and computer chips. The
   first column shows the general scaling equation for dimensional parameters in
-  plausible ranges, ($2 \leq D_r \leq 3$ and $D_w \geq 2$). The second column
-  (shaded) shows how each quantity scales with $N$ given the values of the dimensional parameters that minimize the energy-time product, $D_r = \frac{24}{11}$ for mammals and $D_w = 2$ for chips. 
+  plausible ranges, $D_r \leq \frac{4D_l}{1+D_l}$ for mammals and $D_w \geq
+  \frac{D_l}{D_l -1}$ for chips. The second column
+  (shaded) shows how each quantity scales with $N$ given the values of the
+  dimensional parameters that minimize the energy-time product, $D_r =
+  \frac{24}{11}$ and $D_l=3$ for mammals and $D_r = D_l = D_w =  2$ for chips. 
 \label{tab:Predictions}}
 \end{table}
 
